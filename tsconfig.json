@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "outDir": "./dist",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    //Customs added
+    // "baseUrl": "./src",
+    // "paths": {
+    //   "@configs/*": ["src/configs/*"],
+    //   "@models/*": ["src/models/*"],
+    //   "@services/*": ["src/services/*"],
+    //   "@controllers/*": ["src/controllers/*"],
+    //   "@routes/*": ["src/routes/*"]
+    // }
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}
