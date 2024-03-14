@@ -1,10 +1,13 @@
 import { Request, Response } from "express";
 import asyncHandler from "express-async-handler";
-import { studentService } from "../services/studentServices";
+import Student from "../entities/studentEntity";
 
 const createStudent = asyncHandler(async (req: Request, res: Response) => {
-  const newStudent = await studentService.createStudent(req.body);
-  res.status(201).json(newStudent);
+  // const newStudent
+  const newStudent = new Student();
+  console.log(req.body);
+
+  res.status(201).json("new student");
 });
 
 const getHelloWorld = asyncHandler((req: Request, res: Response) => {
