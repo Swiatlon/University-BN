@@ -1,0 +1,46 @@
+{
+    "env": {
+        "es2021": true,
+        "node": true
+    },
+    "ignorePatterns": ["*.json", "node_modules/", "dist/", ".eslintrc.json", "nodemon.json", ".lintstagedrc.json", "package*.json", "src/migrations/**"],
+    "extends": ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:@typescript-eslint/recommended-requiring-type-checking", "plugin:prettier/recommended"],
+    "plugins": ["@typescript-eslint", "prettier"],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": 2021,
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+    },
+    "rules": {
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
+        "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_", "caughtErrors": "all", "ignoreRestSiblings": true }],
+        "@typescript-eslint/no-explicit-any": "warn",
+        "no-console": "warn",
+        "prefer-const": "error",
+        "@typescript-eslint/explicit-module-boundary-types": "warn",
+        "@typescript-eslint/no-non-null-assertion": "warn",
+        "no-var": "error",
+        "prefer-template": "error",
+        "@typescript-eslint/no-unsafe-call": "warn",
+        "@typescript-eslint/no-unsafe-return": "warn",
+        "@typescript-eslint/require-await": "warn",
+        "require-await": "off",
+        "@typescript-eslint/explicit-function-return-type": ["warn", { "allowExpressions": true }],
+        "@typescript-eslint/no-use-before-define": ["error", { "functions": false, "classes": true, "variables": true, "typedefs": true }],
+        "curly": "error",
+        "eqeqeq": ["error", "always"],
+        "no-unused-expressions": "error",
+        "no-useless-return": "error",
+        "no-magic-numbers": "error",
+        "@typescript-eslint/no-unsafe-assignment": "error",
+        "@typescript-eslint/prefer-nullish-coalescing": "error",
+        "sort-imports": "error",
+        "no-path-concat": "error"
+    }
+}
