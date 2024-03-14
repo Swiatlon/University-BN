@@ -1,7 +1,7 @@
-import { MigrationInterface, QueryRunner } from "typeorm";
+import type { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class RelationWithDRY1710448681214 implements MigrationInterface {
-    name = 'RelationWithDRY1710448681214'
+    name = 'RelationWithDRY1710448681214';
 
     public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.query(`DROP INDEX \`IDX_b17d821af8b4d6021462bfbe0f\` ON \`Students\``);
@@ -28,7 +28,9 @@ export class RelationWithDRY1710448681214 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE \`Students\` ADD \`account_id\` varchar(36) NULL`);
         await queryRunner.query(`ALTER TABLE \`Students\` ADD UNIQUE INDEX \`IDX_b17d821af8b4d6021462bfbe0f\` (\`account_id\`)`);
         await queryRunner.query(`CREATE UNIQUE INDEX \`REL_b17d821af8b4d6021462bfbe0f\` ON \`Students\` (\`account_id\`)`);
-        await queryRunner.query(`ALTER TABLE \`Students\` ADD CONSTRAINT \`FK_b17d821af8b4d6021462bfbe0f7\` FOREIGN KEY (\`account_id\`) REFERENCES \`Users_Accounts\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(
+            `ALTER TABLE \`Students\` ADD CONSTRAINT \`FK_b17d821af8b4d6021462bfbe0f7\` FOREIGN KEY (\`account_id\`) REFERENCES \`Users_Accounts\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`
+        );
     }
 
     public async down(queryRunner: QueryRunner): Promise<void> {
@@ -49,7 +51,9 @@ export class RelationWithDRY1710448681214 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE \`Users_Accounts\` ADD \`id\` int NOT NULL AUTO_INCREMENT`);
         await queryRunner.query(`ALTER TABLE \`Users_Accounts\` ADD PRIMARY KEY (\`id\`)`);
         await queryRunner.query(`ALTER TABLE \`Users_Accounts\` CHANGE \`id\` \`id\` int NOT NULL AUTO_INCREMENT`);
-        await queryRunner.query(`ALTER TABLE \`Students\` ADD CONSTRAINT \`FK_b17d821af8b4d6021462bfbe0f7\` FOREIGN KEY (\`account_id\`) REFERENCES \`Users_Accounts\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`);
+        await queryRunner.query(
+            `ALTER TABLE \`Students\` ADD CONSTRAINT \`FK_b17d821af8b4d6021462bfbe0f7\` FOREIGN KEY (\`account_id\`) REFERENCES \`Users_Accounts\`(\`id\`) ON DELETE NO ACTION ON UPDATE NO ACTION`
+        );
         await queryRunner.query(`ALTER TABLE \`Students\` DROP COLUMN \`date_of_birth\``);
         await queryRunner.query(`ALTER TABLE \`Users_Accounts\` DROP COLUMN \`isActive\``);
         await queryRunner.query(`ALTER TABLE \`Students\` ADD \`updatedAt\` datetime(6) NOT NULL DEFAULT CURRENT_TIMESTAMP(6) ON UPDATE CURRENT_TIMESTAMP(6)`);
@@ -58,5 +62,4 @@ export class RelationWithDRY1710448681214 implements MigrationInterface {
         await queryRunner.query(`ALTER TABLE \`Users_Accounts\` ADD \`state\` enum ('0', '1') NOT NULL DEFAULT '1'`);
         await queryRunner.query(`CREATE UNIQUE INDEX \`IDX_b17d821af8b4d6021462bfbe0f\` ON \`Students\` (\`account_id\`)`);
     }
-
 }
