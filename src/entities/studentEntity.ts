@@ -1,47 +1,35 @@
-import {
-  Entity,
-  PrimaryGeneratedColumn,
-  Column,
-  Unique,
-  CreateDateColumn,
-  UpdateDateColumn,
-} from "typeorm";
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
+import { Person } from './Schemas/PersonSchema';
+import UserAccount from './userAccountEntity';
 
-enum Gender {
-  Men = "men",
-  Women = "women",
+export enum Gender {
+    Men = 'men',
+    Women = 'women',
 }
 
-@Entity()
-@Unique(["pesel"])
-export class Student {
-  @PrimaryGeneratedColumn("uuid")
-  id!: string;
-
-  @Column({ type: "varchar", length: 128 })
-  name!: string;
-
-  @Column({ type: "varchar", length: 122 })
-  surname!: string;
-
-  @Column({ type: "date" })
-  dateOfBirth!: Date;
-
-  @Column({ type: "char", length: 11 })
-  pesel!: string;
-
-  @Column({
-    type: "enum",
-    enum: Gender,
-    default: Gender.Men,
-  })
-  gender!: Gender;
-
-  @CreateDateColumn()
-  createdAt!: Date;
-
-  @UpdateDateColumn()
-  updatedAt!: Date;
+export interface IStudent {
+    pesel: string;
+    gender: Gender;
+    accountId: UserAccount;
 }
 
-export default Student;
+@Entity('Students')
+export class Student extends Person implements IStudent {
+    @Column({
+        type: 'char',
+        length: 11,
+        unique: true,
+    })
+    pesel!: string;
+
+    @Column({
+        type: 'enum',
+        enum: Gender,
+        default: Gender.Men,
+    })
+    gender!: Gender;
+
+    @OneToOne(() => UserAccount)
+    @JoinColumn({ name: 'account_id' })
+    accountId!: UserAccount;
+}

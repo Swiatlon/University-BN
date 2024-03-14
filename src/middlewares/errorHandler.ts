@@ -1,18 +1,18 @@
-import { Request, Response, NextFunction, ErrorRequestHandler } from "express";
+import type { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
+import { HTTP_STATUS } from '../utils/httpStatuses';
 
-const errorHandler: ErrorRequestHandler = (
-  err,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  const status = res.statusCode ? res.statusCode : 500;
+interface CustomError extends Error {
+    statusCode?: number;
+}
 
-  res.status(status).json({
-    message: err.message,
-    stack: process.env.NODE_ENV === "production" ? undefined : err.stack,
-    isError: true,
-  });
+const errorHandler: ErrorRequestHandler = (err: CustomError, req: Request, res: Response, _next: NextFunction) => {
+    const status = res.statusCode ? res.statusCode : HTTP_STATUS.INTERNAL_SERVER_ERROR.code;
+
+    res.status(status).json({
+        message: err.message,
+        stack: process.env.NODE_ENV === 'production' ? undefined : err.stack,
+        isError: true,
+    });
 };
 
 export default errorHandler;
