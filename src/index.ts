@@ -1,10 +1,10 @@
 import 'reflect-metadata';
-import { AppDataSource } from './configs/database';
+import { AppDataSource } from 'configs/database';
 import cors from 'cors';
-import corsOptions from './configs/cors';
-import errorHandler from './middlewares/errorHandler';
+import corsOptions from 'configs/cors';
+import errorHandler from 'middlewares/errorHandler';
 import express from 'express';
-import studentRoutes from './routes/studentRoutes';
+import studentRoutes from 'routes/studentRoutes';
 
 const app = express();
 const DEFAULT_PORT = 3000;

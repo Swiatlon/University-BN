@@ -1,4 +1,7 @@
-// httpStatus.ts
+export enum Gender {
+    Men = 'Men',
+    Women = 'Women',
+}
 
 export const HTTP_STATUS = {
     OK: { code: 200, message: 'OK' },
