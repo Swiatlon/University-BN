@@ -37,6 +37,18 @@ cd University-BN
 npm install
 ```
 
+4. **Make migration**:
+
+```bash
+npm run migration:generate name"(optional)"
+```
+
+5. **Apply migrations**:
+
+```bash
+npm run migration:apply
+```
+
 ### Running the Application
 
 1. **Development mode** with live reloads via `nodemon`:
