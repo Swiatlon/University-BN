@@ -1,4 +1,4 @@
-import { Gender } from '../constants/general/generalConstants';
+import { Gender } from 'constants/general/generalConstants';
 
 export interface IPerson {
     id?: string;

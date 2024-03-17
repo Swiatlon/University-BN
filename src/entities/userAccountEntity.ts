@@ -1,7 +1,7 @@
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { IsBoolean, IsEmail, IsNotEmpty, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
-import { IUserAccount } from '../interfaces/IUserAccount';
-import { Validation } from '../constants/validators/validatorsConstants';
+import { IUserAccount } from 'interfaces/IUserAccount';
+import { Validation } from 'constants/validators/validatorsConstants';
 
 @Entity('Users_Accounts')
 export class UserAccount implements IUserAccount {
