@@ -8,20 +8,23 @@
         "forceConsistentCasingInFileNames": true,
         "moduleResolution": "node",
         "rootDir": "./src",
-        "outDir": "./build",
+        "outDir": "./dist",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "sourceMap": true,
-        "strictPropertyInitialization": false
-        //Customs added
-        // "baseUrl": "./src",
-        // "paths": {
-        //   "@configs/*": ["src/configs/*"],
-        //   "@models/*": ["src/models/*"],
-        //   "@services/*": ["src/services/*"],
-        //   "@controllers/*": ["src/controllers/*"],
-        //   "@routes/*": ["src/routes/*"]
-        // }
+        "strictPropertyInitialization": false,
+        "baseUrl": "./src",
+        "paths": {
+            "*": ["*", "src/*"],
+            "@routes/*": ["routes/*"],
+            "@entities/*": ["entities/*"],
+            "@controllers/*": ["controllers/*"],
+            "@services/*": ["services/*"],
+            "@dtos/*": ["dtos/*"],
+            "@constants/*": ["constants/*"],
+            "@interfaces/*": ["interfaces/*"],
+            "@schemas/*": ["entities/schemas/"]
+        }
     },
     "include": ["src/**/*"],
     "exclude": ["node_modules"]

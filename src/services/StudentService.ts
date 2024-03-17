@@ -1,6 +1,6 @@
-import { AppDataSource } from '../configs/database';
+import { AppDataSource } from 'configs/database';
 import { Repository } from 'typeorm';
-import { Student } from '../entities/StudentEntity';
+import { Student } from 'entities/studentEntity';
 
 export class StudentService {
     private studentRepository: Repository<Student>;

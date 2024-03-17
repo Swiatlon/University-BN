@@ -1,5 +1,5 @@
 import type { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
-import { HTTP_STATUS } from '../constants/general/generalConstants';
+import { HTTP_STATUS } from 'constants/general/generalConstants';
 
 interface CustomError extends Error {
     statusCode?: number;

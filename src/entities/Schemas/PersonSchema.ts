@@ -1,9 +1,9 @@
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
 import { IsDate, IsEnum, IsNotEmpty, IsString, IsUUID, MaxLength, MinLength } from 'class-validator';
-import { Gender } from '../../constants/general/generalConstants';
-import { IPerson } from '../../interfaces/IPerson';
+import { Gender } from 'constants/general/generalConstants';
+import { IPerson } from 'interfaces/IPerson';
 import { Type } from 'class-transformer';
-import { Validation } from '../../constants/validators/validatorsConstants';
+import { Validation } from 'constants/validators/validatorsConstants';
 
 export abstract class Person implements IPerson {
     @PrimaryGeneratedColumn('uuid')
