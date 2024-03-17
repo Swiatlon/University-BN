@@ -1,35 +1,13 @@
-import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
-import { Person } from './Schemas/PersonSchema';
-import UserAccount from './userAccountEntity';
-
-export enum Gender {
-    Men = 'men',
-    Women = 'women',
-}
-
-export interface IStudent {
-    pesel: string;
-    gender: Gender;
-    accountId: UserAccount;
-}
+import { Entity, JoinColumn, OneToOne } from 'typeorm';
+import { IStudent } from '../interfaces/IStudent';
+import { IsUUID } from 'class-validator';
+import { Person } from './schemas/PersonSchema';
+import { UserAccount } from './UserAccountEntity';
 
 @Entity('Students')
 export class Student extends Person implements IStudent {
-    @Column({
-        type: 'char',
-        length: 11,
-        unique: true,
-    })
-    pesel!: string;
-
-    @Column({
-        type: 'enum',
-        enum: Gender,
-        default: Gender.Men,
-    })
-    gender!: Gender;
-
     @OneToOne(() => UserAccount)
     @JoinColumn({ name: 'account_id' })
-    accountId!: UserAccount;
+    @IsUUID()
+    accountId!: string;
 }
