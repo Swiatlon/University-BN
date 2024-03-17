@@ -1,8 +1,8 @@
 import { Entity, JoinColumn, OneToOne } from 'typeorm';
 import { IStudent } from 'interfaces/IStudent';
 import { IsUUID } from 'class-validator';
-import { Person } from './schemas/PersonSchema';
-import { UserAccount } from './userAccountEntity';
+import { Person } from './Schemas/PersonSchema';
+import { UserAccount } from './UserAccountEntity';
 
 @Entity('Students')
 export class Student extends Person implements IStudent {

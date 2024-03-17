@@ -1,6 +1,6 @@
 import type { Request, Response } from 'express';
 import { HTTP_STATUS } from 'constants/general/generalConstants';
-import { Student } from 'entities/studentEntity';
+import { Student } from 'entities/StudentEntity';
 import { StudentService } from '@services/StudentService';
 import asyncHandler from 'express-async-handler';
 

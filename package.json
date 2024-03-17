@@ -1,7 +1,7 @@
 {
     "name": "university-bn",
     "version": "0.1.0",
-    "description": "",
+    "description": "A backend for University management system built with Express and TypeScript.",
     "type": "commonjs",
     "main": "index.js",
     "scripts": {
@@ -21,6 +21,10 @@
     "keywords": [],
     "author": "",
     "license": "ISC",
+    "engines": {
+        "node": ">=18.0.0",
+        "npm": ">=8.0.0"
+    },
     "dependencies": {
         "bcryptjs": "^2.4.3",
         "class-transformer": "^0.5.1",

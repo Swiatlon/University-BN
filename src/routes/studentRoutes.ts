@@ -1,6 +1,6 @@
 import { CreateStudentDto } from 'dto/students/CreateStudentDto';
 import express from 'express';
-import { studentController } from 'controllers/studentController';
+import { studentController } from 'controllers/StudentController';
 import { validateDto } from 'middlewares/validateDto';
 
 const router = express.Router();
