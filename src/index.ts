@@ -4,6 +4,7 @@ import cors from 'cors';
 import corsOptions from 'configs/cors';
 import errorHandler from 'middlewares/errorHandler';
 import express from 'express';
+import { runSeeders } from 'typeorm-extension';
 import studentRoutes from 'routes/studentRoutes';
 
 const app = express();
@@ -19,8 +20,9 @@ app.use('/api', studentRoutes);
 app.use(errorHandler);
 
 AppDataSource.initialize()
-    .then(() => {
+    .then(async () => {
         console.log('Succesfully connected to DB!');
+        await runSeeders(AppDataSource);
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
         });

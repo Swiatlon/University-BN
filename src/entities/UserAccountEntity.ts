@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 import { IUserAccount } from 'interfaces/IUserAccount';
 import { Validation } from 'constants/validators/validatorsConstants';
+import { v4 as uuidv4 } from 'uuid';
 
 @Entity('Users_Accounts')
 export class UserAccount implements IUserAccount {
@@ -29,6 +30,21 @@ export class UserAccount implements IUserAccount {
     })
     password!: string;
 
-    @Column({ default: true })
+    @Column({
+        default: true,
+        name: 'is_active',
+    })
     isActive!: boolean;
+
+    @Column({
+        name: 'deactivation_date',
+        nullable: true,
+        default: null,
+    })
+    deactivationDate!: Date;
+
+    @BeforeInsert()
+    generateUUID() {
+        this.id = uuidv4();
+    }
 }

@@ -13,7 +13,7 @@ export const Validation = {
     },
     LOGIN: {
         MIN_LENGTH: 5,
-        MAX_LENGTH: 16,
+        MAX_LENGTH: 111,
         MIN_LENGTH_MESSAGE: 'Login must be at least $constraint1 characters long.',
         MAX_LENGTH_MESSAGE: 'Login must be no longer than $constraint1 characters.',
         REQUIRED_MESSAGE: 'Login is required.',
