@@ -5,7 +5,7 @@ import { UserAccount } from './UserAccountEntity';
 
 @Entity('Students')
 export class Student extends Person implements IStudent {
-    @OneToOne(() => UserAccount)
+    @OneToOne(() => UserAccount, { cascade: true })
     @JoinColumn({ name: 'account_id' })
     accountId!: string;
 }

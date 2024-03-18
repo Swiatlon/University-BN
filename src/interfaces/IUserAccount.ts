@@ -4,4 +4,5 @@ export interface IUserAccount {
     email: string;
     password: string;
     isActive: boolean;
+    deactivationDate: Date;
 }

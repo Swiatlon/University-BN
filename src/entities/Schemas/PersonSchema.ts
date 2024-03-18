@@ -3,7 +3,7 @@ import { Gender } from 'constants/general/generalConstants';
 import { IPerson } from 'interfaces/IPerson';
 import { Validation } from 'constants/validators/validatorsConstants';
 
-export abstract class Person implements IPerson {
+export class Person implements IPerson {
     @PrimaryGeneratedColumn('uuid')
     id!: string;
 
