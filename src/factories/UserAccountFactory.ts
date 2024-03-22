@@ -1,11 +1,11 @@
-import { Student } from 'entities/StudentEntity';
+import { Person } from 'entities/Schemas/PersonSchema';
 import { UserAccount } from 'entities/UserAccountEntity';
 
 export class UserAccountFactory {
-    create(student: Student): UserAccount {
+    create(person: Person): UserAccount {
         const userAccount = new UserAccount();
-        userAccount.login = `${student.name}.${student.surname}`.toLowerCase();
-        userAccount.email = `${student.name}.${student.surname}@example.com`.toLowerCase();
+        userAccount.login = `${person.name}.${person.surname}`.toLowerCase();
+        userAccount.email = `${person.name}.${person.surname}@example.com`.toLowerCase();
         userAccount.password = 'defaultPassword';
         userAccount.isActive = true;
 

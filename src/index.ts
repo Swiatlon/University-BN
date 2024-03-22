@@ -22,7 +22,10 @@ app.use(errorHandler);
 AppDataSource.initialize()
     .then(async () => {
         console.log('Succesfully connected to DB!');
-        await runSeeders(AppDataSource);
+        if (process.env.NODE_ENV === 'DEVELOPMENT') {
+            await runSeeders(AppDataSource);
+        }
+
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
         });

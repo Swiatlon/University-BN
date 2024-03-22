@@ -12,3 +12,11 @@ export const HTTP_STATUS = {
     NOT_FOUND: { code: 404, message: 'Not Found' },
     INTERNAL_SERVER_ERROR: { code: 500, message: 'Internal Server Error' },
 };
+
+export const RolesEnums = {
+    admin: 'Admin',
+    teacher: 'Teacher',
+    student: 'Student',
+};
+
+export const Roles = [RolesEnums.admin, RolesEnums.teacher, RolesEnums.student];
