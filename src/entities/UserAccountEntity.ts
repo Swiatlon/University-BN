@@ -1,6 +1,7 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { IUserAccount } from 'interfaces/IUserAccount';
 import { Validation } from 'constants/validators/validatorsConstants';
+import { Role } from './RoleEntity';
 
 @Entity('Users_Accounts')
 export class UserAccount implements IUserAccount {
@@ -29,6 +30,30 @@ export class UserAccount implements IUserAccount {
     })
     password!: string;
 
-    @Column({ default: true })
+    @Column({
+        default: true,
+        name: 'is_active',
+    })
     isActive!: boolean;
+
+    @Column({
+        name: 'deactivation_date',
+        nullable: true,
+        default: null,
+    })
+    deactivationDate!: Date;
+
+    @ManyToMany(() => Role, (role) => role.users)
+    @JoinTable({
+        name: 'Users_Accounts_Roles',
+        joinColumn: {
+            name: 'users_accounts_id',
+            referencedColumnName: 'id',
+        },
+        inverseJoinColumn: {
+            name: 'role_id',
+            referencedColumnName: 'id',
+        },
+    })
+    roles: Role[];
 }
