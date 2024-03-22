@@ -1,3 +1,3 @@
 export interface IStudent {
-    accountId: string;
+    addressId: string;
 }

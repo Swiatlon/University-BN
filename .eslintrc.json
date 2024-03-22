@@ -46,7 +46,6 @@
         "no-magic-numbers": "error",
         "@typescript-eslint/no-unsafe-assignment": "error",
         "@typescript-eslint/prefer-nullish-coalescing": "error",
-        "sort-imports": "error",
         "no-path-concat": "error"
     }
 }

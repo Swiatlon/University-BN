@@ -1,6 +1,7 @@
-import { Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Gender } from 'constants/general/generalConstants';
 import { IPerson } from 'interfaces/IPerson';
+import { UserAccount } from 'entities/UserAccountEntity';
 import { Validation } from 'constants/validators/validatorsConstants';
 
 export class Person implements IPerson {
@@ -36,4 +37,10 @@ export class Person implements IPerson {
         enum: Gender,
     })
     gender!: Gender;
+
+    @OneToOne(() => UserAccount, { cascade: true, nullable: true })
+    @JoinColumn({
+        name: 'account_id',
+    })
+    accountId: string;
 }

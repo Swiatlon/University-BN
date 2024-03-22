@@ -1,7 +1,7 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { IUserAccount } from 'interfaces/IUserAccount';
 import { Validation } from 'constants/validators/validatorsConstants';
-import { v4 as uuidv4 } from 'uuid';
+import { Role } from './RoleEntity';
 
 @Entity('Users_Accounts')
 export class UserAccount implements IUserAccount {
@@ -43,8 +43,17 @@ export class UserAccount implements IUserAccount {
     })
     deactivationDate!: Date;
 
-    @BeforeInsert()
-    generateUUID() {
-        this.id = uuidv4();
-    }
+    @ManyToMany(() => Role, (role) => role.users)
+    @JoinTable({
+        name: 'Users_Accounts_Roles',
+        joinColumn: {
+            name: 'users_accounts_id',
+            referencedColumnName: 'id',
+        },
+        inverseJoinColumn: {
+            name: 'role_id',
+            referencedColumnName: 'id',
+        },
+    })
+    roles: Role[];
 }
