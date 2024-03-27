@@ -8,17 +8,17 @@ import { CreateRolesForAccounts } from './CreateRolesForAccounts';
 import { CreateAdminAccount } from './CreateAdminAccount';
 import { CreateUserAccount } from './CreateUserAccount';
 
-const devSeeders = () => {
+const _devSeeders = () => {
     return [CreateStudentsAndAddresses, CreateAccountsForStudents, CreateEmployeeAndAddresses, CreateAccountsForEmployee, CreateRolesForAccounts];
 };
 
-const requiredSeeders = () => {
+const _requiredSeeders = () => {
     return [CreateRoles, CreateAdminAccount, CreateUserAccount];
 };
 
 const _testingSeeders = () => {
-    return [CreateUserAccount];
+    return [];
 };
 
-export const seedersClasses = [requiredSeeders(), devSeeders()].flat();
-// export const seedersClasses = [testingSeeders()].flat();
+// export const seedersClasses = [requiredSeeders(), devSeeders()].flat();
+export const seedersClasses = [_testingSeeders()].flat();
