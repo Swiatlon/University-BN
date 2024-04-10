@@ -1,4 +1,4 @@
 export interface ICreateAccountDto {
-    email: string;
+    identifier: string;
     password: string;
 }

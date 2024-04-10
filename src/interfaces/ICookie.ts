@@ -4,5 +4,6 @@ export interface ICookie {
 
 export interface UserPayload {
     email: string;
+    login: string;
     id: string;
 }

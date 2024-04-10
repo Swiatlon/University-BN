@@ -6,10 +6,10 @@ import { CreateUserAccountDto } from 'dto/userAccount/CreateUserAccountDto';
 
 const router = express.Router();
 
-router.route('/').get(validateDto(CreateUserAccountDto), loginLimiter, AuthController.login);
+router.route('/').post(validateDto(CreateUserAccountDto), loginLimiter, AuthController.login);
 
-router.route('/refresh').get();
+router.route('/refresh').get(AuthController.refresh);
 
-router.route('/logout').post();
+router.route('/logout').post(AuthController.logout);
 
 export default router;

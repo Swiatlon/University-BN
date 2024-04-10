@@ -3,7 +3,7 @@ import { ICreateAccountDto } from 'interfaces/ICreateAccountDto';
 
 export class CreateUserAccountDto implements ICreateAccountDto {
     @IsString()
-    email: string;
+    identifier: string;
 
     @IsString()
     password: string;

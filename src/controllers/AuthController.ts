@@ -10,10 +10,12 @@ import { ICookie, UserPayload } from 'interfaces/ICookie';
 // @route POST /auth
 // @access Public
 
-const login = asyncHandler(async (req: Request, res: Response) => {
-    const { email, password } = req.body as { email: string; password: string };
+const accessTokenTime = '15s';
 
-    const foundUser = await accountRepository().findByEmailAccount(email);
+const login = asyncHandler(async (req: Request, res: Response) => {
+    const { identifier, password } = req.body as { identifier: string; password: string };
+
+    const foundUser = await accountRepository().findByAccountIdentifier(identifier);
 
     if (!foundUser) {
         res.status(HTTP_STATUS.UNAUTHORIZED.code).json({ message: 'User not exist!' });
@@ -23,7 +25,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     const match = await bcrypt.compare(password, foundUser.password);
 
     if (!match) {
-        res.status(HTTP_STATUS.UNAUTHORIZED.code).json({ message: 'Password or email not correct!' });
+        res.status(HTTP_STATUS.UNAUTHORIZED.code).json({ message: 'Password or identifier not correct!' });
         return;
     }
 
@@ -33,23 +35,25 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         {
             UserInfo: {
                 email: foundUser.email,
+                login: foundUser.login,
                 id: foundUser.id,
             },
         },
         String(process.env.ACCESS_TOKEN_SECRET),
-        { expiresIn: '15m' }
+        { expiresIn: accessTokenTime }
     );
 
     const refreshToken = jwt.sign(
         {
             email: foundUser.email,
+            login: foundUser.login,
         },
         String(process.env.REFRESH_TOKEN_SECRET),
-        { expiresIn: '7d' }
+        { expiresIn: '1d' }
     );
 
     const time = {
-        days: 7,
+        days: 1,
         hours: 24,
         minutes: 60,
         seconds: 60,
@@ -68,41 +72,6 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     res.json({ accessToken });
 });
 /*--------------------------------------------------------------*/
-
-// @desc Create new user
-// @route POST auth/register
-// @access Public
-
-// const createNewUser = asyncHandler(async (req, res) => {
-//     const { email, password } = req.body;
-
-//     // Confirm data
-//     if (!email || !password) return res.status(400).json({ message: 'All fields are required!' });
-
-//     // Check for duplicate
-
-//     const duplicate = await User.findOne({ email }).lean().exec();
-
-//     if (duplicate) return res.status(409).json({ message: 'User with this email exists' });
-
-//     // hash password
-//     const hashedPwd = await bcrypt.hash(password, 10); // salt rounds
-
-//     // get username  ? Maybe in schema model create ?
-
-//     const name = email.split('@')[0];
-
-//     const userObject = { email, password: hashedPwd, name };
-
-//     // Create and store new user
-
-//     const user = await User.create(userObject);
-
-//     if (!user) return res.status(400).json({ message: 'Invalid user data received' });
-
-//     return res.status(201).json({ message: `New user ${name} created` });
-// });
-// /*--------------------------------------------------------------*/
 
 // @desc Refresh
 // @route POST /auth/refresh
@@ -139,11 +108,12 @@ const refresh = asyncHandler(async (req: Request, res: Response) => {
         {
             UserInfo: {
                 email: foundUser.email,
+                login: foundUser.login,
                 id: foundUser.id,
             },
         },
         process.env.ACCESS_TOKEN_SECRET as string,
-        { expiresIn: '15m' }
+        { expiresIn: accessTokenTime }
     );
 
     res.json({ accessToken });
