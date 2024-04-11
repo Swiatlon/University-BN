@@ -6,6 +6,8 @@ import errorHandler from 'middlewares/errorHandler';
 import express from 'express';
 import { runSeeders } from 'typeorm-extension';
 import studentRoutes from 'routes/studentRoutes';
+import authRoutes from 'routes/authRoutes';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const DEFAULT_PORT = 3000;
@@ -15,7 +17,10 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+app.use(cookieParser());
+
 app.use('/api', studentRoutes);
+app.use('/auth', authRoutes);
 
 app.use(errorHandler);
 
