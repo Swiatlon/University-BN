@@ -7,6 +7,7 @@ import express from 'express';
 import { runSeeders } from 'typeorm-extension';
 import studentRoutes from 'routes/studentRoutes';
 import authRoutes from 'routes/authRoutes';
+import cookieParser from 'cookie-parser';
 
 const app = express();
 const DEFAULT_PORT = 3000;
@@ -15,6 +16,8 @@ const PORT = process.env.SERVER_PORT ?? DEFAULT_PORT;
 app.use(cors(corsOptions));
 
 app.use(express.json());
+
+app.use(cookieParser());
 
 app.use('/api', studentRoutes);
 app.use('/auth', authRoutes);

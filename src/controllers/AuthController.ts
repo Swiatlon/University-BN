@@ -10,7 +10,7 @@ import { ICookie, UserPayload } from 'interfaces/ICookie';
 // @route POST /auth
 // @access Public
 
-const accessTokenTime = '15s';
+const accessTokenTime = '15m';
 
 const login = asyncHandler(async (req: Request, res: Response) => {
     const { identifier, password } = req.body as { identifier: string; password: string };
