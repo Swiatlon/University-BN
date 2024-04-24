@@ -20,5 +20,5 @@ const _testingSeeders = () => {
     return [];
 };
 
-// export const seedersClasses = [requiredSeeders(), devSeeders()].flat();
+// export const seedersClasses = [_requiredSeeders(), _devSeeders()].flat();
 export const seedersClasses = [_testingSeeders()].flat();

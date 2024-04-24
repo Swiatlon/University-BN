@@ -3,6 +3,7 @@ import { Seeder } from 'typeorm-extension';
 import { UserAccount } from 'entities/UserAccountEntity';
 import { Role } from 'entities/RoleEntity';
 import { RolesEnums } from 'constants/general/generalConstants';
+import { hashPassword } from 'utils/globalHelpers';
 
 export class CreateUserAccount implements Seeder {
     public async run(dataSource: DataSource): Promise<void> {
@@ -16,7 +17,7 @@ export class CreateUserAccount implements Seeder {
                 userTestAccount = new UserAccount();
                 userTestAccount.login = 'user';
                 userTestAccount.email = userEmail;
-                userTestAccount.password = 'user!';
+                userTestAccount.password = await hashPassword('user!');
 
                 const studentRole = await transactionalEntityManager.findOne(Role, {
                     where: { name: RolesEnums.student },
