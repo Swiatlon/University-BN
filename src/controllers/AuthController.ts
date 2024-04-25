@@ -1,7 +1,7 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
-import type { Request, Response } from 'express';
+import type { CookieOptions, Request, Response } from 'express';
 import { accountRepository } from 'repositories/AccountsRepository';
 import { HTTP_STATUS } from 'constants/general/generalConstants';
 import { ICookie, UserPayload } from 'interfaces/ICookie';
@@ -15,7 +15,7 @@ const accessTokenTime = '15m';
 const login = asyncHandler(async (req: Request, res: Response) => {
     const { identifier, password } = req.body as { identifier: string; password: string };
 
-    const foundUser = await accountRepository().findByAccountIdentifier(identifier);
+    const foundUser = await accountRepository().findByIdentifierAccount(identifier);
 
     if (!foundUser) {
         res.status(HTTP_STATUS.UNAUTHORIZED.code).json({ message: 'User not exist!' });
@@ -29,24 +29,11 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         return;
     }
 
-    // After everything is correct we set JWT Tokens
-
-    const accessToken = jwt.sign(
-        {
-            UserInfo: {
-                email: foundUser.email,
-                login: foundUser.login,
-                id: foundUser.id,
-            },
-        },
-        String(process.env.ACCESS_TOKEN_SECRET),
-        { expiresIn: accessTokenTime }
-    );
+    const accessToken = jwt.sign({}, String(process.env.ACCESS_TOKEN_SECRET), { expiresIn: accessTokenTime });
 
     const refreshToken = jwt.sign(
         {
             email: foundUser.email,
-            login: foundUser.login,
         },
         String(process.env.REFRESH_TOKEN_SECRET),
         { expiresIn: '1d' }
@@ -62,12 +49,22 @@ const login = asyncHandler(async (req: Request, res: Response) => {
 
     const sevenDays = time.days * time.hours * time.minutes * time.seconds * time.miliSeconds;
 
-    res.cookie('jwt', refreshToken, {
+    const cookieOptions = {
         httpOnly: true, // accessible only by web server
         secure: true, // https
         sameSite: 'strict', // cross-site cookie
         maxAge: sevenDays, // cookie expiry: set to match refreshToken
-    });
+    } as CookieOptions;
+
+    res.cookie('jwt', refreshToken, cookieOptions);
+    res.cookie(
+        'userInfo',
+        {
+            id: foundUser.id,
+            roles: foundUser.roles,
+        },
+        cookieOptions
+    );
 
     res.json({ accessToken });
 });
@@ -104,17 +101,7 @@ const refresh = asyncHandler(async (req: Request, res: Response) => {
         return;
     }
 
-    const accessToken = jwt.sign(
-        {
-            UserInfo: {
-                email: foundUser.email,
-                login: foundUser.login,
-                id: foundUser.id,
-            },
-        },
-        process.env.ACCESS_TOKEN_SECRET as string,
-        { expiresIn: accessTokenTime }
-    );
+    const accessToken = jwt.sign({}, process.env.ACCESS_TOKEN_SECRET as string, { expiresIn: accessTokenTime });
 
     res.json({ accessToken });
 });
@@ -130,7 +117,11 @@ const logout = (req: Request, res: Response) => {
     if (!cookies?.jwt) {
         return res.sendStatus(HTTP_STATUS.NO_CONTENT.code); // No content
     }
-    res.clearCookie('jwt', { httpOnly: true, sameSite: 'strict', secure: true });
+
+    const cookieOptions = { httpOnly: true, sameSite: 'strict', secure: true } as CookieOptions;
+
+    res.clearCookie('jwt', cookieOptions);
+    res.clearCookie('userInfo', cookieOptions);
 
     return res.json({ message: 'Cookie cleared' });
 };

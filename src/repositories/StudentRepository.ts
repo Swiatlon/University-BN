@@ -12,5 +12,8 @@ export const studentRepository = (customDataSource: DataSource = AppDataSource) 
                 accountId: IsNull(),
             });
         },
+        findStudentByAccountId(id: string) {
+            return this.createQueryBuilder('student').where('student.accountId = :id', { id }).getOne();
+        },
     });
 };
