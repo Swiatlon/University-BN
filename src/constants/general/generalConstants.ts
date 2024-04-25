@@ -21,3 +21,8 @@ export const RolesEnums = {
 };
 
 export const Roles = [RolesEnums.admin, RolesEnums.teacher, RolesEnums.student];
+
+export type Role = {
+    id: string;
+    name: keyof (typeof RolesEnums)[];
+};

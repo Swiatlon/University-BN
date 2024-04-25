@@ -8,6 +8,7 @@ import { runSeeders } from 'typeorm-extension';
 import studentRoutes from 'routes/studentRoutes';
 import authRoutes from 'routes/authRoutes';
 import cookieParser from 'cookie-parser';
+import userInfoRoutes from 'routes/userInfoRoutes';
 
 const app = express();
 const DEFAULT_PORT = 3000;
@@ -20,6 +21,7 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use('/api', studentRoutes);
+app.use('/api', userInfoRoutes);
 app.use('/auth', authRoutes);
 
 app.use(errorHandler);

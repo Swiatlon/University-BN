@@ -12,5 +12,8 @@ export const employeeRepository = (customDataSource: DataSource = AppDataSource)
                 accountId: IsNull(),
             });
         },
+        findEmployeeByAccountId(id: string) {
+            return this.createQueryBuilder('employee').where('employee.accountId = :id', { id }).getOne();
+        },
     });
 };
