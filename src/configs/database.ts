@@ -14,7 +14,7 @@ const options: DataSourceOptions & SeederOptions = {
     password: DB_PASS,
     database: DB_NAME,
     synchronize: false,
-    logging: true,
+    logging: false,
     logger: 'advanced-console',
     entities: [`${__dirname}/../entities/*.ts`],
     migrations: [`${__dirname}/../migrations/*.ts`],

@@ -5,7 +5,7 @@ import { EmployeeAddress } from 'entities/EmployeeAddressEntity';
 import { Employee } from 'entities/EmployeeEntity';
 import { EmployeeFactory } from 'factories/EmployeeFactory';
 
-const amountOfNewEmployee = 2;
+const amountOfNewEmployee = 10;
 
 export class CreateEmployeeAndAddresses implements Seeder {
     public async run(dataSource: DataSource): Promise<void> {

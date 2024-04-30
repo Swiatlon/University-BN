@@ -18,6 +18,7 @@ export const RolesEnums = {
     admin: 'Admin',
     teacher: 'Teacher',
     student: 'Student',
+    employee: 'Employee',
 };
 
 export const Roles = [RolesEnums.admin, RolesEnums.teacher, RolesEnums.student];

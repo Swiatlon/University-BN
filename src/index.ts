@@ -9,6 +9,8 @@ import studentRoutes from 'routes/studentRoutes';
 import authRoutes from 'routes/authRoutes';
 import cookieParser from 'cookie-parser';
 import userInfoRoutes from 'routes/userInfoRoutes';
+import personalDataRoutes from 'routes/personalDataRoutes';
+import { visibilityFieldsFilter } from 'middlewares/visibilityFieldsFilters';
 
 const app = express();
 const DEFAULT_PORT = 3000;
@@ -20,8 +22,11 @@ app.use(express.json());
 
 app.use(cookieParser());
 
+app.use(visibilityFieldsFilter);
+
 app.use('/api', studentRoutes);
 app.use('/api', userInfoRoutes);
+app.use('/api', personalDataRoutes);
 app.use('/auth', authRoutes);
 
 app.use(errorHandler);
