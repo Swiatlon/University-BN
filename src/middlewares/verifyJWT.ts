@@ -14,7 +14,6 @@ export const verifyJWT = (req: CustomRequest, res: Response, next: NextFunction)
         return;
     }
 
-    // eslint-disable-next-line no-magic-numbers
     const token = authHeader.split(' ')[1];
 
     jwt.verify(token, String(process.env.ACCESS_TOKEN_SECRET), (err: unknown) => {

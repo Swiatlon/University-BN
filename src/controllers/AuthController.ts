@@ -3,12 +3,9 @@ import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import type { CookieOptions, Request, Response } from 'express';
 import { accountRepository } from 'repositories/AccountsRepository';
-import { HTTP_STATUS } from 'constants/general/generalConstants';
+import { HTTP_STATUS, RolesEnums } from 'constants/general/generalConstants';
 import { ICookie, UserPayload } from 'interfaces/ICookie';
-
-// @desc Login
-// @route POST /auth
-// @access Public
+import { userRepository } from 'repositories/UserRepository';
 
 const accessTokenTime = '15m';
 
@@ -56,12 +53,24 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         maxAge: sevenDays, // cookie expiry: set to match refreshToken
     } as CookieOptions;
 
+    const userData = {
+        id: '',
+        roles: foundUser.roles,
+        queryRole: foundUser.roles.map((role) => role.name).includes(RolesEnums.student) ? RolesEnums.student : RolesEnums.employee,
+        mainRole: foundUser.roles[0].name,
+    };
+
+    if (userData.queryRole) {
+        await userRepository({ queryRole: userData.queryRole })
+            .findUserByAccountId(foundUser.id)
+            .then((res) => (userData.id = res?.id as string));
+    }
+
     res.cookie('jwt', refreshToken, cookieOptions);
     res.cookie(
         'userInfo',
         {
-            id: foundUser.id,
-            roles: foundUser.roles,
+            ...userData,
         },
         cookieOptions
     );
@@ -69,10 +78,6 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     res.json({ accessToken });
 });
 /*--------------------------------------------------------------*/
-
-// @desc Refresh
-// @route POST /auth/refresh
-// @access Public
 
 const refresh = asyncHandler(async (req: Request, res: Response) => {
     const { cookies } = req as { cookies: ICookie };
@@ -106,10 +111,6 @@ const refresh = asyncHandler(async (req: Request, res: Response) => {
     res.json({ accessToken });
 });
 // /*--------------------------------------------------------------*/
-
-// @desc Logout
-// @route POST /auth/logout
-// @access Public
 
 const logout = (req: Request, res: Response) => {
     const { cookies } = req as { cookies: ICookie };

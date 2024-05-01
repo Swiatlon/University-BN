@@ -5,7 +5,7 @@ import { StudentFactory } from 'factories/StudentFactory';
 import { AddressFactory } from 'factories/AddressFactory';
 import { StudentAddress } from 'entities/StudentAddressEntity';
 
-const amountOfNewStudents = 5;
+const amountOfNewStudents = 10;
 
 export class CreateStudentsAndAddresses implements Seeder {
     public async run(dataSource: DataSource): Promise<void> {
