@@ -29,4 +29,8 @@ export abstract class CreatePersonDto implements IDtoPerson {
 
     @IsEnum(Gender)
     gender: Gender;
+
+    @IsString()
+    @MaxLength(Validation.NAME.MAX_LENGTH, { message: Validation.NAME.MAX_LENGTH_MESSAGE })
+    nationality: string;
 }

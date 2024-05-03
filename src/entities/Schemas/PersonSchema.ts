@@ -38,6 +38,11 @@ export class Person implements IPerson {
     })
     gender!: Gender;
 
+    @Column({
+        nullable: false,
+    })
+    nationality!: string;
+
     @OneToOne(() => UserAccount, { cascade: true, nullable: true })
     @JoinColumn({
         name: 'account_id',

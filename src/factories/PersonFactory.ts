@@ -13,6 +13,7 @@ export class PersonFactory {
         person.dateOfBirth = this.faker.date.birthdate({ mode: 'age' });
         person.pesel = this.faker.string.numeric(Validation.PESEL.LENGTH);
         person.gender = this.faker.helpers.arrayElement([Gender.Men, Gender.Women]);
+        person.nationality = faker.location.country();
 
         return person;
     }
