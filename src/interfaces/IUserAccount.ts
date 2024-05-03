@@ -1,4 +1,5 @@
 import { IAddress } from './IAddress';
+import { IConsent } from './IConsent';
 import { IDtoPerson } from './IPerson';
 
 export interface IUserAccount {
@@ -10,7 +11,8 @@ export interface IUserAccount {
     deactivationDate: Date;
 }
 
-export interface IUserAllData extends IDtoPerson, IAddress {
+export interface IUserAllData extends IDtoPerson, IAddress, IConsent {
     id: string;
     addressId: string;
+    consentId: string;
 }

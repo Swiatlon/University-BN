@@ -5,6 +5,7 @@ import { Employee } from 'entities/EmployeeEntity';
 import { getSelectFieldsFromContext } from 'middlewares/visibilityFieldsFilters';
 import { IUserAllData } from 'interfaces/IUserAccount';
 import { IAddress } from 'interfaces/IAddress';
+import { IConsent } from 'interfaces/IConsent';
 
 export const employeeRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;
@@ -26,16 +27,20 @@ export const employeeRepository = (customDataSource: DataSource = AppDataSource)
         async getEmployeeAllData(id: string) {
             return this.createQueryBuilder('employee')
                 .innerJoinAndSelect('employee.addressId', 'employeeAddress', 'employeeAddress.id = employee.addressId')
+                .innerJoinAndSelect('employee.consentId', 'employeeConsent', 'employeeConsent.id = employee.consentId')
                 .where('employee.id = :id', { id })
                 .getOne()
                 .then((employee) => {
                     if (employee) {
                         const employeeAddress = { ...(employee.addressId as unknown as IAddress) };
+                        const employeeConsent = { ...(employee.consentId as unknown as IConsent) };
                         const userAllData: IUserAllData = {
                             ...employee,
                             ...employeeAddress,
+                            ...employeeConsent,
                             id: employee.id,
-                            addressId: employeeAddress.id as string,
+                            addressId: employeeAddress.id,
+                            consentId: employeeConsent.id,
                         };
 
                         return userAllData;

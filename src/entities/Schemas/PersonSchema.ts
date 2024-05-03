@@ -43,6 +43,24 @@ export class Person implements IPerson {
     })
     nationality!: string;
 
+    @Column({
+        nullable: false,
+        name: 'contact_email',
+    })
+    contactEmail!: string;
+
+    @Column({
+        nullable: false,
+        name: 'contact_phone',
+    })
+    contactPhone!: string;
+
+    @Column({
+        nullable: false,
+        name: 'date_of_admission',
+    })
+    dateOfAdmission!: string;
+
     @OneToOne(() => UserAccount, { cascade: true, nullable: true })
     @JoinColumn({
         name: 'account_id',

@@ -12,8 +12,6 @@ export class Role implements IRoles {
     })
     name!: string;
 
-    @ManyToMany(() => UserAccount, (userAccount) => userAccount.roles, {
-        cascade: ['remove'],
-    })
+    @ManyToMany(() => UserAccount, (userAccount) => userAccount.roles)
     users: UserAccount[];
 }

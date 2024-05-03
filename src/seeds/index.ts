@@ -1,7 +1,7 @@
 //Due to problem with global imporst of seeders we need to pass them directly
-import { CreateStudentsAndAddresses } from './CreateStudentsAndAddresses';
+import { CreateStudents } from './CreateStudents';
 import { CreateAccountsForStudents } from './CreateAccountsForStudents';
-import { CreateEmployeeAndAddresses } from './CreateEmployeeAndAddresses';
+import { CreateEmployee } from './CreateEmployee';
 import { CreateAccountsForEmployee } from './CreateAccountsForEmployee';
 import { CreateRoles } from './CreateRoles';
 import { CreateRolesForAccounts } from './CreateRolesForAccounts';
@@ -9,7 +9,7 @@ import { CreateAdminAccount } from './CreateAdminAccount';
 import { CreateUserAccount } from './CreateUserAccount';
 
 const _devSeeders = () => {
-    return [CreateStudentsAndAddresses, CreateAccountsForStudents, CreateEmployeeAndAddresses, CreateAccountsForEmployee, CreateRolesForAccounts];
+    return [CreateStudents, CreateAccountsForStudents, CreateEmployee, CreateAccountsForEmployee, CreateRolesForAccounts];
 };
 
 const _requiredSeeders = () => {
@@ -20,5 +20,5 @@ const _testingSeeders = () => {
     return [];
 };
 
-// export const seedersClasses = [_requiredSeeders(), _devSeeders()].flat();
-export const seedersClasses = [_testingSeeders()].flat();
+export const seedersClasses = [_requiredSeeders(), _devSeeders()].flat();
+// export const seedersClasses = [_testingSeeders()].flat();
