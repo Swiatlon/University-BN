@@ -11,4 +11,5 @@ export interface IDtoPerson {
     pesel: string;
     gender: Gender;
     dateOfBirth: Date;
+    nationality: string;
 }

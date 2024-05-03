@@ -14,7 +14,7 @@ export class CreateAccountsForEmployee implements Seeder {
         await dataSource.transaction(async (transactionalEntityManager) => {
             for (let i = 0; i < employeeWithoutAccounts.length; i++) {
                 const employee = employeeWithoutAccounts[i] as Person;
-                const newAccount = accountsFactory.create(employee);
+                const newAccount = await accountsFactory.create(employee).then();
 
                 await transactionalEntityManager.save(UserAccount, newAccount);
 

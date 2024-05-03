@@ -43,7 +43,7 @@
         "eqeqeq": ["error", "always"],
         "no-unused-expressions": "error",
         "no-useless-return": "error",
-        "no-magic-numbers": "error",
+        "no-magic-numbers": ["error", { "ignore": [0, 1] }],
         "@typescript-eslint/no-unsafe-assignment": "error",
         "@typescript-eslint/prefer-nullish-coalescing": "error",
         "no-path-concat": "error"

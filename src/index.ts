@@ -6,6 +6,12 @@ import errorHandler from 'middlewares/errorHandler';
 import express from 'express';
 import { runSeeders } from 'typeorm-extension';
 import studentRoutes from 'routes/studentRoutes';
+import authRoutes from 'routes/authRoutes';
+import cookieParser from 'cookie-parser';
+import userInfoRoutes from 'routes/userInfoRoutes';
+import personalDataRoutes from 'routes/personalDataRoutes';
+import { visibilityFieldsFilter } from 'middlewares/visibilityFieldsFilters';
+import dateFormatter from 'middlewares/responseDateTransformer';
 
 const app = express();
 const DEFAULT_PORT = 3000;
@@ -15,7 +21,16 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
+app.use(cookieParser());
+
+app.use(visibilityFieldsFilter);
+
+app.use(dateFormatter);
+
 app.use('/api', studentRoutes);
+app.use('/api', userInfoRoutes);
+app.use('/api', personalDataRoutes);
+app.use('/auth', authRoutes);
 
 app.use(errorHandler);
 

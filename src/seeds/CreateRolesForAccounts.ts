@@ -8,7 +8,7 @@ import { RolesEnums } from 'constants/general/generalConstants';
 
 export class CreateRolesForAccounts implements Seeder {
     public async run(dataSource: DataSource): Promise<void> {
-        const accountsWithoutRoles = await accountRepository(dataSource).findAccountsWithoutRole();
+        const accountsWithoutRoles = await accountRepository(dataSource).findWithoutRoleAccounts();
 
         const roleRepository = dataSource.getRepository(Role);
         const studentRole = await roleRepository.findOneBy({ name: RolesEnums.student });
