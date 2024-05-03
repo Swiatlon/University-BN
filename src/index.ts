@@ -11,6 +11,7 @@ import cookieParser from 'cookie-parser';
 import userInfoRoutes from 'routes/userInfoRoutes';
 import personalDataRoutes from 'routes/personalDataRoutes';
 import { visibilityFieldsFilter } from 'middlewares/visibilityFieldsFilters';
+import dateFormatter from 'middlewares/responseDateTransformer';
 
 const app = express();
 const DEFAULT_PORT = 3000;
@@ -23,6 +24,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.use(visibilityFieldsFilter);
+
+app.use(dateFormatter);
 
 app.use('/api', studentRoutes);
 app.use('/api', userInfoRoutes);

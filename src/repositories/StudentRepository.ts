@@ -5,6 +5,7 @@ import { IsNull } from 'typeorm';
 import { getSelectFieldsFromContext } from 'middlewares/visibilityFieldsFilters';
 import { IUserAllData } from 'interfaces/IUserAccount';
 import { IAddress } from 'interfaces/IAddress';
+import { IConsent } from 'interfaces/IConsent';
 
 export const studentRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;
@@ -26,16 +27,20 @@ export const studentRepository = (customDataSource: DataSource = AppDataSource) 
         async getStudentAllData(id: string) {
             return this.createQueryBuilder('Student')
                 .innerJoinAndSelect('student.addressId', 'studentAddress', 'studentAddress.id = student.addressId')
+                .innerJoinAndSelect(`student.consentId`, `studentConsent`, `studentConsent.id = student.consentId`)
                 .where('student.id = :id', { id })
                 .getOne()
                 .then((student) => {
                     if (student) {
                         const studentAddress = { ...(student.addressId as unknown as IAddress) };
+                        const studentConsent = { ...(student.consentId as unknown as IConsent) };
                         const userAllData: IUserAllData = {
                             ...student,
                             ...studentAddress,
+                            ...studentConsent,
                             id: student.id,
-                            addressId: studentAddress.id as string,
+                            addressId: studentAddress.id,
+                            consentId: studentConsent.id,
                         };
 
                         return userAllData;
