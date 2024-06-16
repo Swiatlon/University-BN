@@ -1,6 +1,5 @@
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
-import { IConsent } from 'interfaces/IConsent';
-
+import { IConsent } from 'interfaces/Persons/IPersons';
 export class Consent implements IConsent {
     @PrimaryGeneratedColumn('uuid')
     id!: string;

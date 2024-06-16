@@ -1,0 +1,27 @@
+import { DataSource } from 'typeorm';
+import { Seeder } from 'typeorm-extension';
+import { StudentRepository } from 'repositories/Persons/StudentRepository';
+import { Person } from 'entities/Schemas/PersonSchema';
+import { UserAccount } from 'entities/Accounts/UserAccountEntity';
+import { Student } from 'entities/Students/StudentEntity';
+import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+
+export class CreateAccountsForStudents implements Seeder {
+    public async run(dataSource: DataSource): Promise<void> {
+        const studentsWithoutAccounts = await StudentRepository(dataSource).findStudentsWithoutAccount();
+        const accountsFactory = new UserAccountFactory();
+
+        await dataSource.transaction(async (transactionalEntityManager) => {
+            for (let i = 0; i < studentsWithoutAccounts.length; i++) {
+                const student = studentsWithoutAccounts[i] as Person;
+                const newAccount = await accountsFactory.create(student);
+
+                await transactionalEntityManager.save(UserAccount, newAccount);
+
+                student.accountId = newAccount.id;
+
+                await transactionalEntityManager.save(Student, student);
+            }
+        });
+    }
+}

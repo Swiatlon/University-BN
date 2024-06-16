@@ -1,7 +1,7 @@
 import { DataSource, DataSourceOptions } from 'typeorm';
 import { SeederOptions } from 'typeorm-extension';
 import dotenv from 'dotenv';
-import { seedersClasses } from 'seeds';
+import { SeedersClasses } from 'seeds/seeds';
 dotenv.config();
 
 const { DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_NAME } = process.env;
@@ -16,10 +16,10 @@ const options: DataSourceOptions & SeederOptions = {
     synchronize: false,
     logging: false,
     logger: 'advanced-console',
-    entities: [`${__dirname}/../entities/*.ts`],
+    entities: [`${__dirname}/../entities/**/*.ts`],
     migrations: [`${__dirname}/../migrations/*.ts`],
-    seeds: seedersClasses,
-    factories: [`${__dirname}/../factories/*.ts`],
+    seeds: SeedersClasses,
+    factories: [`${__dirname}/../factories/**/*.ts`],
 };
 
 export const AppDataSource = new DataSource(options);

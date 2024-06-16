@@ -1,7 +1,7 @@
-import { Student } from 'entities/StudentEntity';
-import { Employee } from 'entities/EmployeeEntity';
 import { Role } from 'constants/general/generalConstants';
-import { userRepository } from 'repositories/UserRepository';
+import { Employee } from 'entities/Employees/EmployeeEntity';
+import { Student } from 'entities/Students/StudentEntity';
+import { UserRepository } from 'repositories/Accounts/UserRepository';
 
 export interface UserInfo {
     id: string;
@@ -25,7 +25,7 @@ export class UserInfoService {
         const { id, queryRole, roles } = userInfoData;
 
         if (queryRole) {
-            const userData = await userRepository({ queryRole }).getUserBasicData(id);
+            const userData = await UserRepository({ queryRole }).getUserBasicData(id);
 
             if (userData) {
                 return { ...userData, roles };

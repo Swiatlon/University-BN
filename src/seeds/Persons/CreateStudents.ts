@@ -1,0 +1,34 @@
+import { DataSource } from 'typeorm';
+import { Seeder } from 'typeorm-extension';
+import { AddressFactory } from 'factories/Persons/AddressFactory';
+import { StudentAddress } from 'entities/Students/StudentAddressEntity';
+import { StudentConsent } from 'entities/Students/StudentConsentEntity';
+import { Student } from 'entities/Students/StudentEntity';
+import { ConsentFactory } from 'factories/Persons/ConsentFactory';
+import { StudentFactory } from 'factories/Persons/StudentFactory';
+
+const amountOfNewStudents = 10;
+
+export class CreateStudents implements Seeder {
+    public async run(dataSource: DataSource): Promise<void> {
+        const studentFactory = new StudentFactory();
+        const addressFactory = new AddressFactory();
+        const consentFactory = new ConsentFactory();
+
+        await dataSource.transaction(async (transactionalEntityManager) => {
+            for (let i = 0; i < amountOfNewStudents; i++) {
+                const address = addressFactory.create();
+
+                await transactionalEntityManager.save(StudentAddress, address);
+
+                const consent = consentFactory.create();
+
+                await transactionalEntityManager.save(StudentConsent, consent);
+
+                const student = studentFactory.create(address.id, consent.id);
+
+                await transactionalEntityManager.save(Student, student);
+            }
+        });
+    }
+}

@@ -1,5 +1,5 @@
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
-import { IAddress } from 'interfaces/IAddress';
+import { IAddress } from 'interfaces/Persons/IPersons';
 
 export class Address implements IAddress {
     @PrimaryGeneratedColumn('uuid')

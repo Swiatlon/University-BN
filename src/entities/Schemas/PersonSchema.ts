@@ -1,7 +1,7 @@
 import { Column, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Gender } from 'constants/general/generalConstants';
-import { IPerson } from 'interfaces/IPerson';
-import { UserAccount } from 'entities/UserAccountEntity';
+import { IPerson } from 'interfaces/Persons/IPersons';
+import { UserAccount } from 'entities/Accounts/UserAccountEntity';
 import { Validation } from 'constants/validators/validatorsConstants';
 
 export class Person implements IPerson {

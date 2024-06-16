@@ -2,17 +2,17 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import type { CookieOptions, Request, Response } from 'express';
-import { accountRepository } from 'repositories/AccountsRepository';
 import { HTTP_STATUS, RolesEnums } from 'constants/general/generalConstants';
-import { ICookie, UserPayload } from 'interfaces/ICookie';
-import { userRepository } from 'repositories/UserRepository';
+import { ICookie, UserPayload } from 'interfaces/Global/ICookie';
+import { AccountRepository } from 'repositories/Accounts/AccountsRepository';
+import { UserRepository } from 'repositories/Accounts/UserRepository';
 
 const accessTokenTime = '15m';
 
 const login = asyncHandler(async (req: Request, res: Response) => {
     const { identifier, password } = req.body as { identifier: string; password: string };
 
-    const foundUser = await accountRepository().findByIdentifierAccount(identifier);
+    const foundUser = await AccountRepository().findByIdentifierAccount(identifier);
 
     if (!foundUser) {
         res.status(HTTP_STATUS.UNAUTHORIZED.code).json({ message: 'User not exist!' });
@@ -61,7 +61,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     };
 
     if (userData.queryRole) {
-        await userRepository({ queryRole: userData.queryRole })
+        await UserRepository({ queryRole: userData.queryRole })
             .findUserByAccountId(foundUser.id)
             .then((res) => (userData.id = res?.id as string));
     }
@@ -99,7 +99,7 @@ const refresh = asyncHandler(async (req: Request, res: Response) => {
         });
     });
 
-    const foundUser = await accountRepository().findByEmailAccount(decoded.email);
+    const foundUser = await AccountRepository().findByEmailAccount(decoded.email);
 
     if (!foundUser) {
         res.status(HTTP_STATUS.UNAUTHORIZED.code).json({ message: 'Unauthorized' });
