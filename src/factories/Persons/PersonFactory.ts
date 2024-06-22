@@ -1,6 +1,6 @@
 import { Faker, faker } from '@faker-js/faker';
 import { Gender } from 'constants/general/generalConstants';
-import { Person } from 'entities/Schemas/PersonSchema';
+import { Person } from 'entities/Schemas/Person.Schema';
 import { Validation } from 'constants/validators/validatorsConstants';
 import moment from 'moment';
 

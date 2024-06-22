@@ -1,9 +1,9 @@
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
 import { RolesEnums } from 'constants/general/generalConstants';
-import { Role } from 'entities/Accounts/RoleEntity';
-import { Employee } from 'entities/Employees/EmployeeEntity';
-import { Student } from 'entities/Students/StudentEntity';
+import { Role } from 'entities/Accounts/Role.Entity';
+import { Employee } from 'entities/Employees/Employee.Entity';
+import { Student } from 'entities/Students/Student.Entity';
 import { AccountRepository } from 'repositories/Accounts/AccountsRepository';
 
 export class CreateRolesForAccounts implements Seeder {

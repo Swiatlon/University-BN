@@ -1,9 +1,9 @@
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
 import { AddressFactory } from 'factories/Persons/AddressFactory';
-import { StudentAddress } from 'entities/Students/StudentAddressEntity';
-import { StudentConsent } from 'entities/Students/StudentConsentEntity';
-import { Student } from 'entities/Students/StudentEntity';
+import { StudentAddress } from 'entities/Students/StudentAddress.Entity';
+import { StudentConsent } from 'entities/Students/StudentConsent.Entity';
+import { Student } from 'entities/Students/Student.Entity';
 import { ConsentFactory } from 'factories/Persons/ConsentFactory';
 import { StudentFactory } from 'factories/Persons/StudentFactory';
 

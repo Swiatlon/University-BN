@@ -32,4 +32,9 @@ export const Validation = {
         MAX_LENGTH_MESSAGE: 'Password must be no longer than $constraint1 characters.',
         REQUIRED_MESSAGE: 'Password is required.',
     },
+    COURSES_NAME: {
+        MAX_LENGTH: 255,
+        MAX_LENGTH_MESSAGE: 'Course name must be no longer than $constraint1 characters.',
+        REQUIRED_MESSAGE: 'Course name is required.',
+    },
 };

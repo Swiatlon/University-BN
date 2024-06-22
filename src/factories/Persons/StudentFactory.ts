@@ -1,4 +1,4 @@
-import { Student } from 'entities/Students/StudentEntity';
+import { Student } from 'entities/Students/Student.Entity';
 import { PersonFactory } from './PersonFactory';
 import { ConsentFactory } from './ConsentFactory';
 

@@ -1,6 +1,6 @@
 import { ConsentFactory } from './ConsentFactory';
 import { PersonFactory } from './PersonFactory';
-import { Employee } from 'entities/Employees/EmployeeEntity';
+import { Employee } from 'entities/Employees/Employee.Entity';
 
 export class EmployeeFactory {
     create(addressId: string, consentId: string): Employee {

@@ -1,5 +1,5 @@
-import { Person } from 'entities/Schemas/PersonSchema';
-import { UserAccount } from 'entities/Accounts/UserAccountEntity';
+import { Person } from 'entities/Schemas/Person.Schema';
+import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 import { hashPassword } from 'utils/globalHelpers';
 
 export class UserAccountFactory {

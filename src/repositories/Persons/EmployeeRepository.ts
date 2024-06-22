@@ -1,7 +1,7 @@
 import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
 import { IsNull } from 'typeorm';
-import { Employee } from 'entities/Employees/EmployeeEntity';
+import { Employee } from 'entities/Employees/Employee.Entity';
 import { getSelectFieldsFromContext } from 'middlewares/visibilityFieldsFilters';
 import { IUserAllData } from 'interfaces/Accounts/IAccounts';
 import { IAddress, IConsent } from 'interfaces/Persons/IPersons';

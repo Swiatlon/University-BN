@@ -2,8 +2,8 @@ import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
 import { RolesEnums } from 'constants/general/generalConstants';
 import { hashPassword } from 'utils/globalHelpers';
-import { Role } from 'entities/Accounts/RoleEntity';
-import { UserAccount } from 'entities/Accounts/UserAccountEntity';
+import { Role } from 'entities/Accounts/Role.Entity';
+import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 
 export class CreateAdminAccount implements Seeder {
     public async run(dataSource: DataSource): Promise<void> {

@@ -6,10 +6,12 @@ export class Consent implements IConsent {
 
     @Column({
         nullable: false,
+        name: 'permission_for_photo',
     })
     permissionForPhoto!: boolean;
 
     @Column({
+        name: 'permission_for_data_processing',
         nullable: false,
     })
     permissionForDataProcessing!: boolean;

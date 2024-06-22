@@ -1,6 +1,6 @@
 import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
-import { UserAccount } from 'entities/Accounts/UserAccountEntity';
+import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 
 export const AccountRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;

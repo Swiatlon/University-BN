@@ -1,5 +1,5 @@
 import { Faker, faker } from '@faker-js/faker';
-import { Address } from 'entities/Schemas/AddressSchema';
+import { Address } from 'entities/Schemas/Address.Schema';
 
 export class AddressFactory {
     private faker: Faker = faker;

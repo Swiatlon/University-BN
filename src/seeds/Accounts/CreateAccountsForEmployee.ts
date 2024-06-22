@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
-import { Person } from 'entities/Schemas/PersonSchema';
-import { UserAccount } from 'entities/Accounts/UserAccountEntity';
-import { Employee } from 'entities/Employees/EmployeeEntity';
+import { Person } from 'entities/Schemas/Person.Schema';
+import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
+import { Employee } from 'entities/Employees/Employee.Entity';
 import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
 import { EmployeeRepository } from 'repositories/Persons/EmployeeRepository';
 

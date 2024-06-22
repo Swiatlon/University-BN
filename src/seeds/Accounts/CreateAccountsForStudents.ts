@@ -1,9 +1,9 @@
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
 import { StudentRepository } from 'repositories/Persons/StudentRepository';
-import { Person } from 'entities/Schemas/PersonSchema';
-import { UserAccount } from 'entities/Accounts/UserAccountEntity';
-import { Student } from 'entities/Students/StudentEntity';
+import { Person } from 'entities/Schemas/Person.Schema';
+import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
+import { Student } from 'entities/Students/Student.Entity';
 import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
 
 export class CreateAccountsForStudents implements Seeder {
