@@ -1,9 +1,9 @@
-import { HTTP_STATUS } from 'constants/general/generalConstants';
+import { HTTP_STATUS } from 'constants/general/general.Constants';
 import type { Response } from 'express';
 import asyncHandler from 'express-async-handler';
-import { UserInfo } from 'services/UserInfoService';
+import { UserInfo } from 'services/UserInfo.Service';
 import type { CustomRequest } from 'middlewares/visibilityFieldsFilters';
-import { PersonalDataService } from 'services/PersonalDataService';
+import { PersonalDataService } from 'services/PersonalData.Service';
 
 const personalDataService = new PersonalDataService();
 

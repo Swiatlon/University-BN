@@ -1,6 +1,6 @@
 import express from 'express';
 import { verifyJWT } from 'middlewares/verifyJWT';
-import { PersonalDataController } from 'controllers/PersonalDataController';
+import { PersonalDataController } from 'controllers/PersonalData.Controller';
 
 const router = express.Router();
 

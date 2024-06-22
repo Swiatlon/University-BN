@@ -1,6 +1,6 @@
-import { CreateStudentDto } from 'dto/students/CreateStudentDto';
+import { CreateStudentDto } from 'dto/students/CreateStudent.Dto';
 import express from 'express';
-import { studentController } from 'controllers/StudentController';
+import { studentController } from 'controllers/Student.Controller';
 import { validateDto } from 'middlewares/validateDto';
 import { verifyJWT } from 'middlewares/verifyJWT';
 

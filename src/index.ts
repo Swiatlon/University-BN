@@ -5,11 +5,11 @@ import corsOptions from 'configs/cors';
 import errorHandler from 'middlewares/errorHandler';
 import express from 'express';
 import { runSeeders } from 'typeorm-extension';
-import studentRoutes from 'routes/studentRoutes';
-import authRoutes from 'routes/authRoutes';
+import studentRoutes from 'routes/student.Routes';
+import authRoutes from 'routes/auth.Routes';
 import cookieParser from 'cookie-parser';
-import userInfoRoutes from 'routes/userInfoRoutes';
-import personalDataRoutes from 'routes/personalDataRoutes';
+import userInfoRoutes from 'routes/userInfo.Routes';
+import personalDataRoutes from 'routes/personalData.Routes';
 import { visibilityFieldsFilter } from 'middlewares/visibilityFieldsFilters';
 import dateFormatter from 'middlewares/responseDateTransformer';
 

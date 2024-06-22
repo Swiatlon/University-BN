@@ -1,7 +1,7 @@
 import type { Request, Response } from 'express';
-import { HTTP_STATUS } from 'constants/general/generalConstants';
+import { HTTP_STATUS } from 'constants/general/general.Constants';
 import { Student } from 'entities/Students/Student.Entity';
-import { StudentService } from '@services/StudentService';
+import { StudentService } from 'services/Student.Service';
 import asyncHandler from 'express-async-handler';
 
 const studentService = new StudentService();

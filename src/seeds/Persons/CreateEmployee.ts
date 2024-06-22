@@ -1,11 +1,11 @@
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
-import { AddressFactory } from 'factories/Persons/AddressFactory';
+import { AddressFactory } from 'factories/Persons/Address.Factory';
 import { EmployeeAddress } from 'entities/Employees/EmployeeAddress.Entity';
 import { EmployeeConsent } from 'entities/Employees/EmployeeConsent.Entity';
 import { Employee } from 'entities/Employees/Employee.Entity';
-import { ConsentFactory } from 'factories/Persons/ConsentFactory';
-import { EmployeeFactory } from 'factories/Persons/EmployeeFactory';
+import { ConsentFactory } from 'factories/Persons/Consent.Factory';
+import { EmployeeFactory } from 'factories/Persons/Employee.Factory';
 
 const amountOfNewEmployee = 10;
 

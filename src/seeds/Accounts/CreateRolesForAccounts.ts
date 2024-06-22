@@ -1,10 +1,10 @@
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
-import { RolesEnums } from 'constants/general/generalConstants';
+import { RolesEnums } from 'constants/general/general.Constants';
 import { Role } from 'entities/Accounts/Role.Entity';
 import { Employee } from 'entities/Employees/Employee.Entity';
 import { Student } from 'entities/Students/Student.Entity';
-import { AccountRepository } from 'repositories/Accounts/AccountsRepository';
+import { AccountRepository } from 'repositories/Accounts/Accounts.Repository';
 
 export class CreateRolesForAccounts implements Seeder {
     public async run(dataSource: DataSource): Promise<void> {

@@ -1,11 +1,11 @@
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
-import { AddressFactory } from 'factories/Persons/AddressFactory';
+import { AddressFactory } from 'factories/Persons/Address.Factory';
 import { StudentAddress } from 'entities/Students/StudentAddress.Entity';
 import { StudentConsent } from 'entities/Students/StudentConsent.Entity';
 import { Student } from 'entities/Students/Student.Entity';
-import { ConsentFactory } from 'factories/Persons/ConsentFactory';
-import { StudentFactory } from 'factories/Persons/StudentFactory';
+import { ConsentFactory } from 'factories/Persons/Consent.Factory';
+import { StudentFactory } from 'factories/Persons/Student.Factory';
 
 const amountOfNewStudents = 10;
 

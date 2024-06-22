@@ -1,6 +1,6 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { IUserAccount } from 'interfaces/Accounts/IAccounts';
-import { Validation } from 'constants/validators/validatorsConstants';
+import { Validation } from 'constants/validators/validators.Constants';
 import { Role } from './Role.Entity';
 
 @Entity('Users_Accounts')

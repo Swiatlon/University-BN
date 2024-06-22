@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import { Request, Response, NextFunction } from 'express';
-import { HTTP_STATUS } from 'constants/general/generalConstants';
+import { HTTP_STATUS } from 'constants/general/general.Constants';
 
 interface CustomRequest extends Request {
     user?: string;

@@ -1,7 +1,7 @@
 import { IsDate, IsEnum, IsNotEmpty, IsString, MaxLength, MinLength } from 'class-validator';
-import { Gender } from 'constants/general/generalConstants';
+import { Gender } from 'constants/general/general.Constants';
 import { Type } from 'class-transformer';
-import { Validation } from 'constants/validators/validatorsConstants';
+import { Validation } from 'constants/validators/validators.Constants';
 import { IDtoPerson } from 'interfaces/Persons/IPersons';
 
 export abstract class CreatePersonDto implements IDtoPerson {

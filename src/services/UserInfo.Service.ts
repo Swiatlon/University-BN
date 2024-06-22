@@ -1,7 +1,7 @@
-import { Role } from 'constants/general/generalConstants';
-import { Employee } from 'entities/Employees/EmployeeEntity';
-import { Student } from 'entities/Students/StudentEntity';
-import { UserRepository } from 'repositories/Accounts/UserRepository';
+import { Role } from 'constants/general/general.Constants';
+import { Employee } from 'entities/Employees/Employee.Entity';
+import { Student } from 'entities/Students/Student.Entity';
+import { UserRepository } from 'repositories/Accounts/User.Repository';
 
 export interface UserInfo {
     id: string;

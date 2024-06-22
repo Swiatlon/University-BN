@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
-import { Roles } from 'constants/general/generalConstants';
+import { Roles } from 'constants/general/general.Constants';
 import { Role } from 'entities/Accounts/Role.Entity';
 
 export class CreateRoles implements Seeder {

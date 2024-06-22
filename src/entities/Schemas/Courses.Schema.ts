@@ -1,5 +1,5 @@
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
-import { Validation } from 'constants/validators/validatorsConstants';
+import { Validation } from 'constants/validators/validators.Constants';
 import { ICoursesBaseSchema } from 'interfaces/Courses/ICourses';
 
 export abstract class CoursesBaseSchema implements ICoursesBaseSchema {

@@ -1,5 +1,5 @@
-import { ConsentFactory } from './ConsentFactory';
-import { PersonFactory } from './PersonFactory';
+import { ConsentFactory } from './Consent.Factory';
+import { PersonFactory } from './Person.Factory';
 import { Employee } from 'entities/Employees/Employee.Entity';
 
 export class EmployeeFactory {

@@ -3,8 +3,8 @@ import { Seeder } from 'typeorm-extension';
 import { Person } from 'entities/Schemas/Person.Schema';
 import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 import { Employee } from 'entities/Employees/Employee.Entity';
-import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
-import { EmployeeRepository } from 'repositories/Persons/EmployeeRepository';
+import { UserAccountFactory } from 'factories/Accounts/UserAccount.Factory';
+import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
 
 export class CreateAccountsForEmployee implements Seeder {
     public async run(dataSource: DataSource): Promise<void> {

@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
-import { RolesEnums } from 'constants/general/generalConstants';
+import { RolesEnums } from 'constants/general/general.Constants';
 import { hashPassword } from 'utils/globalHelpers';
 import { Role } from 'entities/Accounts/Role.Entity';
 import { UserAccount } from 'entities/Accounts/UserAccount.Entity';

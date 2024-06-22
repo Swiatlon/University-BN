@@ -2,10 +2,10 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import type { CookieOptions, Request, Response } from 'express';
-import { HTTP_STATUS, RolesEnums } from 'constants/general/generalConstants';
+import { HTTP_STATUS, RolesEnums } from 'constants/general/general.Constants';
 import { ICookie, UserPayload } from 'interfaces/Global/ICookie';
-import { AccountRepository } from 'repositories/Accounts/AccountsRepository';
-import { UserRepository } from 'repositories/Accounts/UserRepository';
+import { AccountRepository } from 'repositories/Accounts/Accounts.Repository';
+import { UserRepository } from 'repositories/Accounts/User.Repository';
 
 const accessTokenTime = '15m';
 

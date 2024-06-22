@@ -1,10 +1,10 @@
 import { DataSource } from 'typeorm';
 import { Seeder } from 'typeorm-extension';
-import { StudentRepository } from 'repositories/Persons/StudentRepository';
+import { StudentRepository } from 'repositories/Persons/Student.Repository';
 import { Person } from 'entities/Schemas/Person.Schema';
 import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 import { Student } from 'entities/Students/Student.Entity';
-import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+import { UserAccountFactory } from 'factories/Accounts/UserAccount.Factory';
 
 export class CreateAccountsForStudents implements Seeder {
     public async run(dataSource: DataSource): Promise<void> {
