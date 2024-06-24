@@ -9,6 +9,7 @@ export abstract class CoursesBaseSchema implements ICoursesBaseSchema {
     @Column({
         nullable: false,
         length: Validation.COURSES_NAME.MAX_LENGTH,
+        unique: true,
     })
     name: string;
 }

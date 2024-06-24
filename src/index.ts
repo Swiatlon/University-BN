@@ -1,4 +1,5 @@
 import 'reflect-metadata';
+import 'tsconfig-paths/register';
 import { AppDataSource } from 'configs/database';
 import cors from 'cors';
 import corsOptions from 'configs/cors';

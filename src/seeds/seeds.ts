@@ -7,18 +7,26 @@ import { CreateRoles } from './Accounts/CreateRoles';
 import { CreateRolesForAccounts } from './Accounts/CreateRolesForAccounts';
 import { CreateAdminAccount } from './Accounts/CreateAdminAccount';
 import { CreateUserAccount } from './Accounts/CreateUserAccount';
+import { InitializeDegreeProgramsSeeder } from './Courses/InitalizeDegreeProgram/InitalizeDegreePrograms';
+
+//TODO: LATER IT WILL BE LIKE DEPEND ON VARIABLE AND DATA SCHEMA LOOKING
+const doWeNeedRequired = false;
 
 const _devSeeders = () => {
     return [CreateStudents, CreateAccountsForStudents, CreateEmployee, CreateAccountsForEmployee, CreateRolesForAccounts];
 };
 
 const _requiredSeeders = () => {
-    return [CreateRoles, CreateAdminAccount, CreateUserAccount];
-};
+    if (doWeNeedRequired) {
+        return [CreateRoles, CreateAdminAccount, CreateUserAccount, InitializeDegreeProgramsSeeder];
+    }
 
-const _testingSeeders = () => {
     return [];
 };
 
+const _testingSeeders = () => {
+    return [InitializeDegreeProgramsSeeder];
+};
+
 export const SeedersClasses = [_requiredSeeders(), _devSeeders()].flat();
-// export const seedersClasses = [_testingSeeders()].flat();
+// export const SeedersClasses = [_testingSeeders()].flat();
