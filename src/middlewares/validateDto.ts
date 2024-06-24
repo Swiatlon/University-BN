@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response } from 'express';
 import { ValidationError, validate } from 'class-validator';
-import { HTTP_STATUS } from 'constants/general/generalConstants';
+import { HTTP_STATUS } from 'constants/general/general.Constants';
 import { plainToInstance } from 'class-transformer';
 
 const NO_ERRORS = 0;

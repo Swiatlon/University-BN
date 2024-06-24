@@ -23,7 +23,10 @@
             "@dtos/*": ["dtos/*"],
             "@constants/*": ["constants/*"],
             "@interfaces/*": ["interfaces/*"],
-            "@schemas/*": ["entities/schemas/"]
+            "@schemas/*": ["entities/schemas/"],
+            "@factories/*": ["factories/*"],
+            "@seeds/*": ["seeds/*"],
+            "@data/*": ["data/*"]
         }
     },
     "include": ["src/**/*"],

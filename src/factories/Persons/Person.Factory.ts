@@ -1,0 +1,24 @@
+import { Faker, faker } from '@faker-js/faker';
+import { Gender } from 'constants/general/general.Constants';
+import { Person } from 'entities/Schemas/Person.Schema';
+import { Validation } from 'constants/validators/validators.Constants';
+import moment from 'moment';
+
+export class PersonFactory {
+    private faker: Faker = faker;
+
+    create(): Person {
+        const person = new Person();
+        person.name = this.faker.person.firstName();
+        person.surname = this.faker.person.lastName();
+        person.dateOfBirth = this.faker.date.birthdate({ mode: 'age' });
+        person.pesel = this.faker.string.numeric(Validation.PESEL.LENGTH);
+        person.gender = this.faker.helpers.arrayElement([Gender.Men, Gender.Women]);
+        person.nationality = this.faker.location.country();
+        person.contactEmail = this.faker.internet.email();
+        person.contactPhone = this.faker.helpers.fromRegExp(/^\d{3}-\d{3}-\d{3}$/);
+        person.dateOfAdmission = moment().format('YYYY-MM-DD HH:mm:ss');
+
+        return person;
+    }
+}
