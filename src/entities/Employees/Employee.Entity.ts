@@ -1,11 +1,11 @@
 import { Entity, JoinColumn, OneToOne } from 'typeorm';
-import { IPersonRelations } from 'interfaces/Persons/IPersons';
+import { IEmployeeRelations } from 'interfaces/Persons/IPersons';
 import { Person } from '../Schemas/Person.Schema';
 import { EmployeeAddress } from './EmployeeAddress.Entity';
 import { EmployeeConsent } from './EmployeeConsent.Entity';
 
 @Entity('Employees')
-export class Employee extends Person implements IPersonRelations {
+export class Employee extends Person implements IEmployeeRelations {
     @OneToOne(() => EmployeeConsent, { cascade: true, nullable: true, onDelete: 'CASCADE' })
     @JoinColumn({
         name: 'consent_id',

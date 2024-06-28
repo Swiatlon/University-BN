@@ -1,4 +1,7 @@
-import { Gender } from 'constants/general/generalConstants';
+import { Gender } from 'constants/general/general.Constants';
+import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
+import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
+import { StudentModule } from 'entities/StudentDegrees/StudentModule.Entity';
 
 export interface IDtoPerson {
     id?: string;
@@ -33,4 +36,12 @@ export interface IAddress {
 export interface IPersonRelations {
     consentId: string;
     addressId: string;
+}
+
+export interface IEmployeeRelations extends IPersonRelations {}
+
+export interface IStudentRelations extends IPersonRelations {
+    degreeCourses: StudentDegreeCourse[];
+    degreePaths: StudentDegreePath[];
+    modules: StudentModule[];
 }
