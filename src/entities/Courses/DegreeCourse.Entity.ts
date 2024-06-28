@@ -1,8 +1,10 @@
-import { Entity, OneToMany, ManyToMany, JoinTable } from 'typeorm';
+import { Entity, OneToMany, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
 import { Subject } from './Subject.Entity';
 import { IDegreeCourse } from 'interfaces/Courses/ICourses';
 import { CoursesBaseSchema } from 'entities/Schemas/Courses.Schema';
 import { DegreePath } from './DegreePath.Entity';
+import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
+import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
 
 @Entity('Degree_Courses')
 export class DegreeCourse extends CoursesBaseSchema implements IDegreeCourse {
@@ -22,4 +24,12 @@ export class DegreeCourse extends CoursesBaseSchema implements IDegreeCourse {
         },
     })
     subjects: Subject[];
+
+    @OneToMany(() => StudentDegreeCourse, (studentDegreeCourse) => studentDegreeCourse.degreeCourse)
+    @JoinColumn({ name: 'student_course_id' })
+    studentCourses: StudentDegreeCourse[];
+
+    @OneToMany(() => StudentDegreePath, (studentDegreePath) => studentDegreePath.degreeCourse)
+    @JoinColumn({ name: 'student_path_id' })
+    studentPaths: StudentDegreePath[];
 }

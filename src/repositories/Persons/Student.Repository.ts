@@ -1,11 +1,12 @@
 import { AppDataSource } from '../../configs/database';
-import { DataSource } from 'typeorm';
+import { DataSource, In, Not } from 'typeorm';
 import { IsNull } from 'typeorm';
 import { getSelectFieldsFromContext } from 'middlewares/visibilityFieldsFilters';
 import { Student } from 'entities/Students/Student.Entity';
 import { IUserAllData } from 'interfaces/Accounts/IAccounts';
 import { IAddress, IConsent } from 'interfaces/Persons/IPersons';
-
+import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
+import { StudentWithDegreeCourse } from 'interfaces/StudentDegree/IStudentDegree';
 export const StudentRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;
 
@@ -15,14 +16,35 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
                 accountId: IsNull(),
             });
         },
+
         async findStudentByAccountId(id: string) {
             return this.createQueryBuilder('student').where('student.accountId = :id', { id }).getOne();
         },
+
         async getStudentBasicData(id: string) {
             const selectFields = getSelectFieldsFromContext('student');
 
             return this.createQueryBuilder('student').select(selectFields).where('student.id = :id', { id }).getOne();
         },
+
+        async getStudentsWithoutDegreeCourses() {
+            const studentsWithDegreeCourses: StudentWithDegreeCourse[] = await dataSource
+                .getRepository(StudentDegreeCourse)
+                .createQueryBuilder('studentDegreeCourse')
+                .select('studentDegreeCourse.student.id')
+                .distinct(true)
+                .getRawMany();
+
+            const studentIdsWithDegreeCourses = studentsWithDegreeCourses.map((row) => row.studentDegreeCourse_student_id);
+
+            return this.find({
+                where: {
+                    id: Not(In(studentIdsWithDegreeCourses)),
+                },
+                select: ['id'],
+            });
+        },
+
         async getStudentAllData(id: string) {
             return this.createQueryBuilder('Student')
                 .innerJoinAndSelect('student.addressId', 'studentAddress', 'studentAddress.id = student.addressId')
