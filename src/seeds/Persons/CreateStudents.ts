@@ -6,8 +6,7 @@ import { StudentConsent } from 'entities/Students/StudentConsent.Entity';
 import { Student } from 'entities/Students/Student.Entity';
 import { ConsentFactory } from 'factories/Persons/Consent.Factory';
 import { StudentFactory } from 'factories/Persons/Student.Factory';
-
-const amountOfNewStudents = 10;
+import { AMOUNT_OF_NEW_STUDENTS } from 'constants/seeders/seeder.Constants';
 
 export class CreateStudents implements Seeder {
     public async run(dataSource: DataSource): Promise<void> {
@@ -16,7 +15,7 @@ export class CreateStudents implements Seeder {
         const consentFactory = new ConsentFactory();
 
         await dataSource.transaction(async (transactionalEntityManager) => {
-            for (let i = 0; i < amountOfNewStudents; i++) {
+            for (let i = 0; i < AMOUNT_OF_NEW_STUDENTS; i++) {
                 const address = addressFactory.create();
 
                 await transactionalEntityManager.save(StudentAddress, address);

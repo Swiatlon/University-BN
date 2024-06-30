@@ -14,7 +14,7 @@ import { StudentsDegreeSeeder } from './StudentsDegree/StudentsDegree.Seeder';
 const doWeNeedRequired = false;
 
 const _devSeeders = () => {
-    return [CreateStudents, CreateAccountsForStudents, CreateEmployee, CreateAccountsForEmployee, CreateRolesForAccounts, StudentsDegreeSeeder];
+    return [CreateStudents, CreateAccountsForStudents, CreateEmployee, CreateAccountsForEmployee, CreateRolesForAccounts];
 };
 
 const _requiredSeeders = () => {

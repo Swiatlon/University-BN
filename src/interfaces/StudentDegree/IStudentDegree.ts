@@ -26,11 +26,13 @@ export interface StudentWithDegreeCourse {
     studentDegreeCourse_student_id: string;
 }
 
+export interface IDataFetcherResult {
+    degreeCoursesTree: DegreeCourse[];
+    studentsWithoutDegreeCourses: Student[];
+}
+
 export interface IDataFetcher {
-    fetchAllData(): Promise<{
-        degreeCoursesTree: DegreeCourse[];
-        studentsWithoutDegreeCourses: Student[];
-    }>;
+    fetchAllData(): Promise<IDataFetcherResult>;
 }
 
 export interface DegreeTree {

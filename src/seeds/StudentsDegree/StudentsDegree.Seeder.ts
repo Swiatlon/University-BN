@@ -6,8 +6,7 @@ import { getRandomElement, getRandomElements } from 'utils/globalHelpers';
 import { StudentDegreeCourseFactory } from 'factories/StudentDegrees/StudentDegreeCourse.Factory';
 import { StudentDegreePathFactory } from 'factories/StudentDegrees/StudentDegreePath.Factory';
 import { StudentModuleFactory } from 'factories/StudentDegrees/StudentModuleFactory';
-
-const AMOUNT_OF_CREATED_MODULES = 2;
+import { AMOUNT_OF_CREATED_MODULES } from 'constants/seeders/seeder.Constants';
 
 export class StudentsDegreeSeeder implements Seeder {
     private dataFetcher: IDataFetcher = new DataFetcher();

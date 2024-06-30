@@ -1,8 +1,8 @@
 import { Entity, JoinColumn, OneToOne } from 'typeorm';
-import { IEmployeeRelations } from 'interfaces/Persons/IPersons';
 import { Person } from '../Schemas/Person.Schema';
 import { EmployeeAddress } from './EmployeeAddress.Entity';
 import { EmployeeConsent } from './EmployeeConsent.Entity';
+import { IEmployeeRelations } from 'interfaces/Persons/IEmployees';
 
 @Entity('Employees')
 export class Employee extends Person implements IEmployeeRelations {

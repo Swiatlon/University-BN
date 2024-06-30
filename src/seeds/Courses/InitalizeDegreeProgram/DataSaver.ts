@@ -3,13 +3,13 @@ import { DegreeCourseFactory } from 'factories/Courses/DegreeCourse.Factory';
 import { DegreePathFactory } from 'factories/Courses/DegreePath.Factory';
 import { ModuleFactory } from 'factories/Courses/Module.Factory';
 import { SubjectFactory } from 'factories/Courses/Subject.Factory';
-import { ParsedRowData } from './DataParser';
+import { IDataSaver, ParsedRowData } from 'interfaces/Courses/ICourses';
 import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
 import { DegreePath } from 'entities/Courses/DegreePath.Entity';
 import { Module } from 'entities/Courses/Module.Entity';
 import { Subject } from 'entities/Courses/Subject.Entity';
 
-export class DataSaver {
+export class DataSaver implements IDataSaver {
     private degreeCourseFactory = new DegreeCourseFactory();
     private degreePathFactory = new DegreePathFactory();
     private moduleFactory = new ModuleFactory();
@@ -29,26 +29,32 @@ export class DataSaver {
 
     public async saveParsedData(parsedData: ParsedRowData[]): Promise<void> {
         for (const row of parsedData) {
-            const degreeCourse = await this.findOrCreateDegreeCourse(row.degreeCourse);
-            const degreePath = await this.findOrCreateDegreePath(row.degreePath, degreeCourse);
+            await this.processRow(row);
+        }
+    }
 
-            if (row.module === 'Kierunkowy') {
-                const subject = await this.findOrCreateSubject(row.subject);
-                await this.addSubjectToDegreeCourseIfNotExist(subject, degreeCourse);
-                continue;
-            }
+    private async processRow(row: ParsedRowData): Promise<void> {
+        const degreeCourse = await this.findOrCreateDegreeCourse(row.degreeCourse);
+        const degreePath = await this.findOrCreateDegreePath(row.degreePath, degreeCourse);
 
+        if (row.module === 'Kierunkowy') {
+            const subject = await this.findOrCreateSubject(row.subject);
+            await this.addSubjectToDegreeCourseIfNotExist(subject, degreeCourse);
+        } else {
             const module = await this.findOrCreateModule(row.module, degreePath);
             await this.findOrCreateSubject(row.subject, module);
         }
     }
 
     private async findOrCreateDegreeCourse(name: string): Promise<DegreeCourse> {
-        let degreeCourse = await this.degreeCourseRepository.findOne({ where: { name }, relations: ['subjects'] });
+        let degreeCourse = await this.degreeCourseRepository.findOne({
+            where: { name },
+            relations: ['subjects'],
+        });
 
         if (!degreeCourse) {
             degreeCourse = this.degreeCourseFactory.create(name);
-            degreeCourse.subjects = []; // Initialize the subjects array
+            degreeCourse.subjects = [];
             degreeCourse = await this.degreeCourseRepository.save(degreeCourse);
         } else if (!degreeCourse.subjects) {
             degreeCourse.subjects = [];
@@ -58,7 +64,9 @@ export class DataSaver {
     }
 
     private async findOrCreateDegreePath(name: string, degreeCourse: DegreeCourse): Promise<DegreePath> {
-        let degreePath = await this.degreePathRepository.findOne({ where: { name } });
+        let degreePath = await this.degreePathRepository.findOne({
+            where: { name },
+        });
 
         if (!degreePath) {
             degreePath = this.degreePathFactory.create(name, degreeCourse);
@@ -69,7 +77,9 @@ export class DataSaver {
     }
 
     private async findOrCreateModule(name: string, degreePath: DegreePath): Promise<Module> {
-        let module = await this.moduleRepository.findOne({ where: { name } });
+        let module = await this.moduleRepository.findOne({
+            where: { name },
+        });
 
         if (!module) {
             module = this.moduleFactory.create(name, degreePath);
@@ -80,14 +90,15 @@ export class DataSaver {
     }
 
     private async findOrCreateSubject(name: string, module?: Module): Promise<Subject> {
-        let subject = await this.subjectRepository.findOne({ where: { name }, relations: ['modules'] });
+        let subject = await this.subjectRepository.findOne({
+            where: { name },
+            relations: ['modules'],
+        });
 
         if (!subject) {
             subject = this.subjectFactory.create(name, module);
-            return await this.subjectRepository.save(subject);
-        }
-
-        if (module && !subject.modules.some((mod) => mod.id === module.id)) {
+            subject = await this.subjectRepository.save(subject);
+        } else if (module && !subject.modules.some((mod) => mod.id === module.id)) {
             subject.modules.push(module);
             await this.subjectRepository.save(subject);
         }

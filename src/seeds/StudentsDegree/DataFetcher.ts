@@ -1,10 +1,10 @@
 import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
 import { StudentRepository } from 'repositories/Persons/Student.Repository';
-import { IDataFetcher } from 'interfaces/StudentDegree/IStudentDegree';
 import { AppDataSource } from 'configs/database';
+import { IDataFetcher, IDataFetcherResult } from 'interfaces/StudentDegree/IStudentDegree';
 
 export class DataFetcher implements IDataFetcher {
-    async fetchAllData() {
+    async fetchAllData(): Promise<IDataFetcherResult> {
         const degreeCourseRepository = AppDataSource.getRepository(DegreeCourse);
 
         const degreeCoursesTree = await degreeCourseRepository.find({ relations: ['degreePaths', 'degreePaths.modules'] });

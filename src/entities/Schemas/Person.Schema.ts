@@ -1,9 +1,8 @@
 import { Column, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Gender } from 'constants/general/general.Constants';
+import { Gender } from 'constants/entities/entities.Constants';
 import { IPerson } from 'interfaces/Persons/IPersons';
 import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 import { Validation } from 'constants/validators/validators.Constants';
-
 export class Person implements IPerson {
     @PrimaryGeneratedColumn('uuid')
     id!: string;

@@ -1,27 +1,8 @@
-import { Role } from 'constants/general/general.Constants';
-import { Employee } from 'entities/Employees/Employee.Entity';
-import { Student } from 'entities/Students/Student.Entity';
+import { IUserInfoService, IUserInfo, ExtendedUserDataWithRoles } from 'interfaces/Services/IServices';
 import { UserRepository } from 'repositories/Accounts/User.Repository';
 
-export interface UserInfo {
-    id: string;
-    roles: Role[];
-    queryRole: string;
-    mainRole: string;
-}
-
-interface StudentWithRoles extends Student {
-    roles: Role[];
-}
-
-interface EmployeeWithRoles extends Employee {
-    roles: Role[];
-}
-
-type ExtendedUserDataWithRoles = StudentWithRoles | EmployeeWithRoles | { roles: Role[] };
-
-export class UserInfoService {
-    async getUserInfo(userInfoData: UserInfo): Promise<ExtendedUserDataWithRoles | null> {
+export class UserInfoService implements IUserInfoService {
+    async getUserInfo(userInfoData: IUserInfo): Promise<ExtendedUserDataWithRoles | null> {
         const { id, queryRole, roles } = userInfoData;
 
         if (queryRole) {

@@ -41,7 +41,7 @@ export class UserAccount implements IUserAccount {
         nullable: true,
         default: null,
     })
-    deactivationDate!: Date;
+    deactivationDate?: Date;
 
     @ManyToMany(() => Role, (role) => role.users, { onDelete: 'CASCADE' })
     @JoinTable({

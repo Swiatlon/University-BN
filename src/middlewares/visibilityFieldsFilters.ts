@@ -1,13 +1,10 @@
 import { createNamespace, Namespace } from 'cls-hooked';
-import { Request, Response, NextFunction } from 'express';
+import { Response, NextFunction } from 'express';
+import { ICustomVisbilityFieldRequest } from 'interfaces/Global/IGlobal';
 
 export const requestContext: Namespace = createNamespace('request-context');
 
-export interface CustomRequest extends Request {
-    selectFields?: string[];
-}
-
-export const visibilityFieldsFilter = (req: CustomRequest, res: Response, next: NextFunction): void => {
+export const visibilityFieldsFilter = (req: ICustomVisbilityFieldRequest, res: Response, next: NextFunction): void => {
     requestContext.run(() => {
         if (typeof req.query.visibilityFields === 'string') {
             const fieldsArray: string[] = req.query.visibilityFields.split(',');

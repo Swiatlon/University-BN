@@ -1,14 +1,14 @@
 import { HTTP_STATUS } from 'constants/general/general.Constants';
 import type { Response } from 'express';
 import asyncHandler from 'express-async-handler';
-import { UserInfo } from 'services/UserInfo.Service';
 import { UserInfoService } from 'services/UserInfo.Service';
-import type { CustomRequest } from 'middlewares/visibilityFieldsFilters';
+import { ICustomVisbilityFieldRequest } from 'interfaces/Global/IGlobal';
+import { IUserInfo } from 'interfaces/Services/IServices';
 
 const userInfoServices = new UserInfoService();
 
-const getUserInfo = asyncHandler(async (req: CustomRequest, res: Response) => {
-    const userInfo = req.cookies.userInfo as UserInfo;
+const getUserInfo = asyncHandler(async (req: ICustomVisbilityFieldRequest, res: Response) => {
+    const userInfo = req.cookies.userInfo as IUserInfo;
 
     const userData = await userInfoServices.getUserInfo(userInfo);
 

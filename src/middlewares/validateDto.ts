@@ -19,6 +19,7 @@ export function validateDto<T extends object>(dtoClass: new () => T) {
             });
 
             res.status(HTTP_STATUS.BAD_REQUEST.code).json({ errors: detailedErrors });
+
             return;
         }
 
