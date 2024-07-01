@@ -1,17 +1,19 @@
 import 'reflect-metadata';
+import 'tsconfig-paths/register';
 import { AppDataSource } from 'configs/database';
 import cors from 'cors';
 import corsOptions from 'configs/cors';
 import errorHandler from 'middlewares/errorHandler';
 import express from 'express';
 import { runSeeders } from 'typeorm-extension';
-import studentRoutes from 'routes/studentRoutes';
-import authRoutes from 'routes/authRoutes';
+import studentRoutes from 'routes/student.Routes';
+import authRoutes from 'routes/auth.Routes';
 import cookieParser from 'cookie-parser';
-import userInfoRoutes from 'routes/userInfoRoutes';
-import personalDataRoutes from 'routes/personalDataRoutes';
+import userInfoRoutes from 'routes/userInfo.Routes';
+import personalDataRoutes from 'routes/personalData.Routes';
 import { visibilityFieldsFilter } from 'middlewares/visibilityFieldsFilters';
 import dateFormatter from 'middlewares/responseDateTransformer';
+import { ONE_SECOND_IN_MILISECONDS } from 'constants/general/general.Constants';
 
 const app = express();
 const DEFAULT_PORT = 3000;
@@ -38,7 +40,11 @@ AppDataSource.initialize()
     .then(async () => {
         console.log('Succesfully connected to DB!');
         if (process.env.NODE_ENV === 'DEVELOPMENT') {
+            const overallStartTime = Date.now();
             await runSeeders(AppDataSource);
+            const overallEndTime = Date.now();
+            const overallDuration = (overallEndTime - overallStartTime) / ONE_SECOND_IN_MILISECONDS;
+            console.log(`Finished running all seeders in ${overallDuration} seconds`);
         }
 
         app.listen(PORT, () => {
