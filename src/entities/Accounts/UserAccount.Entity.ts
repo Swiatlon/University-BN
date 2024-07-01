@@ -5,7 +5,7 @@ import { Role } from './Role.Entity';
 
 @Entity('Users_Accounts')
 export class UserAccount implements IUserAccount {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
 
     @Column({

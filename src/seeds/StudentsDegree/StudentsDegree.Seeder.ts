@@ -1,5 +1,4 @@
 import { DataSource } from 'typeorm';
-import { Seeder } from 'typeorm-extension';
 import { DataFetcher } from './DataFetcher';
 import { IDataFetcher } from 'interfaces/StudentDegree/IStudentDegree';
 import { getRandomElement, getRandomElements } from 'utils/globalHelpers';
@@ -7,15 +6,16 @@ import { StudentDegreeCourseFactory } from 'factories/StudentDegrees/StudentDegr
 import { StudentDegreePathFactory } from 'factories/StudentDegrees/StudentDegreePath.Factory';
 import { StudentModuleFactory } from 'factories/StudentDegrees/StudentModuleFactory';
 import { AMOUNT_OF_CREATED_MODULES } from 'constants/seeders/seeder.Constants';
+import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 
-export class StudentsDegreeSeeder implements Seeder {
+export class StudentsDegreeSeeder extends CustomSeederWithTimer {
     private dataFetcher: IDataFetcher = new DataFetcher();
     private studentDegreeCourseFactory: StudentDegreeCourseFactory = new StudentDegreeCourseFactory();
     private studentDegreePathFactory: StudentDegreePathFactory = new StudentDegreePathFactory();
     private studentModuleFactory: StudentModuleFactory = new StudentModuleFactory();
 
-    public async run(dataSource: DataSource): Promise<void> {
-        await dataSource.transaction(async (transactionalEntityManager) => {
+    public async seed(dataSource: DataSource): Promise<void> {
+        await this.runInTransaction(dataSource, async (transactionalEntityManager) => {
             try {
                 const { degreeCoursesTree, studentsWithoutDegreeCourses } = await this.dataFetcher.fetchAllData();
 

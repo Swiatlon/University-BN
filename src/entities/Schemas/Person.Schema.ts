@@ -4,7 +4,7 @@ import { IPerson } from 'interfaces/Persons/IPersons';
 import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 import { Validation } from 'constants/validators/validators.Constants';
 export class Person implements IPerson {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
 
     @Column({

@@ -1,14 +1,14 @@
 import { DataSource } from 'typeorm';
-import { Seeder } from 'typeorm-extension';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 import { Role } from 'entities/Accounts/Role.Entity';
 import { AccountRepository } from 'repositories/Accounts/Accounts.Repository';
 import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
 import { StudentRepository } from 'repositories/Persons/Student.Repository';
+import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 
-export class CreateRolesForAccounts implements Seeder {
-    public async run(dataSource: DataSource): Promise<void> {
+export class CreateRolesForAccounts extends CustomSeederWithTimer {
+    public async seed(dataSource: DataSource): Promise<void> {
         const accountsWithoutRoles = await AccountRepository(dataSource).findWithoutRoleAccounts();
 
         const roleRepository = dataSource.getRepository(Role);
@@ -19,7 +19,7 @@ export class CreateRolesForAccounts implements Seeder {
             return;
         }
 
-        await dataSource.transaction(async (transactionalEntityManager) => {
+        await this.runInTransaction(dataSource, async (transactionalEntityManager) => {
             for (const account of accountsWithoutRoles) {
                 const employee = await EmployeeRepository().findEmployeeByAccountId(account.id);
 

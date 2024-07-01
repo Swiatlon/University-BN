@@ -5,7 +5,7 @@ import { IStudentDegreeCourse } from 'interfaces/StudentDegree/IStudentDegree';
 
 @Entity('Student_Degree_Courses')
 export class StudentDegreeCourse implements IStudentDegreeCourse {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: string;
 
     @ManyToOne(() => Student, (student) => student.degreeCourses)

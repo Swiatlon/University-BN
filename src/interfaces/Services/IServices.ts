@@ -24,3 +24,7 @@ export type ExtendedUserDataWithRoles = IStudentWithRoles | IEmployeeWithRoles |
 export interface IUserInfoService {
     getUserInfo(userInfoData: IUserInfo): Promise<ExtendedUserDataWithRoles | null>;
 }
+
+export interface ILoginUniquesService {
+    generateUniqueLoginAndEmailBasedOnName(name: string, surname: string): Promise<{ login: string; email: string }>;
+}

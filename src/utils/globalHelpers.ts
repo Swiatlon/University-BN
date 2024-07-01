@@ -1,8 +1,11 @@
 import bcrypt from 'bcrypt';
 
-export async function hashPassword(password: string): Promise<string> {
-    const saltRounds = 10;
-    return await bcrypt.hash(password, saltRounds);
+const maxRounds = 10;
+
+export async function hashPassword(password: string, saltRounds?: number): Promise<string> {
+    const defaultRounds = process.env.NODE_ENV === 'production' ? maxRounds : 1;
+
+    return await bcrypt.hash(password, saltRounds ?? defaultRounds);
 }
 
 export function getRandomElement<T>(array: T[]): T {
