@@ -1,36 +1,16 @@
 import { DataSource } from 'typeorm';
-import { Seeder } from 'typeorm-extension';
-import { RolesEnums } from 'constants/general/general.Constants';
-import { hashPassword } from 'utils/globalHelpers';
-import { Role } from 'entities/Accounts/Role.Entity';
+import { RolesEnum } from 'constants/entities/entities.Constants';
 import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
+import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 
-export class CreateAdminAccount implements Seeder {
-    public async run(dataSource: DataSource): Promise<void> {
-        await dataSource.transaction(async (transactionalEntityManager) => {
-            const adminEmail = 'admin@example.com';
-            let adminAccount = await transactionalEntityManager.findOne(UserAccount, {
-                where: { email: adminEmail },
-            });
+export class CreateAdminAccount extends CustomSeederWithTimer {
+    private accountsFactory: UserAccountFactory = new UserAccountFactory();
 
-            if (!adminAccount) {
-                adminAccount = new UserAccount();
-                adminAccount.login = 'admin';
-                adminAccount.email = adminEmail;
-                adminAccount.password = await hashPassword('admin!');
-
-                const adminRole = await transactionalEntityManager.findOne(Role, {
-                    where: { name: RolesEnums.admin },
-                });
-
-                if (!adminRole) {
-                    throw new Error('Admin role does not exist. Ensure the role is created before running this seeder.');
-                }
-
-                adminAccount.roles = [adminRole];
-
-                await transactionalEntityManager.save(adminAccount);
-            }
+    public async seed(dataSource: DataSource): Promise<void> {
+        await this.runInTransaction(dataSource, async (transactionalEntityManager) => {
+            const adminAccount = await this.accountsFactory.createAccount(RolesEnum.admin);
+            await transactionalEntityManager.save(UserAccount, adminAccount);
         });
     }
 }

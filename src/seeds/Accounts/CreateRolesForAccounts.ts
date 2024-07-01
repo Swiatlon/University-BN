@@ -1,43 +1,52 @@
 import { DataSource } from 'typeorm';
-import { Seeder } from 'typeorm-extension';
-import { RolesEnums } from 'constants/general/general.Constants';
+import { RolesEnum } from 'constants/entities/entities.Constants';
 import { Role } from 'entities/Accounts/Role.Entity';
-import { Employee } from 'entities/Employees/Employee.Entity';
-import { Student } from 'entities/Students/Student.Entity';
 import { AccountRepository } from 'repositories/Accounts/Accounts.Repository';
+import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
+import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
+import { StudentRepository } from 'repositories/Persons/Student.Repository';
+import { BATCH_SIZE } from 'constants/seeders/seeder.Constants';
+import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 
-export class CreateRolesForAccounts implements Seeder {
-    public async run(dataSource: DataSource): Promise<void> {
+export class CreateRolesForAccounts extends CustomSeederWithTimer {
+    public async seed(dataSource: DataSource): Promise<void> {
         const accountsWithoutRoles = await AccountRepository(dataSource).findWithoutRoleAccounts();
+        const totalAccounts = accountsWithoutRoles.length;
 
         const roleRepository = dataSource.getRepository(Role);
-        const studentRole = await roleRepository.findOneBy({ name: RolesEnums.student });
-        const teacherRole = await roleRepository.findOneBy({ name: RolesEnums.teacher });
+        const studentRole = await roleRepository.findOneBy({ name: RolesEnum.student });
+        const teacherRole = await roleRepository.findOneBy({ name: RolesEnum.teacher });
 
         if (!studentRole || !teacherRole) {
-            throw new Error('Required roles do not exist in the database.');
+            return;
         }
 
-        await dataSource.transaction(async (transactionalEntityManager) => {
-            for (let i = 0; i < accountsWithoutRoles.length; i++) {
-                const account = accountsWithoutRoles[i];
+        for (let i = 0; i < totalAccounts; i += BATCH_SIZE) {
+            const batchSize = Math.min(BATCH_SIZE, totalAccounts - i);
+            const accountBatch = accountsWithoutRoles.slice(i, i + batchSize);
 
-                const employee = await transactionalEntityManager.createQueryBuilder(Employee, 'employee').where('employee.accountId = :accountId', { accountId: account.id }).getOne();
+            try {
+                await dataSource.transaction(async (transactionalEntityManager) => {
+                    for (const account of accountBatch) {
+                        const employee = await EmployeeRepository(dataSource).findEmployeeByAccountId(account.id);
 
-                if (employee) {
-                    account.roles = [teacherRole];
-                    await transactionalEntityManager.save(account);
-                    continue;
-                }
+                        if (employee) {
+                            account.roles = [teacherRole];
+                            await transactionalEntityManager.save(UserAccount, account);
+                            continue;
+                        }
 
-                const student = await transactionalEntityManager.createQueryBuilder(Student, 'student').where('student.accountId = :accountId', { accountId: account.id }).getOne();
+                        const student = await StudentRepository(dataSource).findStudentByAccountId(account.id);
 
-                if (student) {
-                    account.roles = [studentRole];
-                    await transactionalEntityManager.save(account);
-                    continue;
-                }
+                        if (student) {
+                            account.roles = [studentRole];
+                            await transactionalEntityManager.save(UserAccount, account);
+                        }
+                    }
+                });
+            } catch (error) {
+                console.error(`Error processing batch starting at account ${i}:`, error);
             }
-        });
+        }
     }
 }

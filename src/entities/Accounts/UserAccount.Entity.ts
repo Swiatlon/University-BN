@@ -5,7 +5,7 @@ import { Role } from './Role.Entity';
 
 @Entity('Users_Accounts')
 export class UserAccount implements IUserAccount {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
 
     @Column({
@@ -41,7 +41,7 @@ export class UserAccount implements IUserAccount {
         nullable: true,
         default: null,
     })
-    deactivationDate!: Date;
+    deactivationDate?: Date;
 
     @ManyToMany(() => Role, (role) => role.users, { onDelete: 'CASCADE' })
     @JoinTable({

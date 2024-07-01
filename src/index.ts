@@ -13,6 +13,7 @@ import userInfoRoutes from 'routes/userInfo.Routes';
 import personalDataRoutes from 'routes/personalData.Routes';
 import { visibilityFieldsFilter } from 'middlewares/visibilityFieldsFilters';
 import dateFormatter from 'middlewares/responseDateTransformer';
+import { ONE_SECOND_IN_MILISECONDS } from 'constants/general/general.Constants';
 
 const app = express();
 const DEFAULT_PORT = 3000;
@@ -39,7 +40,11 @@ AppDataSource.initialize()
     .then(async () => {
         console.log('Succesfully connected to DB!');
         if (process.env.NODE_ENV === 'DEVELOPMENT') {
+            const overallStartTime = Date.now();
             await runSeeders(AppDataSource);
+            const overallEndTime = Date.now();
+            const overallDuration = (overallEndTime - overallStartTime) / ONE_SECOND_IN_MILISECONDS;
+            console.log(`Finished running all seeders in ${overallDuration} seconds`);
         }
 
         app.listen(PORT, () => {

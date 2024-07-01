@@ -1,27 +1,39 @@
 import { DataSource } from 'typeorm';
-import { Seeder } from 'typeorm-extension';
-import { Person } from 'entities/Schemas/Person.Schema';
 import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 import { Employee } from 'entities/Employees/Employee.Entity';
-import { UserAccountFactory } from 'factories/Accounts/UserAccount.Factory';
 import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
+import { RolesEnum } from 'constants/entities/entities.Constants';
+import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+import { IUserAccountFactory } from 'interfaces/Factories/IFactories';
+import { BATCH_SIZE } from 'constants/seeders/seeder.Constants';
+import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 
-export class CreateAccountsForEmployee implements Seeder {
-    public async run(dataSource: DataSource): Promise<void> {
-        const employeeWithoutAccounts = await EmployeeRepository(dataSource).findEmployeeWithoutAccount();
-        const accountsFactory = new UserAccountFactory();
+export class CreateAccountsForEmployee extends CustomSeederWithTimer {
+    private accountsFactory: IUserAccountFactory = new UserAccountFactory();
 
-        await dataSource.transaction(async (transactionalEntityManager) => {
-            for (let i = 0; i < employeeWithoutAccounts.length; i++) {
-                const employee = employeeWithoutAccounts[i] as Person;
-                const newAccount = await accountsFactory.create(employee).then();
+    public async seed(dataSource: DataSource): Promise<void> {
+        const employeesWithoutAccounts = await EmployeeRepository(dataSource).findEmployeeWithoutAccount();
+        const totalEmployees = employeesWithoutAccounts.length;
 
-                await transactionalEntityManager.save(UserAccount, newAccount);
+        for (let i = 0; i < totalEmployees; i += BATCH_SIZE) {
+            const batchSize = Math.min(BATCH_SIZE, totalEmployees - i);
+            const employeeBatch = employeesWithoutAccounts.slice(i, i + batchSize);
 
-                employee.accountId = newAccount.id;
+            try {
+                await dataSource.transaction(async (transactionalEntityManager) => {
+                    for (const employee of employeeBatch) {
+                        const newAccount = await this.accountsFactory.createAccount(RolesEnum.employee, employee);
 
-                await transactionalEntityManager.save(Employee, employee);
+                        await transactionalEntityManager.save(UserAccount, newAccount);
+
+                        employee.accountId = newAccount.id;
+
+                        await transactionalEntityManager.save(Employee, employee);
+                    }
+                });
+            } catch (error) {
+                console.error(`Error processing batch starting at employee ${i}:`, error);
             }
-        });
+        }
     }
 }

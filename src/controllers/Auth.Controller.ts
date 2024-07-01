@@ -2,12 +2,11 @@ import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import type { CookieOptions, Request, Response } from 'express';
-import { HTTP_STATUS, RolesEnums } from 'constants/general/general.Constants';
-import { ICookie, UserPayload } from 'interfaces/Global/ICookie';
+import { ACCESS_TOKEN_TIME, HTTP_STATUS } from 'constants/general/general.Constants';
+import { ICookie, IUserPayload } from 'interfaces/Global/IGlobal';
 import { AccountRepository } from 'repositories/Accounts/Accounts.Repository';
 import { UserRepository } from 'repositories/Accounts/User.Repository';
-
-const accessTokenTime = '15m';
+import { RolesEnum } from 'constants/entities/entities.Constants';
 
 const login = asyncHandler(async (req: Request, res: Response) => {
     const { identifier, password } = req.body as { identifier: string; password: string };
@@ -26,7 +25,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
         return;
     }
 
-    const accessToken = jwt.sign({}, String(process.env.ACCESS_TOKEN_SECRET), { expiresIn: accessTokenTime });
+    const accessToken = jwt.sign({}, String(process.env.ACCESS_TOKEN_SECRET), { expiresIn: ACCESS_TOKEN_TIME });
 
     const refreshToken = jwt.sign(
         {
@@ -56,7 +55,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     const userData = {
         id: '',
         roles: foundUser.roles,
-        queryRole: foundUser.roles.map((role) => role.name).includes(RolesEnums.student) ? RolesEnums.student : RolesEnums.employee,
+        queryRole: foundUser.roles.map((role) => role.name).includes(RolesEnum.student) ? RolesEnum.student : RolesEnum.employee,
         mainRole: foundUser.roles[0].name,
     };
 
@@ -89,12 +88,12 @@ const refresh = asyncHandler(async (req: Request, res: Response) => {
 
     const refreshToken = cookies.jwt;
 
-    const decoded = await new Promise<UserPayload>((resolve, reject) => {
+    const decoded = await new Promise<IUserPayload>((resolve, reject) => {
         jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET as string, (err, decodedToken) => {
             if (err) {
                 reject(err);
             } else {
-                resolve(decodedToken as UserPayload);
+                resolve(decodedToken as IUserPayload);
             }
         });
     });
@@ -106,7 +105,7 @@ const refresh = asyncHandler(async (req: Request, res: Response) => {
         return;
     }
 
-    const accessToken = jwt.sign({}, process.env.ACCESS_TOKEN_SECRET as string, { expiresIn: accessTokenTime });
+    const accessToken = jwt.sign({}, process.env.ACCESS_TOKEN_SECRET as string, { expiresIn: ACCESS_TOKEN_TIME });
 
     res.json({ accessToken });
 });

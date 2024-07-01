@@ -2,7 +2,7 @@ import { Column, PrimaryGeneratedColumn } from 'typeorm';
 import { IAddress } from 'interfaces/Persons/IPersons';
 
 export class Address implements IAddress {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id!: string;
 
     @Column({

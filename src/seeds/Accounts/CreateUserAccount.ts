@@ -1,36 +1,16 @@
 import { DataSource } from 'typeorm';
-import { Seeder } from 'typeorm-extension';
-import { RolesEnums } from 'constants/general/general.Constants';
-import { hashPassword } from 'utils/globalHelpers';
-import { Role } from 'entities/Accounts/Role.Entity';
+import { RolesEnum } from 'constants/entities/entities.Constants';
 import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
+import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 
-export class CreateUserAccount implements Seeder {
-    public async run(dataSource: DataSource): Promise<void> {
-        await dataSource.transaction(async (transactionalEntityManager) => {
-            const userEmail = 'user@example.com';
-            let userTestAccount = await transactionalEntityManager.findOne(UserAccount, {
-                where: { email: userEmail },
-            });
+export class CreateUserAccount extends CustomSeederWithTimer {
+    private accountsFactory: UserAccountFactory = new UserAccountFactory();
 
-            if (!userTestAccount) {
-                userTestAccount = new UserAccount();
-                userTestAccount.login = 'user';
-                userTestAccount.email = userEmail;
-                userTestAccount.password = await hashPassword('user!');
-
-                const studentRole = await transactionalEntityManager.findOne(Role, {
-                    where: { name: RolesEnums.student },
-                });
-
-                if (!studentRole) {
-                    throw new Error('Student role does not exist. Ensure the role is created before running this seeder.');
-                }
-
-                userTestAccount.roles = [studentRole];
-
-                await transactionalEntityManager.save(userTestAccount);
-            }
+    public async seed(dataSource: DataSource): Promise<void> {
+        await this.runInTransaction(dataSource, async (transactionalEntityManager) => {
+            const userTestAccount = await this.accountsFactory.createAccount(RolesEnum.user);
+            await transactionalEntityManager.save(UserAccount, userTestAccount);
         });
     }
 }

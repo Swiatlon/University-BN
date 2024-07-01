@@ -1,11 +1,11 @@
 import { Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
-import { IStudentRelations } from 'interfaces/Persons/IPersons';
 import { Person } from '../Schemas/Person.Schema';
 import { StudentAddress } from './StudentAddress.Entity';
 import { StudentConsent } from './StudentConsent.Entity';
 import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
 import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
 import { StudentModule } from 'entities/StudentDegrees/StudentModule.Entity';
+import { IStudentRelations } from 'interfaces/Persons/IStudents';
 
 @Entity('Students')
 export class Student extends Person implements IStudentRelations {

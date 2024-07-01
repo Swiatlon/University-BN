@@ -1,8 +1,3 @@
-export enum Gender {
-    Men = 'Men',
-    Women = 'Women',
-}
-
 export const HTTP_STATUS = {
     OK: { code: 200, message: 'OK' },
     CREATED: { code: 201, message: 'Created' },
@@ -14,16 +9,6 @@ export const HTTP_STATUS = {
     INTERNAL_SERVER_ERROR: { code: 500, message: 'Internal Server Error' },
 };
 
-export const RolesEnums = {
-    admin: 'Admin',
-    teacher: 'Teacher',
-    student: 'Student',
-    employee: 'Employee',
-};
+export const ACCESS_TOKEN_TIME = '15m';
 
-export const Roles = [RolesEnums.admin, RolesEnums.teacher, RolesEnums.student];
-
-export type Role = {
-    id: string;
-    name: keyof (typeof RolesEnums)[];
-};
+export const ONE_SECOND_IN_MILISECONDS = 1000;

@@ -6,7 +6,7 @@ import { IStudentDegreePath } from 'interfaces/StudentDegree/IStudentDegree';
 
 @Entity('Student_Degree_Paths')
 export class StudentDegreePath implements IStudentDegreePath {
-    @PrimaryGeneratedColumn('uuid')
+    @PrimaryGeneratedColumn()
     id: string;
 
     @ManyToOne(() => Student, (student) => student.degreePaths)

@@ -1,3 +1,4 @@
+import { Role } from 'entities/Accounts/Role.Entity';
 import { IAddress, IConsent, IDtoPerson, IPersonRelations } from 'interfaces/Persons/IPersons';
 
 export interface ICreateAccountDto {
@@ -16,7 +17,8 @@ export interface IUserAccount {
     email: string;
     password: string;
     isActive: boolean;
-    deactivationDate: Date;
+    deactivationDate?: Date;
+    roles: Role[];
 }
 
 //TODO: Check in future
