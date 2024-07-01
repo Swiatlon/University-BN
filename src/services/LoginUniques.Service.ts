@@ -11,7 +11,6 @@ export class LoginUniquesService implements ILoginUniquesService {
         let count = 1;
 
         while ((await this.loginExists(login)) || this.generatedLogins.has(login)) {
-            console.log('it happedned!', login);
             login = `${name}.${surname}${count}`.toLowerCase();
             email = `${name}.${surname}${count}@example.com`.toLowerCase();
             count++;
