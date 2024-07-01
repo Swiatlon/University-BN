@@ -26,7 +26,7 @@ const _requiredSeeders = () => {
 };
 
 const _testingSeeders = () => {
-    return [CreateAccountsForStudents];
+    return [CreateStudents];
 };
 
 export const SeedersClasses = [_requiredSeeders(), _devSeeders()].flat();
