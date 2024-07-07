@@ -31,15 +31,15 @@ export const EmployeeRepository = (customDataSource: DataSource = AppDataSource)
                 .getOne()
                 .then((employee) => {
                     if (employee) {
-                        const employeeAddress = { ...(employee.addressId as unknown as IAddress) };
-                        const employeeConsent = { ...(employee.consentId as unknown as IConsent) };
+                        const employeeAddress = { ...(employee.address as unknown as IAddress) };
+                        const employeeConsent = { ...(employee.consent as unknown as IConsent) };
                         const userAllData: IUserAllData = {
                             ...employee,
                             ...employeeAddress,
                             ...employeeConsent,
                             id: employee.id,
-                            addressId: employeeAddress.id,
-                            consentId: employeeConsent.id,
+                            address: employeeAddress.id,
+                            consent: employeeConsent.id,
                         };
 
                         return userAllData;

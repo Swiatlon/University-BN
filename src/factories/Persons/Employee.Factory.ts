@@ -16,8 +16,8 @@ export class EmployeeFactory implements IEmployeeFactory {
         const employee = new Employee();
         Object.assign(employee, this.personFactory.create(), this.consentFactory.create());
 
-        employee.addressId = addressId;
-        employee.consentId = consentId;
+        employee.address = addressId;
+        employee.consent = consentId;
 
         return employee;
     }

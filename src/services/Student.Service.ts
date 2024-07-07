@@ -1,6 +1,7 @@
 import { AppDataSource } from 'configs/database';
 import { Student } from 'entities/Students/Student.Entity';
 import { IStudentService } from 'interfaces/Services/IServices';
+import { StudentRepository } from 'repositories/Persons/Student.Repository';
 import { Repository } from 'typeorm';
 export class StudentService implements IStudentService {
     private studentRepository: Repository<Student>;
@@ -12,5 +13,10 @@ export class StudentService implements IStudentService {
     async createStudent(studentData: Partial<Student>): Promise<Student> {
         const student = this.studentRepository.create(studentData);
         return this.studentRepository.save(student);
+    }
+
+    async getStudentAllData(studentId: string): Promise<Student | null> {
+        const studentData = await StudentRepository().getStudentAllData(studentId);
+        return studentData;
     }
 }

@@ -7,5 +7,6 @@ import { verifyJWT } from 'middlewares/verifyJWT';
 const router = express.Router();
 
 router.post('/students', verifyJWT, validateDto(CreateStudentDto), studentController.createStudent);
+router.get('/students/me', verifyJWT, studentController.getStudentAllData);
 
 export default router;

@@ -11,7 +11,7 @@ import { InitializeDegreeProgramsSeeder } from './Courses/InitalizeDegreeProgram
 import { StudentsDegreeSeeder } from './StudentsDegree/StudentsDegree.Seeder';
 
 //TODO: LATER IT WILL BE LIKE DEPEND ON VARIABLE AND DATA SCHEMA LOOKING
-const doWeNeedRequired = true;
+const doWeNeedRequired = false;
 
 const _devSeeders = () => {
     return [CreateStudents, CreateAccountsForStudents, CreateEmployee, CreateAccountsForEmployee, CreateRolesForAccounts, StudentsDegreeSeeder];
@@ -26,8 +26,8 @@ const _requiredSeeders = () => {
 };
 
 const _testingSeeders = () => {
-    return [CreateStudents];
+    return [];
 };
 
-export const SeedersClasses = [_requiredSeeders(), _devSeeders()].flat();
-// export const SeedersClasses = [_testingSeeders()].flat();
+// export const SeedersClasses = [_requiredSeeders(), _devSeeders()].flat();
+export const SeedersClasses = [_testingSeeders()].flat();

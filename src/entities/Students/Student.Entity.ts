@@ -6,18 +6,17 @@ import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse
 import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
 import { StudentModule } from 'entities/StudentDegrees/StudentModule.Entity';
 import { IStudentRelations } from 'interfaces/Persons/IStudents';
-
 @Entity('Students')
 export class Student extends Person implements IStudentRelations {
     @OneToOne(() => StudentConsent, { cascade: true, nullable: true, onDelete: 'CASCADE' })
     @JoinColumn({
         name: 'consent_id',
     })
-    consentId: string;
+    consent: string;
 
     @OneToOne(() => StudentAddress, { cascade: true, nullable: false, onDelete: 'CASCADE' })
     @JoinColumn({ name: 'address_id' })
-    addressId!: string;
+    address!: string;
 
     @OneToMany(() => StudentDegreeCourse, (studentDegreeCourse) => studentDegreeCourse.student)
     @JoinColumn({ name: 'degree_course_id' })

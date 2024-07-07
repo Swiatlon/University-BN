@@ -30,8 +30,8 @@ export const UserRepository = ({ customDataSource = AppDataSource, queryRole }: 
                             ...userAddress,
                             ...userConsent,
                             ...user,
-                            addressId: userAddress.id,
-                            consentId: userConsent.id,
+                            address: userAddress.id,
+                            consent: userConsent.id,
                         } as IUserAllData;
 
                         return userAllData;
