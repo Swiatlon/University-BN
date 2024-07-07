@@ -16,8 +16,8 @@ export class StudentFactory implements IStudentFactory {
         const student = new Student();
         Object.assign(student, this.personFactory.create(), this.consentFactory.create());
 
-        student.addressId = addressId;
-        student.consentId = consentId;
+        student.address = addressId;
+        student.consent = consentId;
 
         return student;
     }

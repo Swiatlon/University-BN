@@ -3,10 +3,9 @@ import { DataSource, In, Not } from 'typeorm';
 import { IsNull } from 'typeorm';
 import { getSelectFieldsFromContext } from 'middlewares/visibilityFieldsFilters';
 import { Student } from 'entities/Students/Student.Entity';
-import { IUserAllData } from 'interfaces/Accounts/IAccounts';
-import { IAddress, IConsent } from 'interfaces/Persons/IPersons';
 import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
 import { StudentWithDegreeCourse } from 'interfaces/StudentDegree/IStudentDegree';
+
 export const StudentRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;
 
@@ -46,28 +45,12 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
         },
 
         async getStudentAllData(id: string) {
-            return this.createQueryBuilder('Student')
-                .innerJoinAndSelect('student.addressId', 'studentAddress', 'studentAddress.id = student.addressId')
-                .innerJoinAndSelect(`student.consentId`, `studentConsent`, `studentConsent.id = student.consentId`)
-                .where('student.id = :id', { id })
-                .getOne()
-                .then((student) => {
-                    if (student) {
-                        const studentAddress = { ...(student.addressId as unknown as IAddress) };
-                        const studentConsent = { ...(student.consentId as unknown as IConsent) };
-                        const userAllData: IUserAllData = {
-                            ...student,
-                            ...studentAddress,
-                            ...studentConsent,
-                            id: student.id,
-                            addressId: studentAddress.id,
-                            consentId: studentConsent.id,
-                        };
+            const student = await this.findOne({
+                where: { id },
+                relations: ['address', 'consent', 'degreeCourses.degreeCourse', 'degreePaths.degreePath', 'modules.module'],
+            });
 
-                        return userAllData;
-                    }
-                    return null;
-                });
+            return student;
         },
     });
 };

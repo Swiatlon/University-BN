@@ -10,9 +10,9 @@ export class Employee extends Person implements IEmployeeRelations {
     @JoinColumn({
         name: 'consent_id',
     })
-    consentId: string;
+    consent: string;
 
     @OneToOne(() => EmployeeAddress, { cascade: true, nullable: false, onDelete: 'CASCADE' })
     @JoinColumn({ name: 'address_id' })
-    addressId!: string;
+    address!: string;
 }
