@@ -8,17 +8,20 @@ function formatDate(value: string | Date) {
     if (moment.isDate(value) || isoFormat(value)) {
         return moment(value).format('YYYY-MM-DD');
     }
-
     return value;
 }
 
-function transformValues(value: unknown): unknown {
+function transformValues(value: unknown, key: string = ''): unknown {
     if (isArray(value)) {
-        return value.map(transformValues);
+        return value.map((item) => transformValues(item));
     }
 
     if (isObject(value)) {
-        return mapValues(value, transformValues);
+        return mapValues(value, (v, k) => transformValues(v, k));
+    }
+
+    if (key === 'id') {
+        return value;
     }
 
     return formatDate(value as string | Date);

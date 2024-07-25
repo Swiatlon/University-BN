@@ -1,4 +1,5 @@
 import { Role } from 'entities/Accounts/Role.Entity';
+import { Employee } from 'entities/Employees/Employee.Entity';
 import { Student } from 'entities/Students/Student.Entity';
 import { IUserAllData } from 'interfaces/Accounts/IAccounts';
 import { IEmployeeWithRoles } from 'interfaces/Persons/IEmployees';
@@ -27,4 +28,8 @@ export interface IUserInfoService {
 
 export interface ILoginUniquesService {
     generateUniqueLoginAndEmailBasedOnName(name: string, surname: string): Promise<{ login: string; email: string }>;
+}
+
+export interface ICommunityService {
+    getAllTeachers(): Promise<{ items: Employee[]; count?: number }>;
 }
