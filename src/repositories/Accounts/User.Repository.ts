@@ -1,8 +1,7 @@
+import { IUserAllData } from 'types/Accounts/Accounts.Interfaces';
+import { IAddress, IConsent } from 'types/Persons/Persons/Persons.Interfaces';
 import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
-
-import { IUserAllData } from 'interfaces/Accounts/IAccounts';
-import { IAddress, IConsent } from 'interfaces/Persons/IPersons';
 
 export const UserRepository = ({ customDataSource = AppDataSource, queryRole }: { customDataSource?: DataSource; queryRole: string }) => {
     const dataSource = customDataSource;

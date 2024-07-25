@@ -1,9 +1,8 @@
 import { Role } from 'entities/Accounts/Role.Entity';
 import { Employee } from 'entities/Employees/Employee.Entity';
 import { Student } from 'entities/Students/Student.Entity';
-import { IUserAllData } from 'interfaces/Accounts/IAccounts';
-import { IEmployeeWithRoles } from 'interfaces/Persons/IEmployees';
-import { IStudentWithRoles } from 'interfaces/Persons/IStudents';
+import { IUserAllData } from 'types/Accounts/Accounts.Interfaces';
+import { ExtendedUserDataWithRoles } from './Services.Types';
 
 export interface IUserInfo {
     id: string;
@@ -19,8 +18,6 @@ export interface IPersonalDataService {
 export interface IStudentService {
     createStudent(studentData: Partial<Student>): Promise<Student>;
 }
-
-export type ExtendedUserDataWithRoles = IStudentWithRoles | IEmployeeWithRoles | { roles: Role[] };
 
 export interface IUserInfoService {
     getUserInfo(userInfoData: IUserInfo): Promise<ExtendedUserDataWithRoles | null>;

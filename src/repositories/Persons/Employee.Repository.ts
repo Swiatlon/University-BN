@@ -2,10 +2,10 @@ import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
 import { IsNull } from 'typeorm';
 import { Employee } from 'entities/Employees/Employee.Entity';
-import { IUserAllData } from 'interfaces/Accounts/IAccounts';
-import { IAddress, IConsent } from 'interfaces/Persons/IPersons';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 import { applyFiltersToQuery } from 'utils/Db/RequestFilters/RequestFilters';
+import { IUserAllData } from 'types/Accounts/Accounts.Interfaces';
+import { IAddress, IConsent } from 'types/Persons/Persons/Persons.Interfaces';
 
 export const EmployeeRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;

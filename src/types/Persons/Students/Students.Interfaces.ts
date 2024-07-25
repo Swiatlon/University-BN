@@ -3,7 +3,7 @@ import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse
 import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
 import { StudentModule } from 'entities/StudentDegrees/StudentModule.Entity';
 import { Student } from 'entities/Students/Student.Entity';
-import { IPersonRelations } from './IPersons';
+import { IPersonRelations } from '../Persons/Persons.Interfaces';
 
 export interface IStudentRelations extends IPersonRelations {
     degreeCourses: StudentDegreeCourse[];

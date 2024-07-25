@@ -2,7 +2,7 @@ import { Entity, ManyToOne, PrimaryGeneratedColumn, JoinColumn } from 'typeorm';
 import { Student } from 'entities/Students/Student.Entity';
 import { DegreePath } from 'entities/Courses/DegreePath.Entity';
 import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
-import { IStudentDegreePath } from 'interfaces/StudentDegree/IStudentDegree';
+import { IStudentDegreePath } from 'types/StudentDegree/StudentDegree.Interfaces';
 
 @Entity('Student_Degree_Paths')
 export class StudentDegreePath implements IStudentDegreePath {

@@ -2,7 +2,7 @@ import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Ent
 import { Student } from 'entities/Students/Student.Entity';
 import { DegreePath } from 'entities/Courses/DegreePath.Entity';
 import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
-import { IStudentDegreePathFactory } from 'interfaces/Factories/IFactories';
+import { IStudentDegreePathFactory } from 'types/Factories/Factories.Interfaces';
 
 export class StudentDegreePathFactory implements IStudentDegreePathFactory {
     create(student: Student, degreePath: DegreePath, degreeCourse: DegreeCourse): StudentDegreePath {

@@ -3,7 +3,7 @@ import { HTTP_STATUS } from 'constants/general/general.Constants';
 import { Student } from 'entities/Students/Student.Entity';
 import { StudentService } from 'services/Student.Service';
 import asyncHandler from 'express-async-handler';
-import { IUserInfo } from 'interfaces/Services/IServices';
+import { IUserInfo } from 'types/Services/Services.Interfaces';
 
 const studentService = new StudentService();
 

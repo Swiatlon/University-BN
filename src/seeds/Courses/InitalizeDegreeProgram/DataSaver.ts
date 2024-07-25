@@ -3,11 +3,11 @@ import { DegreeCourseFactory } from 'factories/Courses/DegreeCourse.Factory';
 import { DegreePathFactory } from 'factories/Courses/DegreePath.Factory';
 import { ModuleFactory } from 'factories/Courses/Module.Factory';
 import { SubjectFactory } from 'factories/Courses/Subject.Factory';
-import { IDataSaver, ParsedRowData } from 'interfaces/Courses/ICourses';
 import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
 import { DegreePath } from 'entities/Courses/DegreePath.Entity';
 import { Module } from 'entities/Courses/Module.Entity';
 import { Subject } from 'entities/Courses/Subject.Entity';
+import { IDataSaver, IParsedRowData } from 'types/Courses/Courses.Interfaces';
 
 export class DataSaver implements IDataSaver {
     private degreeCourseFactory = new DegreeCourseFactory();
@@ -27,13 +27,13 @@ export class DataSaver implements IDataSaver {
         this.subjectRepository = dataSource.getRepository(Subject);
     }
 
-    public async saveParsedData(parsedData: ParsedRowData[]): Promise<void> {
+    public async saveParsedData(parsedData: IParsedRowData[]): Promise<void> {
         for (const row of parsedData) {
             await this.processRow(row);
         }
     }
 
-    private async processRow(row: ParsedRowData): Promise<void> {
+    private async processRow(row: IParsedRowData): Promise<void> {
         const degreeCourse = await this.findOrCreateDegreeCourse(row.degreeCourse);
         const degreePath = await this.findOrCreateDegreePath(row.degreePath, degreeCourse);
 

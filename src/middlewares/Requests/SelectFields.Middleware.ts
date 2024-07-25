@@ -1,6 +1,6 @@
 import { getRequestContext } from 'contexts/RequestContext';
 import { Request, Response, NextFunction } from 'express';
-import { IRequestParams } from 'interfaces/Utils/IUtils';
+import { IRequestParams } from 'types/Requests/Requests.Interfaces';
 
 export const selectFieldsMiddleware = (req: Request, res: Response, next: NextFunction) => {
     const context = getRequestContext();

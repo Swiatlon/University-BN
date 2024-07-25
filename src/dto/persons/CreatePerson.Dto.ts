@@ -2,8 +2,7 @@ import { IsDate, IsEnum, IsNotEmpty, IsString, MaxLength, MinLength } from 'clas
 import { Gender } from 'constants/entities/entities.Constants';
 import { Type } from 'class-transformer';
 import { Validation } from 'constants/validators/validators.Constants';
-import { IDtoPerson } from 'interfaces/Persons/IPersons';
-
+import { IDtoPerson } from 'types/Persons/Persons/Persons.Interfaces';
 export abstract class CreatePersonDto implements IDtoPerson {
     @IsString()
     @MinLength(Validation.NAME.MIN_LENGTH, { message: Validation.NAME.MIN_LENGTH_MESSAGE })

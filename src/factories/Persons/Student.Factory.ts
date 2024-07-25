@@ -1,7 +1,8 @@
 import { Student } from 'entities/Students/Student.Entity';
-import { IStudentFactory } from 'interfaces/Factories/IFactories';
+
 import { ConsentFactory } from './Consent.Factory';
 import { PersonFactory } from './Person.Factory';
+import { IStudentFactory } from 'types/Factories/Factories.Interfaces';
 
 export class StudentFactory implements IStudentFactory {
     private personFactory: PersonFactory;

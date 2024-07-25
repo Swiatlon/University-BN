@@ -22,7 +22,7 @@ export interface IStudentModule {
     module: Module;
 }
 
-export interface StudentWithDegreeCourse {
+export interface IStudentWithDegreeCourse {
     studentDegreeCourse_student_id: string;
 }
 
@@ -35,12 +35,12 @@ export interface IDataFetcher {
     fetchAllData(): Promise<IDataFetcherResult>;
 }
 
-export interface DegreeTree {
+export interface IDegreeTree {
     [degreeCourseId: string]: {
         [degreePathId: string]: Module[];
     };
 }
 
 export interface IDegreeTreeBuilder {
-    buildTree(degreeCourses: DegreeCourse[], degreePaths: DegreePath[]): DegreeTree;
+    buildTree(degreeCourses: DegreeCourse[], degreePaths: DegreePath[]): IDegreeTree;
 }

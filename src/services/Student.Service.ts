@@ -1,6 +1,6 @@
 import { AppDataSource } from 'configs/database';
 import { Student } from 'entities/Students/Student.Entity';
-import { IStudentService } from 'interfaces/Services/IServices';
+import { IStudentService } from 'types/Services/IServices';
 import { StudentRepository } from 'repositories/Persons/Student.Repository';
 import { Repository } from 'typeorm';
 export class StudentService implements IStudentService {

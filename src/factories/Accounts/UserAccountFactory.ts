@@ -1,14 +1,14 @@
-import { IUserAccountFactory } from 'interfaces/Factories/IFactories';
-import { hashPassword } from 'utils/globalHelpers';
+import { hashPassword } from 'utils/Db/globalHelpers';
 import { AdminAccount } from './AccountModels/AdminAccount';
 import { RolesEnum } from 'constants/entities/entities.Constants';
-import { IUserAccount } from 'interfaces/Accounts/IAccounts';
 import { EmployeeAccount } from './AccountModels/EmployeeAccount';
 import { StudentAccount } from './AccountModels/StudentAccount';
 import { Person } from 'entities/Schemas/Person.Schema';
 import { CustomUserAccount } from './AccountModels/UserAccount';
-import { ILoginUniquesService } from 'interfaces/Services/IServices';
 import { LoginUniquesService } from 'services/LoginUniques.Service';
+import { IUserAccount } from 'types/Accounts/Accounts.Interfaces';
+import { IUserAccountFactory } from 'types/Factories/Factories.Interfaces';
+import { ILoginUniquesService } from 'types/Services/Services.Interfaces';
 
 export class UserAccountFactory implements IUserAccountFactory {
     private loginUniquesService: ILoginUniquesService = new LoginUniquesService();

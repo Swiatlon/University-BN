@@ -1,6 +1,7 @@
 import { getRequestContext } from 'contexts/RequestContext';
 import { Request, Response, NextFunction } from 'express';
-import { IRequestParams, SearchQuery } from 'interfaces/Utils/IUtils';
+import { IRequestParams } from 'types/Requests/Requests.Interfaces';
+import { TSearchQuery } from 'types/Requests/Requests.Types';
 
 export const searchMiddleware = (req: Request, res: Response, next: NextFunction): void => {
     const context = getRequestContext();
@@ -10,7 +11,7 @@ export const searchMiddleware = (req: Request, res: Response, next: NextFunction
         const { search } = reqQuery;
 
         if (search && search.lookupText) {
-            let searchQuery: SearchQuery;
+            let searchQuery: TSearchQuery;
 
             if (search.searchAllFields) {
                 searchQuery = {
