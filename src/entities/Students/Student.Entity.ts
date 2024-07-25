@@ -5,7 +5,7 @@ import { StudentConsent } from './StudentConsent.Entity';
 import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
 import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
 import { StudentModule } from 'entities/StudentDegrees/StudentModule.Entity';
-import { IStudentRelations } from 'interfaces/Persons/IStudents';
+import { IStudentRelations } from 'types/Persons/Students/Students.Interfaces';
 
 @Entity('Students')
 export class Student extends Person implements IStudentRelations {
@@ -13,11 +13,11 @@ export class Student extends Person implements IStudentRelations {
     @JoinColumn({
         name: 'consent_id',
     })
-    consentId: string;
+    consent: string;
 
     @OneToOne(() => StudentAddress, { cascade: true, nullable: false, onDelete: 'CASCADE' })
     @JoinColumn({ name: 'address_id' })
-    addressId!: string;
+    address!: string;
 
     @OneToMany(() => StudentDegreeCourse, (studentDegreeCourse) => studentDegreeCourse.student)
     @JoinColumn({ name: 'degree_course_id' })

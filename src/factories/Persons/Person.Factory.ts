@@ -3,7 +3,7 @@ import { Person } from 'entities/Schemas/Person.Schema';
 import { Validation } from 'constants/validators/validators.Constants';
 import moment from 'moment';
 import { Gender } from 'constants/entities/entities.Constants';
-import { IPersonFactory } from 'interfaces/Factories/IFactories';
+import { IPersonFactory } from 'types/Factories/Factories.Interfaces';
 
 const amountOfElements = 3;
 export class PersonFactory implements IPersonFactory {

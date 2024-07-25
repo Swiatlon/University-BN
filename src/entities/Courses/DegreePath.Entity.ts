@@ -1,9 +1,9 @@
 import { Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { DegreeCourse } from './DegreeCourse.Entity';
 import { CoursesBaseSchema } from 'entities/Schemas/Courses.Schema';
-import { IDegreePath } from 'interfaces/Courses/ICourses';
 import { Module } from './Module.Entity';
 import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
+import { IDegreePath } from 'types/Courses/Courses.Interfaces';
 
 @Entity('Degree_Paths')
 export class DegreePath extends CoursesBaseSchema implements IDegreePath {

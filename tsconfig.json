@@ -14,6 +14,7 @@
         "sourceMap": true,
         "strictPropertyInitialization": false,
         "baseUrl": "./src",
+        "typeRoots": ["./node_modules/@types", "src/@types"],
         "paths": {
             "*": ["*", "src/*"],
             "@routes/*": ["routes/*"],
@@ -29,6 +30,6 @@
             "@data/*": ["data/*"]
         }
     },
-    "include": ["src/**/*"],
+    "include": ["src/**/*", "src/@types/**/*.d.ts"],
     "exclude": ["node_modules"]
 }

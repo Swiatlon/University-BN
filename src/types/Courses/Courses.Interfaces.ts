@@ -29,7 +29,7 @@ export interface ISubject extends ICoursesBaseSchema {
     modules: Module[];
 }
 
-export interface ParsedRowData {
+export interface IParsedRowData {
     degreeCourse: string;
     degreePath: string;
     module: string;
@@ -37,12 +37,12 @@ export interface ParsedRowData {
 }
 
 export interface IDataParser {
-    parseFiles(): Promise<ParsedRowData[]>;
+    parseFiles(): Promise<IParsedRowData[]>;
     loadWorkbook(filePath: string): Promise<ExcelJS.Workbook>;
-    parseWorkbook(workbook: ExcelJS.Workbook, degreeCourseName: string): ParsedRowData[];
-    parseWorksheet(worksheet: ExcelJS.Worksheet, degreeCourse: string, degreePath: string): ParsedRowData[];
+    parseWorkbook(workbook: ExcelJS.Workbook, degreeCourseName: string): IParsedRowData[];
+    parseWorksheet(worksheet: ExcelJS.Worksheet, degreeCourse: string, degreePath: string): IParsedRowData[];
 }
 
 export interface IDataSaver {
-    saveParsedData(parsedData: ParsedRowData[]): Promise<void>;
+    saveParsedData(parsedData: IParsedRowData[]): Promise<void>;
 }

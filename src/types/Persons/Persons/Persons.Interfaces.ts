@@ -31,6 +31,6 @@ export interface IAddress {
 }
 
 export interface IPersonRelations {
-    consentId: string;
-    addressId: string;
+    consent: string;
+    address: string;
 }

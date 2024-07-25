@@ -3,10 +3,10 @@ import jwt from 'jsonwebtoken';
 import asyncHandler from 'express-async-handler';
 import type { CookieOptions, Request, Response } from 'express';
 import { ACCESS_TOKEN_TIME, HTTP_STATUS } from 'constants/general/general.Constants';
-import { ICookie, IUserPayload } from 'interfaces/Global/IGlobal';
 import { AccountRepository } from 'repositories/Accounts/Accounts.Repository';
 import { UserRepository } from 'repositories/Accounts/User.Repository';
 import { RolesEnum } from 'constants/entities/entities.Constants';
+import { ICookie, IUserPayload } from 'types/Global/Global.Interfaces';
 
 const login = asyncHandler(async (req: Request, res: Response) => {
     const { identifier, password } = req.body as { identifier: string; password: string };

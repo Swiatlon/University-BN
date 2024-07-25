@@ -1,7 +1,8 @@
 import { Employee } from 'entities/Employees/Employee.Entity';
-import { IEmployeeFactory } from 'interfaces/Factories/IFactories';
+
 import { ConsentFactory } from './Consent.Factory';
 import { PersonFactory } from './Person.Factory';
+import { IEmployeeFactory } from 'types/Factories/Factories.Interfaces';
 
 export class EmployeeFactory implements IEmployeeFactory {
     private personFactory: PersonFactory;
@@ -16,8 +17,8 @@ export class EmployeeFactory implements IEmployeeFactory {
         const employee = new Employee();
         Object.assign(employee, this.personFactory.create(), this.consentFactory.create());
 
-        employee.addressId = addressId;
-        employee.consentId = consentId;
+        employee.address = addressId;
+        employee.consent = consentId;
 
         return employee;
     }

@@ -4,9 +4,9 @@ import { Employee } from 'entities/Employees/Employee.Entity';
 import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
-import { IUserAccountFactory } from 'interfaces/Factories/IFactories';
 import { BATCH_SIZE } from 'constants/seeders/seeder.Constants';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
+import { IUserAccountFactory } from 'types/Factories/Factories.Interfaces';
 
 export class CreateAccountsForEmployee extends CustomSeederWithTimer {
     private accountsFactory: IUserAccountFactory = new UserAccountFactory();

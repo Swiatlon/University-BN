@@ -1,6 +1,6 @@
 import { Faker, faker } from '@faker-js/faker';
 import { Consent } from 'entities/Schemas/Consent.Schema';
-import { IConsentFactory } from 'interfaces/Factories/IFactories';
+import { IConsentFactory } from 'types/Factories/Factories.Interfaces';
 
 export class ConsentFactory implements IConsentFactory {
     private faker: Faker = faker;
