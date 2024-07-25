@@ -16,7 +16,7 @@ export const applyFieldSearch = <T extends ObjectLiteral>(queryBuilder: SelectQu
 
         search.fields.forEach((field) => {
             parameters[field] = `%${search.lookupText}%`;
-            conditions.push(`${alias}.${field} ILIKE :${field}`);
+            conditions.push(`${alias}.${field} LIKE :${field}`);
         });
 
         return queryBuilder.andWhere(`(${conditions.join(' OR ')})`, parameters);
@@ -34,10 +34,12 @@ export const applyAllFieldsSearch = <T extends ObjectLiteral>(queryBuilder: Sele
 
     if (isAllFieldsSearch(search)) {
         const alias = queryBuilder.alias;
-        const allFields = queryBuilder.connection.getMetadata(alias).columns.map((col) => col.propertyName);
-        const conditions = allFields.map((field) => `${alias}.${field} ILIKE :search`);
+        const mainAlias = queryBuilder.expressionMap.mainAlias;
 
-        return queryBuilder.andWhere(`(${conditions.join(' OR ')})`, { search: `%${search.lookupText}%` });
+        const allFields = mainAlias?.metadata.columns.map((col) => col.propertyName) ?? [];
+        const conditions = allFields.map((field) => `LOWER(${alias}.${field}) LIKE :search`);
+
+        return queryBuilder.andWhere(`(${conditions.join(' OR ')})`, { search: `%${search.lookupText.toLowerCase()}%` });
     }
 
     return queryBuilder;
