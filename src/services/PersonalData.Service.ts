@@ -1,6 +1,6 @@
-import { IUserAllData } from 'interfaces/Accounts/IAccounts';
 import { UserRepository } from 'repositories/Accounts/User.Repository';
-import { IPersonalDataService, IUserInfo } from 'interfaces/Services/IServices';
+import { IUserAllData } from 'types/Accounts/Accounts.Interfaces';
+import { IPersonalDataService, IUserInfo } from 'types/Services/Services.Interfaces';
 
 export class PersonalDataService implements IPersonalDataService {
     async getUserAllData(userInfoData: IUserInfo): Promise<IUserAllData | null> {

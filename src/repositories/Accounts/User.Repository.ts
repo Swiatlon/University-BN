@@ -1,8 +1,7 @@
+import { IUserAllData } from 'types/Accounts/Accounts.Interfaces';
+import { IAddress, IConsent } from 'types/Persons/Persons/Persons.Interfaces';
 import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
-import { getSelectFieldsFromContext } from 'middlewares/visibilityFieldsFilters';
-import { IUserAllData } from 'interfaces/Accounts/IAccounts';
-import { IAddress, IConsent } from 'interfaces/Persons/IPersons';
 
 export const UserRepository = ({ customDataSource = AppDataSource, queryRole }: { customDataSource?: DataSource; queryRole: string }) => {
     const dataSource = customDataSource;
@@ -12,9 +11,7 @@ export const UserRepository = ({ customDataSource = AppDataSource, queryRole }: 
             return this.createQueryBuilder(queryRole).where(`${queryRole}.accountId = :id`, { id }).getOne();
         },
         async getUserBasicData(id: string) {
-            const selectFields = getSelectFieldsFromContext(queryRole);
-
-            return this.createQueryBuilder(queryRole).select(selectFields).where(`${queryRole}.id = :id`, { id }).getOne();
+            return this.createQueryBuilder(queryRole).where(`${queryRole}.id = :id`, { id }).getOne();
         },
         async getUserAllData(id: string) {
             return this.createQueryBuilder(queryRole)

@@ -1,5 +1,5 @@
 import { Role } from 'entities/Accounts/Role.Entity';
-import { IAddress, IConsent, IDtoPerson, IPersonRelations } from 'interfaces/Persons/IPersons';
+import { IDtoPerson, IAddress, IConsent, IPersonRelations } from 'types/Persons/Persons/Persons.Interfaces';
 
 export interface ICreateAccountDto {
     identifier: string;

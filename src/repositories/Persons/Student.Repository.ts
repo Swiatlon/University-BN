@@ -1,10 +1,9 @@
 import { AppDataSource } from '../../configs/database';
 import { DataSource, In, Not } from 'typeorm';
 import { IsNull } from 'typeorm';
-import { getSelectFieldsFromContext } from 'middlewares/visibilityFieldsFilters';
 import { Student } from 'entities/Students/Student.Entity';
 import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
-import { StudentWithDegreeCourse } from 'interfaces/StudentDegree/IStudentDegree';
+import { IStudentWithDegreeCourse } from 'types/StudentDegree/StudentDegree.Interfaces';
 
 export const StudentRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;
@@ -21,13 +20,11 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
         },
 
         async getStudentBasicData(id: string) {
-            const selectFields = getSelectFieldsFromContext('student');
-
-            return this.createQueryBuilder('student').select(selectFields).where('student.id = :id', { id }).getOne();
+            return this.createQueryBuilder('student').where('student.id = :id', { id }).getOne();
         },
 
         async getStudentsWithoutDegreeCourses() {
-            const studentsWithDegreeCourses: StudentWithDegreeCourse[] = await dataSource
+            const studentsWithDegreeCourses: IStudentWithDegreeCourse[] = await dataSource
                 .getRepository(StudentDegreeCourse)
                 .createQueryBuilder('studentDegreeCourse')
                 .select('studentDegreeCourse.student.id')

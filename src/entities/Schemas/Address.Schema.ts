@@ -1,5 +1,5 @@
 import { Column, PrimaryGeneratedColumn } from 'typeorm';
-import { IAddress } from 'interfaces/Persons/IPersons';
+import { IAddress } from 'types/Persons/Persons/Persons.Interfaces';
 
 export class Address implements IAddress {
     @PrimaryGeneratedColumn()

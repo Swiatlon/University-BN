@@ -1,7 +1,7 @@
 import { Column, Entity, JoinTable, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
-import { IUserAccount } from 'interfaces/Accounts/IAccounts';
 import { Validation } from 'constants/validators/validators.Constants';
 import { Role } from './Role.Entity';
+import { IUserAccount } from 'types/Accounts/Accounts.Interfaces';
 
 @Entity('Users_Accounts')
 export class UserAccount implements IUserAccount {

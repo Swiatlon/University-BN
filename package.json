@@ -1,6 +1,6 @@
 {
     "name": "university-bn",
-    "version": "0.5.0 - alpha",
+    "version": "0.6.0 - alpha",
     "description": "A backend for University management system built with Express and TypeScript.",
     "type": "commonjs",
     "main": "index.js",

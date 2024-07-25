@@ -1,14 +1,14 @@
 import { FILE_PATH_BASE, FILES, MODULE_INDEX_IN_EXCEL, SUBJECT_INDEX_IN_EXCEL } from 'constants/seeders/seeder.Constants';
 import ExcelJS from 'exceljs';
-import { IDataParser, ParsedRowData } from 'interfaces/Courses/ICourses';
 import path from 'path';
+import { IDataParser, IParsedRowData } from 'types/Courses/Courses.Interfaces';
 
 export class DataParser implements IDataParser {
     private filePathBase: string = path.resolve(FILE_PATH_BASE);
     private files: string[] = FILES;
 
-    public async parseFiles(): Promise<ParsedRowData[]> {
-        const parsedData: ParsedRowData[] = [];
+    public async parseFiles(): Promise<IParsedRowData[]> {
+        const parsedData: IParsedRowData[] = [];
 
         for (const file of this.files) {
             const filePath = path.join(this.filePathBase, file);
@@ -32,8 +32,8 @@ export class DataParser implements IDataParser {
         return workbook;
     }
 
-    public parseWorkbook(workbook: ExcelJS.Workbook, degreeCourseName: string): ParsedRowData[] {
-        const parsedData: ParsedRowData[] = [];
+    public parseWorkbook(workbook: ExcelJS.Workbook, degreeCourseName: string): IParsedRowData[] {
+        const parsedData: IParsedRowData[] = [];
 
         workbook.eachSheet((worksheet) => {
             const degreePathName = worksheet.name;
@@ -44,8 +44,8 @@ export class DataParser implements IDataParser {
         return parsedData;
     }
 
-    public parseWorksheet(worksheet: ExcelJS.Worksheet, degreeCourse: string, degreePath: string): ParsedRowData[] {
-        const data: ParsedRowData[] = [];
+    public parseWorksheet(worksheet: ExcelJS.Worksheet, degreeCourse: string, degreePath: string): IParsedRowData[] {
+        const data: IParsedRowData[] = [];
 
         worksheet.eachRow((row, rowNumber) => {
             if (rowNumber === 1) {
@@ -59,7 +59,7 @@ export class DataParser implements IDataParser {
                 return;
             }
 
-            const rowData: ParsedRowData = {
+            const rowData: IParsedRowData = {
                 degreeCourse,
                 degreePath,
                 module,
