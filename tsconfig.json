@@ -7,7 +7,6 @@
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
         "moduleResolution": "node",
-        "rootDir": "./src",
         "outDir": "./dist",
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
@@ -30,6 +29,6 @@
             "@data/*": ["data/*"]
         }
     },
-    "include": ["src/**/*", "src/@types/**/*.d.ts"],
+    "include": ["./src/**/*", "./src/@types/**/*.d.ts", "tests/**/*"],
     "exclude": ["node_modules"]
 }
