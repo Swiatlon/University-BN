@@ -22,7 +22,7 @@ export class LoginUniquesService implements ILoginUniquesService {
         return { login, email };
     }
 
-    private async loginExists(login: string): Promise<boolean> {
+    async loginExists(login: string): Promise<boolean> {
         return await AccountRepository().exists({
             where: { login },
         });
