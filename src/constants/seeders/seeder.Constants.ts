@@ -1,5 +1,5 @@
 export const BATCH_SIZE = 100;
-export const AMOUNT_OF_NEW_EMPLOYEES = 100_000;
+export const AMOUNT_OF_NEW_EMPLOYEES = 100;
 export const AMOUNT_OF_NEW_STUDENTS = 100;
 export const AMOUNT_OF_CREATED_MODULES = 2;
 
