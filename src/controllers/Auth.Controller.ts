@@ -14,7 +14,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     const foundUser = await AccountRepository().findByIdentifierAccount(identifier);
 
     if (!foundUser) {
-        res.status(HTTP_STATUS.UNAUTHORIZED.code).json({ message: 'User not exist!' });
+        res.status(HTTP_STATUS.UNAUTHORIZED.code).json({ message: 'Password or identifier not correct!' });
         return;
     }
 
