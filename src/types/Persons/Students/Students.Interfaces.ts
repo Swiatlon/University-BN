@@ -5,7 +5,8 @@ import { StudentModule } from 'entities/StudentDegrees/StudentModule.Entity';
 import { Student } from 'entities/Students/Student.Entity';
 import { IPersonRelations } from '../Persons/Persons.Interfaces';
 
-export interface IStudentRelations extends IPersonRelations {
+export interface IStudent extends IPersonRelations {
+    id: string;
     degreeCourses: StudentDegreeCourse[];
     degreePaths: StudentDegreePath[];
     modules: StudentModule[];

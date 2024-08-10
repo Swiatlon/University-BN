@@ -1,5 +1,5 @@
 import { IUserAllData } from 'types/Accounts/Accounts.Interfaces';
-import { IAddress, IConsent } from 'types/Persons/Persons/Persons.Interfaces';
+import { IAddress, IConsent, IExtendedPersonSchema } from 'types/Persons/Persons/Persons.Interfaces';
 import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
 
@@ -21,15 +21,15 @@ export const UserRepository = ({ customDataSource = AppDataSource, queryRole }: 
                 .getOne()
                 .then((user) => {
                     if (user) {
-                        const userAddress = { ...(user.addressId as unknown as IAddress) };
-                        const userConsent = { ...(user.consentId as unknown as IConsent) };
-                        const userAllData = {
-                            ...userAddress,
-                            ...userConsent,
-                            ...user,
-                            address: userAddress.id,
-                            consent: userConsent.id,
-                        } as IUserAllData;
+                        const userAddress = { ...(user.address as IAddress) };
+                        const userConsent = { ...(user.consent as IConsent) };
+
+                        const userAllData: IUserAllData = {
+                            ...(user as IExtendedPersonSchema),
+                            id: user.id as string,
+                            address: userAddress,
+                            consents: userConsent,
+                        };
 
                         return userAllData;
                     }

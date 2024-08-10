@@ -17,7 +17,7 @@ const createTestPerson = (): Person => ({
     surname: 'Doe',
     dateOfBirth: new Date(),
     pesel: '12345678901',
-    gender: Gender.Women,
+    gender: Gender.FEMALE,
     nationality: 'American',
     contactEmail: 'john.doe@example.com',
     contactPhone: '1234567890',
@@ -37,7 +37,7 @@ describe('UserAccountFactory Integration Tests', () => {
     });
 
     it('should create an AdminAccount', async () => {
-        const account = await userAccountFactory.createAccount(RolesEnum.admin);
+        const account = await userAccountFactory.createAccount(RolesEnum.ADMIN);
 
         expect(account).toBeInstanceOf(AdminAccount);
         expect(account.login).toBe('admin');
@@ -46,7 +46,7 @@ describe('UserAccountFactory Integration Tests', () => {
     });
 
     it('should create a CustomUserAccount', async () => {
-        const account = await userAccountFactory.createAccount(RolesEnum.user);
+        const account = await userAccountFactory.createAccount(RolesEnum.USER);
 
         expect(account).toBeInstanceOf(CustomUserAccount);
         expect(account.login).toBe('user');
@@ -70,7 +70,7 @@ describe('UserAccountFactory Integration Tests', () => {
         it('should create a StudentAccount with unique login and email', async () => {
             const person = createTestPerson();
 
-            const account = await userAccountFactory.createAccount(RolesEnum.student, person);
+            const account = await userAccountFactory.createAccount(RolesEnum.STUDENT, person);
 
             expect(account).toBeInstanceOf(StudentAccount);
             expect(account.login).toBe('john.doe');
@@ -81,7 +81,7 @@ describe('UserAccountFactory Integration Tests', () => {
         it('should create an EmployeeAccount with unique login and email', async () => {
             const person = createTestPerson();
 
-            const account = await userAccountFactory.createAccount(RolesEnum.employee, person);
+            const account = await userAccountFactory.createAccount(RolesEnum.EMPLOYEE, person);
 
             expect(account).toBeInstanceOf(EmployeeAccount);
             expect(account.login).toBe('john.doe');

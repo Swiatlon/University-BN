@@ -11,6 +11,10 @@ export class Module extends CoursesBaseSchema implements IModule {
     @JoinColumn({ name: 'degree_path_id' })
     degreePath: DegreePath;
 
+    @OneToMany(() => StudentModule, (studentModule) => studentModule.module)
+    @JoinColumn({ name: 'student_module_id' })
+    studentModules: StudentModule[];
+
     @ManyToMany(() => Subject, (subject) => subject.modules)
     @JoinTable({
         name: 'Modules_Subjects',
@@ -18,8 +22,4 @@ export class Module extends CoursesBaseSchema implements IModule {
         inverseJoinColumn: { name: 'subject_id', referencedColumnName: 'id' },
     })
     subjects: Subject[];
-
-    @OneToMany(() => StudentModule, (studentModule) => studentModule.module)
-    @JoinColumn({ name: 'student_module_id' })
-    studentModules: StudentModule[];
 }

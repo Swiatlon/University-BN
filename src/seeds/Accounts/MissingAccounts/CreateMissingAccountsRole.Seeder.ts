@@ -7,6 +7,10 @@ import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
 import { StudentRepository } from 'repositories/Persons/Student.Repository';
 import { BATCH_SIZE } from 'constants/seeders/seeder.Constants';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
+import { ExternalParticipantRepository } from 'repositories/Persons/ExternalParticipant.Repository';
+import { CompanyRepository } from 'repositories/Persons/Company.Repository';
+
+// TODO: In free time make it more solid or dry
 
 export class CreateRolesForAccounts extends CustomSeederWithTimer {
     public async seed(dataSource: DataSource): Promise<void> {
@@ -14,10 +18,13 @@ export class CreateRolesForAccounts extends CustomSeederWithTimer {
         const totalAccounts = accountsWithoutRoles.length;
 
         const roleRepository = dataSource.getRepository(Role);
-        const studentRole = await roleRepository.findOneBy({ name: RolesEnum.student });
-        const teacherRole = await roleRepository.findOneBy({ name: RolesEnum.teacher });
+        const studentRole = await roleRepository.findOneBy({ name: RolesEnum.STUDENT });
+        const teacherRole = await roleRepository.findOneBy({ name: RolesEnum.TEACHER });
+        const externalParticipantRole = await roleRepository.findOneBy({ name: RolesEnum.EXTERNAL_PARTICIPANT });
+        const companyRole = await roleRepository.findOneBy({ name: RolesEnum.COMPANY });
 
-        if (!studentRole || !teacherRole) {
+        if (!studentRole || !teacherRole || !externalParticipantRole || !companyRole) {
+            console.error('One or more roles are missing. Seeding aborted.');
             return;
         }
 
@@ -40,6 +47,22 @@ export class CreateRolesForAccounts extends CustomSeederWithTimer {
 
                         if (student) {
                             account.roles = [studentRole];
+                            await transactionalEntityManager.save(UserAccount, account);
+                            continue;
+                        }
+
+                        const externalParticipant = await ExternalParticipantRepository(dataSource).findExternalParticipantByAccountId(account.id);
+
+                        if (externalParticipant) {
+                            account.roles = [externalParticipantRole];
+                            await transactionalEntityManager.save(UserAccount, account);
+                            continue;
+                        }
+
+                        const company = await CompanyRepository(dataSource).findCompanyByAccountId(account.id);
+
+                        if (company) {
+                            account.roles = [companyRole];
                             await transactionalEntityManager.save(UserAccount, account);
                         }
                     }

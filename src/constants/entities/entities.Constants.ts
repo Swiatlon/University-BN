@@ -1,14 +1,23 @@
-export enum Gender {
-    Men = 'Men',
-    Women = 'Women',
+export enum GenderEnum {
+    MALE = 'MALE',
+    FEMALE = 'FEMALE',
 }
+export const genderEnumArray = Object.values(GenderEnum);
 
 export enum RolesEnum {
-    admin = 'Admin',
-    user = 'User',
-    teacher = 'Teacher',
-    student = 'Student',
-    employee = 'Employee',
+    ADMIN = 'ADMIN',
+    USER = 'USER',
+    TEACHER = 'TEACHER',
+    STUDENT = 'STUDENT',
+    EMPLOYEE = 'EMPLOYEE',
+    EXTERNAL_PARTICIPANT = 'EXTERNAL_PARTICIPANT',
+    COMPANY = 'COMPANY',
 }
+export const rolesEnumArray = Object.values(RolesEnum);
 
-export const Roles = [RolesEnum.admin, RolesEnum.teacher, RolesEnum.student];
+export enum EventOrganizerTypeEnum {
+    EMPLOYEE = RolesEnum.EMPLOYEE,
+    EXTERNAL_PARTICIPANT = RolesEnum.EXTERNAL_PARTICIPANT,
+    COMPANY = RolesEnum.COMPANY,
+}
+export const eventOrganizerTypeEnumArray = Object.values(EventOrganizerTypeEnum);

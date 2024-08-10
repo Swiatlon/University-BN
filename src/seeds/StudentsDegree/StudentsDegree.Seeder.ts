@@ -1,6 +1,5 @@
 import { DataSource } from 'typeorm';
 import { DataFetcher } from './DataFetcher';
-
 import { getRandomElement, getRandomElements } from 'utils/Db/globalHelpers';
 import { StudentDegreeCourseFactory } from 'factories/StudentDegrees/StudentDegreeCourse.Factory';
 import { StudentDegreePathFactory } from 'factories/StudentDegrees/StudentDegreePath.Factory';

@@ -4,13 +4,13 @@ import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 
-export class CreateAdminAccount extends CustomSeederWithTimer {
+export class CreateUserAccount extends CustomSeederWithTimer {
     private accountsFactory: UserAccountFactory = new UserAccountFactory();
 
     public async seed(dataSource: DataSource): Promise<void> {
         await this.runInTransaction(dataSource, async (transactionalEntityManager) => {
-            const adminAccount = await this.accountsFactory.createAccount(RolesEnum.admin);
-            await transactionalEntityManager.save(UserAccount, adminAccount);
+            const userTestAccount = await this.accountsFactory.create(RolesEnum.USER);
+            await transactionalEntityManager.save(UserAccount, userTestAccount);
         });
     }
 }

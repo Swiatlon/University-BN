@@ -1,6 +1,6 @@
 import { DataSource } from 'typeorm';
-import { DataParser } from './DataParser';
-import { DataSaver } from './DataSaver';
+import { DataParser } from './DataParser.Seeder';
+import { DataSaver } from './DataSaver.Seeder';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 
 export class InitializeDegreeProgramsSeeder extends CustomSeederWithTimer {

@@ -3,40 +3,40 @@ import { AdminAccount } from './AccountModels/AdminAccount';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 import { EmployeeAccount } from './AccountModels/EmployeeAccount';
 import { StudentAccount } from './AccountModels/StudentAccount';
-import { Person } from 'entities/Schemas/Person.Schema';
+import { CompanyAccount } from './AccountModels/CompanyAccount';
 import { CustomUserAccount } from './AccountModels/UserAccount';
-import { LoginUniquesService } from 'services/LoginUniques.Service';
+import { ExternalParticipantAccount } from './AccountModels/ExternalParticipantAccount'; // Import the ExternalParticipantAccount
 import { IUserAccount } from 'types/Accounts/Accounts.Interfaces';
-import { IUserAccountFactory } from 'types/Factories/Factories.Interfaces';
-import { ILoginUniquesService } from 'types/Services/Services.Interfaces';
+import { IUserAccountFactory } from 'types/Factories/Factory.Interfaces';
+import { IBasicPersonSchema, IExtendedPersonSchema } from 'types/Persons/Persons/Persons.Interfaces';
 
 export class UserAccountFactory implements IUserAccountFactory {
-    private loginUniquesService: ILoginUniquesService = new LoginUniquesService();
-
-    async createAccount(role: RolesEnum, person?: Person): Promise<IUserAccount> {
+    async create(role: RolesEnum, data?: IExtendedPersonSchema | string | IBasicPersonSchema): Promise<IUserAccount> {
         let account: IUserAccount;
 
         switch (role) {
-            case RolesEnum.admin: {
+            case RolesEnum.ADMIN: {
                 account = new AdminAccount();
                 break;
             }
-            case RolesEnum.user: {
+            case RolesEnum.USER: {
                 account = new CustomUserAccount();
                 break;
             }
-            case RolesEnum.student: {
-                account = new StudentAccount();
-                const studentLoginEmail = await this.loginUniquesService.generateUniqueLoginAndEmailBasedOnName(person!.name, person!.surname);
-                account.login = studentLoginEmail.login;
-                account.email = studentLoginEmail.email;
+            case RolesEnum.STUDENT: {
+                account = await StudentAccount.create(data as IExtendedPersonSchema);
                 break;
             }
-            case RolesEnum.employee: {
-                account = new EmployeeAccount();
-                const employeeLoginEmail = await this.loginUniquesService.generateUniqueLoginAndEmailBasedOnName(person!.name, person!.surname);
-                account.login = employeeLoginEmail.login;
-                account.email = employeeLoginEmail.email;
+            case RolesEnum.EMPLOYEE: {
+                account = await EmployeeAccount.create(data as IExtendedPersonSchema);
+                break;
+            }
+            case RolesEnum.COMPANY: {
+                account = await CompanyAccount.create(data as string);
+                break;
+            }
+            case RolesEnum.EXTERNAL_PARTICIPANT: {
+                account = await ExternalParticipantAccount.create(data as IBasicPersonSchema);
                 break;
             }
             default:

@@ -1,17 +1,24 @@
-import { Gender } from 'constants/entities/entities.Constants';
+import { GenderEnum } from 'constants/entities/entities.Constants';
+import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
+import { Address } from 'entities/Schemas/Address.Schema';
+import { Consent } from 'entities/Schemas/Consent.Schema';
 
-export interface IDtoPerson {
-    id?: string;
+export interface IBasicPersonSchema {
     name: string;
     surname: string;
-    pesel: string;
-    gender: Gender;
-    dateOfBirth: Date;
-    nationality: string;
+    gender: GenderEnum;
+    nationality?: string;
+    contactEmail?: string;
+    contactPhone?: string;
 }
 
-export interface IPerson extends IDtoPerson {
-    accountId: string;
+export interface IExtendedPersonSchema extends Omit<IBasicPersonSchema, 'nationality' | 'contactEmail' | 'contactPhone'> {
+    dateOfBirth: Date;
+    pesel: string;
+    nationality: string;
+    contactEmail: string;
+    contactPhone: string;
+    dateOfAdmission: string;
 }
 
 export interface IConsent {
@@ -31,6 +38,7 @@ export interface IAddress {
 }
 
 export interface IPersonRelations {
-    consent: string;
-    address: string;
+    consent: Consent;
+    address: Address;
+    account: UserAccount;
 }

@@ -7,12 +7,19 @@ import { RolesEnum } from 'constants/entities/entities.Constants';
 import { BATCH_SIZE } from 'constants/seeders/seeder.Constants';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 
-export class CreateAccountsForStudents extends CustomSeederWithTimer {
+export class CreateMissingAccountsForStudents extends CustomSeederWithTimer {
     private accountsFactory: UserAccountFactory = new UserAccountFactory();
 
     public async seed(dataSource: DataSource): Promise<void> {
         const studentsWithoutAccounts = await StudentRepository(dataSource).findStudentsWithoutAccount();
         const totalStudents = studentsWithoutAccounts.length;
+
+        if (totalStudents === 0) {
+            console.log('All students already have accounts.');
+            return;
+        }
+
+        console.log(`Found ${totalStudents} students without accounts. Creating missing accounts...`);
 
         for (let i = 0; i < totalStudents; i += BATCH_SIZE) {
             const batchSize = Math.min(BATCH_SIZE, totalStudents - i);
@@ -21,11 +28,11 @@ export class CreateAccountsForStudents extends CustomSeederWithTimer {
             try {
                 await dataSource.transaction(async (transactionalEntityManager) => {
                     for (const student of studentBatch) {
-                        const newAccount = await this.accountsFactory.createAccount(RolesEnum.student, student);
+                        const newAccount = await this.accountsFactory.create(RolesEnum.STUDENT, student);
 
                         await transactionalEntityManager.save(UserAccount, newAccount);
 
-                        student.accountId = newAccount.id;
+                        student.account = newAccount;
 
                         await transactionalEntityManager.save(Student, student);
                     }

@@ -13,11 +13,11 @@ export const EmployeeRepository = (customDataSource: DataSource = AppDataSource)
     return dataSource.getRepository(Employee).extend({
         async findEmployeeWithoutAccount() {
             return this.findBy({
-                accountId: IsNull(),
+                account: IsNull(),
             });
         },
         async findEmployeeByAccountId(id: string) {
-            return this.createQueryBuilder('employee').where('employee.accountId = :id', { id }).getOne();
+            return this.createQueryBuilder('employee').where('employee.account = :id', { id }).getOne();
         },
         async getEmployeeBasicData(id: string) {
             return this.createQueryBuilder('employee').where('employee.id = :id', { id }).getOne();
@@ -30,15 +30,13 @@ export const EmployeeRepository = (customDataSource: DataSource = AppDataSource)
                 .getOne()
                 .then((employee) => {
                     if (employee) {
-                        const employeeAddress = { ...(employee.address as unknown as IAddress) };
-                        const employeeConsent = { ...(employee.consent as unknown as IConsent) };
+                        const employeeAddress = { ...(employee.address as IAddress) };
+                        const employeeConsent = { ...(employee.consent as IConsent) };
+
                         const userAllData: IUserAllData = {
                             ...employee,
-                            ...employeeAddress,
-                            ...employeeConsent,
-                            id: employee.id,
-                            address: employeeAddress.id,
-                            consent: employeeConsent.id,
+                            address: employeeAddress,
+                            consents: employeeConsent,
                         };
 
                         return userAllData;
@@ -50,7 +48,7 @@ export const EmployeeRepository = (customDataSource: DataSource = AppDataSource)
             const teachersQuery = this.createQueryBuilder('employee')
                 .innerJoin('employee.accountId', 'userAccount')
                 .innerJoin('userAccount.roles', 'role')
-                .where('role.name = :roleName', { roleName: RolesEnum.teacher });
+                .where('role.name = :roleName', { roleName: RolesEnum.TEACHER });
 
             return applyFiltersToQuery(teachersQuery);
         },

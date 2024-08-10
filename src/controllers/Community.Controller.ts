@@ -11,6 +11,12 @@ const findAllTeachers = asyncHandler(async (req: Request, res: Response) => {
     res.status(HTTP_STATUS.OK.code).json(teachers);
 });
 
+const _createEvent = asyncHandler(async (req: Request, res: Response) => {
+    const teachers = await communityService.getAllTeachers();
+
+    res.status(HTTP_STATUS.OK.code).json(teachers);
+});
+
 export const CommunityController = {
     findAllTeachers,
 };

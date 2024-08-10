@@ -2,7 +2,7 @@ import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Ent
 import { Student } from 'entities/Students/Student.Entity';
 import { DegreePath } from 'entities/Courses/DegreePath.Entity';
 import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
-import { IStudentDegreePathFactory } from 'types/Factories/Factories.Interfaces';
+import { IStudentDegreePathFactory } from 'types/Factories/Factory.Interfaces';
 
 export class StudentDegreePathFactory implements IStudentDegreePathFactory {
     create(student: Student, degreePath: DegreePath, degreeCourse: DegreeCourse): StudentDegreePath {
@@ -10,6 +10,7 @@ export class StudentDegreePathFactory implements IStudentDegreePathFactory {
         studentDegreePath.student = student;
         studentDegreePath.degreePath = degreePath;
         studentDegreePath.degreeCourse = degreeCourse;
+
         return studentDegreePath;
     }
 }

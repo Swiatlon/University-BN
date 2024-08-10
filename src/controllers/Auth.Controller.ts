@@ -55,7 +55,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     const userData = {
         id: '',
         roles: foundUser.roles,
-        queryRole: foundUser.roles.map((role) => role.name).includes(RolesEnum.student) ? RolesEnum.student : RolesEnum.employee,
+        queryRole: foundUser.roles.map((role) => role.name).includes(RolesEnum.STUDENT) ? RolesEnum.STUDENT : RolesEnum.EMPLOYEE,
         mainRole: foundUser.roles[0].name,
     };
 
