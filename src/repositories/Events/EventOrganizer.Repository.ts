@@ -14,5 +14,9 @@ export const EventOrganizerRepository = (dataSource: DataSource) => {
 
             return this.createQueryBuilder('eventOrganizer').skip(randomOffset).take(1).getOne();
         },
+
+        async findByIds(ids: string[]): Promise<EventOrganizer[]> {
+            return this.createQueryBuilder('eventOrganizer').where('eventOrganizer.id IN (:...ids)', { ids }).getMany();
+        },
     });
 };

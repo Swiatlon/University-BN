@@ -10,10 +10,10 @@ export class Event implements IEvent {
     @Column({ type: 'varchar', length: 255 })
     title: string;
 
-    @Column({ type: 'date' })
+    @Column({ type: 'timestamp' })
     startDate: Date;
 
-    @Column({ type: 'date' })
+    @Column({ type: 'timestamp' })
     endDate: Date;
 
     @Column({ type: 'text' })

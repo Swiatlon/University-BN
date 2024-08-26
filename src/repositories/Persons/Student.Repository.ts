@@ -19,8 +19,8 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
             return this.createQueryBuilder('student').where('student.account = :id', { id }).getOne();
         },
 
-        async getStudentBasicData(id: string) {
-            return this.createQueryBuilder('student').where('student.id = :id', { id }).getOne();
+        async getUserBasicDataByAccountId(accountId: string) {
+            return this.createQueryBuilder('student').where('student.account = :accountId', { accountId }).getOne();
         },
 
         async getStudentsWithoutDegreeCourses() {

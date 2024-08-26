@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.route('/').post(validateDto(CreateUserAccountDto), loginLimiter, AuthController.login);
 
-router.route('/refresh').get(AuthController.refresh);
+router.route('/refresh').post(AuthController.refresh);
 
 router.route('/logout').post(AuthController.logout);
 

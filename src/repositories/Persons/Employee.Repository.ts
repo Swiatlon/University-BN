@@ -19,12 +19,12 @@ export const EmployeeRepository = (customDataSource: DataSource = AppDataSource)
         async findEmployeeByAccountId(id: string) {
             return this.createQueryBuilder('employee').where('employee.account = :id', { id }).getOne();
         },
-        async getEmployeeBasicData(id: string) {
-            return this.createQueryBuilder('employee').where('employee.id = :id', { id }).getOne();
+        async getUserBasicDataByAccountId(accountId: string) {
+            return this.createQueryBuilder('employee').where('employee.account = :accountId', { accountId }).getOne();
         },
         async getEmployeeAllData(id: string) {
             return this.createQueryBuilder('employee')
-                .innerJoinAndSelect('employee.addressId', 'employeeAddress', 'employeeAddress.id = employee.addressId')
+                .innerJoinAndSelect('employee.address', 'employeeAddress', 'employeeAddress.id = employee.address')
                 .innerJoinAndSelect('employee.consentId', 'employeeConsent', 'employeeConsent.id = employee.consentId')
                 .where('employee.id = :id', { id })
                 .getOne()
@@ -46,7 +46,7 @@ export const EmployeeRepository = (customDataSource: DataSource = AppDataSource)
         },
         async getAllTeachers() {
             const teachersQuery = this.createQueryBuilder('employee')
-                .innerJoin('employee.accountId', 'userAccount')
+                .innerJoin('employee.account', 'userAccount')
                 .innerJoin('userAccount.roles', 'role')
                 .where('role.name = :roleName', { roleName: RolesEnum.TEACHER });
 
