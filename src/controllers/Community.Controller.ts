@@ -27,6 +27,11 @@ const createEvent = asyncHandler(async (req: Request, res: Response) => {
     res.status(HTTP_STATUS.CREATED.code).json(newEvent);
 });
 
+const getAllEventOrganizers = asyncHandler(async (req: Request, res: Response) => {
+    const organizers = await communityService.getAllEventOrganizers();
+    res.status(HTTP_STATUS.OK.code).json(organizers);
+});
+
 const updateEvent = asyncHandler(async (req: Request, res: Response) => {
     const updatedEvent = await communityService.updateEvent(req.params.id, req.body as CreateEventDto);
 
@@ -56,4 +61,5 @@ export const CommunityController = {
     createEvent,
     updateEvent,
     deleteEvent,
+    getAllEventOrganizers,
 };

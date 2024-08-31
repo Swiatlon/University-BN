@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.get('/getAllTeachers', verifyJWT, CommunityController.findAllTeachers);
 
+router.get('/eventOrganizers', verifyJWT, CommunityController.getAllEventOrganizers);
+
 router.route('/events').get(verifyJWT, CommunityController.getEvents).post(verifyJWT, validateDto(CreateEventDto), CommunityController.createEvent);
 
 router

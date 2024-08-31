@@ -1,4 +1,4 @@
-import { Entity, PrimaryGeneratedColumn, Column, ManyToMany } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { EventOrganizer } from './EventOrganizer.Entity';
 import { IEvent } from 'types/Events/Events.Interfaces';
 
@@ -18,6 +18,10 @@ export class Event implements IEvent {
 
     @Column({ type: 'text' })
     description: string;
+
+    @ManyToOne(() => EventOrganizer, { nullable: false })
+    @JoinColumn({ name: 'author_id' })
+    author: EventOrganizer;
 
     @ManyToMany(() => EventOrganizer, (eventOrganizer) => eventOrganizer.events, { onDelete: 'CASCADE', nullable: false })
     organizators: EventOrganizer[];

@@ -21,4 +21,7 @@ export class CreateEventDto implements ICreateEventDto {
 
     @IsArray()
     organizators: EventOrganizer[];
+
+    @IsString()
+    author: EventOrganizer;
 }

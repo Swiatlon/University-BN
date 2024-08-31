@@ -2,6 +2,7 @@ import { CreateEventDto } from 'dto/Events/CreateEvent.Dto';
 import { EventsRepository } from 'repositories/Events/Event.Repository';
 import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
 import { ICommunityService } from 'types/Services/Services.Interfaces';
+import { EventOrganizerRepository } from 'repositories/Events/EventOrganizer.Repository';
 
 export class CommunityService implements ICommunityService {
     async getAllTeachers() {
@@ -26,5 +27,9 @@ export class CommunityService implements ICommunityService {
 
     async deleteEvent(eventId: string): Promise<boolean> {
         return await EventsRepository().deleteEvent(eventId);
+    }
+
+    async getAllEventOrganizers() {
+        return await EventOrganizerRepository().getAllEventOrganizers();
     }
 }

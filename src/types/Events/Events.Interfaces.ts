@@ -15,4 +15,5 @@ export interface IEvent {
     endDate: Date;
     description: string;
     organizators: EventOrganizer[];
+    author: EventOrganizer;
 }

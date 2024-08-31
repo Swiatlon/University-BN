@@ -10,7 +10,6 @@ import { InitializeDegreeProgramsSeeder } from './Courses/InitalizeDegreeProgram
 import { StudentsDegreeSeeder } from './StudentsDegree/StudentsDegree.Seeder';
 import { CreateStudentAllData } from './AllDatas/CreateStudentAllData.Seeder';
 import { CreateCompanyAllData } from './AllDatas/CreateCompanyAllData.Seeder';
-import { CreateEvents } from './Events/CreateEvent.Seeder';
 
 //TODO: Maybe make all seders like createStudentAllData in free time
 //TODO: LATER IT WILL BE LIKE DEPEND ON VARIABLE AND DATA SCHEMA LOOKING
@@ -25,7 +24,7 @@ const _devSeeders = () => {
         CreateRolesForAccounts,
         StudentsDegreeSeeder,
         CreateCompanyAllData,
-        CreateEvents,
+        // CreateEvents,
     ];
 };
 

@@ -2,7 +2,7 @@ import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
 import { IsNull } from 'typeorm';
 import { Employee } from 'entities/Employees/Employee.Entity';
-import { RolesEnum } from 'constants/entities/entities.Constants';
+import { EventOrganizerTypeEnum, RolesEnum } from 'constants/entities/entities.Constants';
 import { applyFiltersToQuery } from 'utils/Db/RequestFilters/RequestFilters';
 import { IUserAllData } from 'types/Accounts/Accounts.Interfaces';
 import { IAddress, IConsent } from 'types/Persons/Persons/Persons.Interfaces';
@@ -20,7 +20,7 @@ export const EmployeeRepository = (customDataSource: DataSource = AppDataSource)
             return this.createQueryBuilder('employee').where('employee.account = :id', { id }).getOne();
         },
         async getUserBasicDataByAccountId(accountId: string) {
-            return this.createQueryBuilder('employee').where('employee.account = :accountId', { accountId }).getOne();
+            return this.createQueryBuilder('employee').innerJoinAndSelect('employee.organizer', 'eventOrganizer').where('employee.account = :accountId', { accountId }).getOne();
         },
         async getEmployeeAllData(id: string) {
             return this.createQueryBuilder('employee')
@@ -51,6 +51,26 @@ export const EmployeeRepository = (customDataSource: DataSource = AppDataSource)
                 .where('role.name = :roleName', { roleName: RolesEnum.TEACHER });
 
             return applyFiltersToQuery(teachersQuery);
+        },
+
+        async findEmployeeByOrganizerId(organizerId: string, organizerType: EventOrganizerTypeEnum) {
+            const employee = await this.createQueryBuilder('employee')
+                .select(['employee.name', 'employee.surname', 'employee.organizer', 'employee.account'])
+                .innerJoinAndSelect('employee.account', 'userAccount')
+                .where('employee.organizer = :organizerId', { organizerId })
+                .getOne();
+
+            if (employee) {
+                return {
+                    name: employee.name,
+                    surname: employee.surname,
+                    organizerId: organizerId,
+                    organizerType: organizerType,
+                    accountId: employee.account.id,
+                };
+            }
+
+            return null;
         },
     });
 };

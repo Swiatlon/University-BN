@@ -4,6 +4,7 @@ import { ExtendedUserDataWithRoles } from './Services.Types';
 import { Event } from 'entities/Events/Event.Entity';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 import { ILoginCredentials } from 'types/Controllers/Controllers.Interfaces';
+import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
 
 export interface IUserInfo {
     accountId: string;
@@ -29,6 +30,7 @@ export interface ILoginUniquesService {
 export interface ICommunityService {
     getEvents(): Promise<Event[]>;
     getEventById(eventId: string): Promise<Event | null>;
+    getAllEventOrganizers(): Promise<EventOrganizer[]>;
 }
 
 export interface IAuthService {
