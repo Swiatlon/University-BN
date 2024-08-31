@@ -11,9 +11,7 @@ import studentRoutes from 'routes/student.Routes';
 import authRoutes from 'routes/auth.Routes';
 import cookieParser from 'cookie-parser';
 import userInfoRoutes from 'routes/userInfo.Routes';
-import personalDataRoutes from 'routes/personalData.Routes';
 import communityRoutes from 'routes/Community.Routes';
-import dateFormatter from 'middlewares/responseDateTransformer';
 import { ONE_SECOND_IN_MILISECONDS } from 'constants/general/general.Constants';
 import { searchMiddleware } from 'middlewares/Requests/Search.Middleware';
 import { paginationMiddleware } from 'middlewares/Requests/Pagination.Middleware';
@@ -27,7 +25,6 @@ const PORT = process.env.SERVER_PORT ?? DEFAULT_PORT;
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
-app.use(dateFormatter);
 
 app.use(cleanupRequestContextMiddleware);
 app.use(paginationMiddleware);
@@ -36,7 +33,6 @@ app.use(selectFieldsMiddleware);
 
 app.use('/api', studentRoutes);
 app.use('/api', userInfoRoutes);
-app.use('/api', personalDataRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/community', communityRoutes);
 

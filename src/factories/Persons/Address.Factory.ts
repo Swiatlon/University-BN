@@ -1,11 +1,25 @@
 import { Faker, faker } from '@faker-js/faker';
 import { Address } from 'entities/Schemas/Address.Schema';
-import { IAddressFactory } from 'types/Factories/Factories.Interfaces';
+import { IAddressFactory } from 'types/Factories/Factory.Interfaces';
+import { IAddress } from 'types/Persons/Persons/Persons.Interfaces';
 
 export class AddressFactory implements IAddressFactory {
     private faker: Faker = faker;
 
-    create(): Address {
+    create(address: IAddress): Address {
+        const newAddress = new Address();
+
+        newAddress.country = address.country;
+        newAddress.city = address.city;
+        newAddress.postalCode = address.postalCode;
+        newAddress.street = address.street;
+        newAddress.buildingNumber = address.buildingNumber;
+        newAddress.apartmentNumber = address.apartmentNumber;
+
+        return newAddress;
+    }
+
+    createWithFakeData(): Address {
         const address = new Address();
 
         const buildingNumber = this.faker.location.buildingNumber();

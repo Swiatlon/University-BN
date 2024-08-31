@@ -1,6 +1,6 @@
 import { Module } from 'entities/Courses/Module.Entity';
 import { Subject } from 'entities/Courses/Subject.Entity';
-import { ISubjectFactory } from 'types/Factories/Factories.Interfaces';
+import { ISubjectFactory } from 'types/Factories/Factory.Interfaces';
 
 export class SubjectFactory implements ISubjectFactory {
     create(name: string, module?: Module): Subject {

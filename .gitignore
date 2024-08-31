@@ -8,3 +8,4 @@ temp/
 dist
 src/migrations
 coverage
+.VSCodeCounter

@@ -10,7 +10,7 @@ describe('RoleFactory', () => {
     });
 
     it('should create a Role with the given name', () => {
-        const roleName = RolesEnum.admin;
+        const roleName = RolesEnum.ADMIN;
         const role = roleFactory.create(roleName);
 
         expect(role).toBeInstanceOf(Role);

@@ -11,16 +11,16 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
     return dataSource.getRepository(Student).extend({
         async findStudentsWithoutAccount() {
             return this.findBy({
-                accountId: IsNull(),
+                account: IsNull(),
             });
         },
 
         async findStudentByAccountId(id: string) {
-            return this.createQueryBuilder('student').where('student.accountId = :id', { id }).getOne();
+            return this.createQueryBuilder('student').where('student.account = :id', { id }).getOne();
         },
 
-        async getStudentBasicData(id: string) {
-            return this.createQueryBuilder('student').where('student.id = :id', { id }).getOne();
+        async getUserBasicDataByAccountId(accountId: string) {
+            return this.createQueryBuilder('student').where('student.account = :accountId', { accountId }).getOne();
         },
 
         async getStudentsWithoutDegreeCourses() {

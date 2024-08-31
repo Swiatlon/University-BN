@@ -13,7 +13,7 @@ export abstract class CustomSeederWithTimer implements Seeder {
 
         const endTime = Date.now();
         const duration = (endTime - startTime) / ONE_SECOND_IN_MILISECONDS;
-        console.log(`Finished seeder: ${this.constructor.name} in ${duration} seconds`);
+        console.log(`Finished seeder: ${this.constructor.name} in ${duration} seconds \n`);
     }
 
     protected async runInTransaction(dataSource: DataSource, operation: (manager: EntityManager) => Promise<void>): Promise<void> {
