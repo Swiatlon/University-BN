@@ -12,4 +12,6 @@ router.route('/refresh').post(AuthController.refresh);
 
 router.route('/logout').post(AuthController.logout);
 
+router.route('/random-login').post(AuthController.randomUserLogin);
+
 export default router;

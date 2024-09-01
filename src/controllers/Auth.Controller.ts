@@ -59,8 +59,43 @@ const logout = (req: Request, res: Response) => {
     res.json({ message: 'Cookie cleared' });
 };
 
+const randomUserLogin = asyncHandler(async (req: Request, res: Response) => {
+    const students = await authService.findAllStudentAccounts();
+
+    if (students.length === 0) {
+        res.status(HTTP_STATUS.NOT_FOUND.code).json({ message: 'No student accounts found' });
+        return;
+    }
+
+    const { sessionID } = req.body as ILoginCredentials;
+    const randomIndex = Math.floor(Math.random() * students.length);
+    const randomStudent = students[randomIndex];
+
+    const { accessToken, refreshToken, userData, sessionData } = await authService.login({
+        identifier: randomStudent.email,
+        //Dont worry normal it wont be funcion like this
+        password: 'wiercik',
+        rememberMe: false,
+        sessionID: sessionID,
+    });
+
+    const cookieBaseOptions = {
+        httpOnly: true,
+        secure: true,
+        sameSite: 'strict',
+        maxAge: ONE_MINUTE * 16,
+    } as CookieOptions;
+
+    res.cookie('jwt', refreshToken, cookieBaseOptions);
+    res.cookie('session', sessionData, cookieBaseOptions);
+    res.cookie('userInfo', { ...userData }, cookieBaseOptions);
+
+    res.json({ accessToken });
+});
+
 export const AuthController = {
     login,
     refresh,
     logout,
+    randomUserLogin,
 };

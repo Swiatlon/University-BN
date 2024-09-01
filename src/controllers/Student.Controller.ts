@@ -15,6 +15,7 @@ const createStudent = asyncHandler(async (req: Request, res: Response) => {
 const getStudentAllData = asyncHandler(async (req: Request, res: Response) => {
     const { accountId } = req.cookies.userInfo as IUserInfo;
     const studentData = await studentService.getStudentAllData(accountId);
+    console.log(studentData);
 
     res.status(HTTP_STATUS.CREATED.code).json(studentData);
 });

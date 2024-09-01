@@ -5,6 +5,7 @@ import { ILoginCredentials } from 'types/Controllers/Controllers.Interfaces';
 import { IUserPayload } from 'types/Global/Global.Interfaces';
 import { LONGER_ACCESS_TOKEN_TIME, LONGER_REFRESH_TOKEN_TIME, SHORT_ACCESS_TOKEN_TIME, SHORT_REFRESH_TOKEN_TIME } from 'constants/general/general.Constants';
 import { IAuthService } from 'types/Services/Services.Interfaces';
+import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
 
 export class AuthService implements IAuthService {
     async login({ identifier, password, rememberMe, sessionID }: ILoginCredentials) {
@@ -78,6 +79,10 @@ export class AuthService implements IAuthService {
         );
 
         return { accessToken };
+    }
+
+    async findAllStudentAccounts(): Promise<UserAccount[]> {
+        return await AccountRepository().findStudentAccounts();
     }
 }
 
