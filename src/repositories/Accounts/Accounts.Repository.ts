@@ -1,6 +1,7 @@
 import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
 import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
+import { RolesEnum } from 'constants/entities/entities.Constants';
 
 export const AccountRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;
@@ -23,6 +24,10 @@ export const AccountRepository = (customDataSource: DataSource = AppDataSource) 
                 where: { login },
                 relations: ['roles'],
             });
+        },
+
+        async findStudentAccounts() {
+            return this.createQueryBuilder('userAccount').leftJoin('userAccount.roles', 'roles').where('roles.name = :roleName', { roleName: RolesEnum.STUDENT }).getMany();
         },
     });
 };

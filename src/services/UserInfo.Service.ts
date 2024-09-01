@@ -1,13 +1,14 @@
-import { UserRepository } from 'repositories/Accounts/User.Repository';
 import { IUserInfoService, IUserInfo } from 'types/Services/Services.Interfaces';
 import { ExtendedUserDataWithRoles } from 'types/Services/Services.Types';
+import { getRepositoryByRole } from 'utils/Repositories/Repository.Utils';
 
 export class UserInfoService implements IUserInfoService {
     async getUserInfo(userInfoData: IUserInfo): Promise<ExtendedUserDataWithRoles | null> {
-        const { id, queryRole, roles } = userInfoData;
+        const { accountId, roles } = userInfoData;
+        const repository = getRepositoryByRole(roles[0]);
 
-        if (queryRole) {
-            const userData = await UserRepository({ queryRole }).getUserBasicData(id);
+        if (roles[0] && 'getUserBasicDataByAccountId' in repository) {
+            const userData = await repository.getUserBasicDataByAccountId(accountId);
 
             if (userData) {
                 return { ...userData, roles };

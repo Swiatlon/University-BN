@@ -2,6 +2,10 @@ import { Request } from 'express';
 
 export interface ICookie {
     jwt?: string;
+    session: {
+        sessionID: string;
+        rememberMe: boolean;
+    };
 }
 
 export interface IUserPayload {

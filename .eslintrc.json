@@ -28,7 +28,7 @@
         ],
         "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_", "caughtErrors": "all", "ignoreRestSiblings": true }],
         "@typescript-eslint/no-explicit-any": "warn",
-        "no-console": "warn",
+        "no-console": "off",
         "prefer-const": "error",
         "@typescript-eslint/explicit-module-boundary-types": "warn",
         "@typescript-eslint/no-non-null-assertion": "warn",

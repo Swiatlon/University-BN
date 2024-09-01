@@ -11,16 +11,16 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
     return dataSource.getRepository(Student).extend({
         async findStudentsWithoutAccount() {
             return this.findBy({
-                accountId: IsNull(),
+                account: IsNull(),
             });
         },
 
         async findStudentByAccountId(id: string) {
-            return this.createQueryBuilder('student').where('student.accountId = :id', { id }).getOne();
+            return this.createQueryBuilder('student').where('student.account = :id', { id }).getOne();
         },
 
-        async getStudentBasicData(id: string) {
-            return this.createQueryBuilder('student').where('student.id = :id', { id }).getOne();
+        async getUserBasicDataByAccountId(accountId: string) {
+            return this.createQueryBuilder('student').where('student.account = :accountId', { accountId }).getOne();
         },
 
         async getStudentsWithoutDegreeCourses() {
@@ -42,10 +42,18 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
         },
 
         async getStudentAllData(id: string) {
-            const student = await this.findOne({
-                where: { id },
-                relations: ['address', 'consent', 'degreeCourses.degreeCourse', 'degreePaths.degreePath', 'modules.module'],
-            });
+            const student = await this.createQueryBuilder('student')
+                .leftJoinAndSelect('student.address', 'address')
+                .leftJoinAndSelect('student.consent', 'consent')
+                .leftJoinAndSelect('student.degreeCourses', 'degreeCourses')
+                .leftJoinAndSelect('degreeCourses.degreeCourse', 'degreeCourse')
+                .leftJoinAndSelect('student.degreePaths', 'degreePaths')
+                .leftJoinAndSelect('degreePaths.degreePath', 'degreePath')
+                .leftJoinAndSelect('student.modules', 'studentModule')
+                .leftJoinAndSelect('studentModule.module', 'module')
+                .leftJoinAndSelect('module.subjects', 'subjects')
+                .where('student.id = :id', { id })
+                .getOne();
 
             return student;
         },

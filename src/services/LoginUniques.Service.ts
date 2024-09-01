@@ -6,13 +6,13 @@ export class LoginUniquesService implements ILoginUniquesService {
     private generatedEmails: Set<string> = new Set();
 
     async generateUniqueLoginAndEmailBasedOnName(name: string, surname: string): Promise<{ login: string; email: string }> {
-        let login = `${name}.${surname}`.toLowerCase();
-        let email = `${name}.${surname}@example.com`.toLowerCase();
+        let login = `${name}.${surname}`.toLowerCase().trim();
+        let email = `${name}.${surname}@example.com`.toLowerCase().trim();
         let count = 1;
 
         while ((await this.loginExists(login)) || this.generatedLogins.has(login)) {
-            login = `${name}.${surname}${count}`.toLowerCase();
-            email = `${name}.${surname}${count}@example.com`.toLowerCase();
+            login = `${name}.${surname}${count}`.toLowerCase().trim();
+            email = `${name}.${surname}${count}@example.com`.toLowerCase().trim();
             count++;
         }
 

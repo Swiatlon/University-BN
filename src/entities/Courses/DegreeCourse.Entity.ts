@@ -11,6 +11,10 @@ export class DegreeCourse extends CoursesBaseSchema implements IDegreeCourse {
     @OneToMany(() => DegreePath, (degreePath) => degreePath.degreeCourse)
     degreePaths: DegreePath[];
 
+    @OneToMany(() => StudentDegreePath, (studentDegreePath) => studentDegreePath.degreeCourse)
+    @JoinColumn({ name: 'student_path_id' })
+    studentPaths: StudentDegreePath[];
+
     @ManyToMany(() => Subject, (subject) => subject.degreeCourses, { onDelete: 'CASCADE' })
     @JoinTable({
         name: 'Degree_Courses_Subjects',
@@ -28,8 +32,4 @@ export class DegreeCourse extends CoursesBaseSchema implements IDegreeCourse {
     @OneToMany(() => StudentDegreeCourse, (studentDegreeCourse) => studentDegreeCourse.degreeCourse)
     @JoinColumn({ name: 'student_course_id' })
     studentCourses: StudentDegreeCourse[];
-
-    @OneToMany(() => StudentDegreePath, (studentDegreePath) => studentDegreePath.degreeCourse)
-    @JoinColumn({ name: 'student_path_id' })
-    studentPaths: StudentDegreePath[];
 }

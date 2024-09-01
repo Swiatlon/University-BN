@@ -1,6 +1,6 @@
 {
     "name": "university-bn",
-    "version": "0.6.0 - alpha",
+    "version": "1.0.0 - alpha",
     "description": "A backend for University management system built with Express and TypeScript.",
     "type": "commonjs",
     "main": "index.js",
@@ -13,8 +13,8 @@
         "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
         "migration:apply": "npm run typeorm -- -d src/configs/database.ts migration:run",
         "migration:revert": "npm run typeorm -- -d src/configs/database.ts migration:revert",
-        "migration:generate": "ts-node ./src/utils/generateMigrations.ts",
-        "seed": "ts-node -r tsconfig-paths/register src/utils/generateSeed.ts",
+        "migration:generate": "ts-node ./src/utils/Db/generateMigrations.ts",
+        "seed": "ts-node -r tsconfig-paths/register src/utils/Db/generateSeed.ts",
         "lint": "eslint src --ext .ts --fix",
         "format": "prettier --write \"src/**/*.{js,json,ts}\"",
         "type-check": "tsc --noEmit",
@@ -28,7 +28,7 @@
         "npm": ">=8.0.0"
     },
     "dependencies": {
-        "bcrypt": "^5.1.1",
+        "bcrypt": "^5.0.2",
         "bcryptjs": "^2.4.3",
         "class-transformer": "^0.5.1",
         "class-validator": "^0.14.1",
