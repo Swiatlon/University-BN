@@ -1,6 +1,6 @@
 import { AppDataSource } from 'configs/database';
 import { EventOrganizerTypeEnum } from 'constants/entities/entities.Constants';
-import { ExternalParticipant } from 'entities/ExternalParticipants/ExternalParticipant.Entity';
+import { ExternalParticipant } from 'entities/externalParticipants/ExternalParticipant.Entity';
 import { DataSource, IsNull } from 'typeorm';
 
 export const ExternalParticipantRepository = (customDataSource: DataSource = AppDataSource) => {

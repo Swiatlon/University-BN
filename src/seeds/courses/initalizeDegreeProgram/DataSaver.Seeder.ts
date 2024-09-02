@@ -1,13 +1,13 @@
 import { DataSource, Repository } from 'typeorm';
-import { DegreeCourseFactory } from 'factories/Courses/DegreeCourse.Factory';
-import { DegreePathFactory } from 'factories/Courses/DegreePath.Factory';
-import { ModuleFactory } from 'factories/Courses/Module.Factory';
-import { SubjectFactory } from 'factories/Courses/Subject.Factory';
-import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
-import { DegreePath } from 'entities/Courses/DegreePath.Entity';
-import { Module } from 'entities/Courses/Module.Entity';
-import { Subject } from 'entities/Courses/Subject.Entity';
-import { IDataSaver, IParsedRowData } from 'types/Courses/Courses.Interfaces';
+import { DegreeCourseFactory } from 'factories/courses/DegreeCourse.Factory';
+import { DegreePathFactory } from 'factories/courses/DegreePath.Factory';
+import { ModuleFactory } from 'factories/courses/Module.Factory';
+import { SubjectFactory } from 'factories/courses/Subject.Factory';
+import { DegreeCourse } from 'entities/courses/DegreeCourse.Entity';
+import { DegreePath } from 'entities/courses/DegreePath.Entity';
+import { Module } from 'entities/courses/Module.Entity';
+import { Subject } from 'entities/courses/Subject.Entity';
+import { IDataSaver, IParsedRowData } from 'types/courses/Courses.Interfaces';
 
 export class DataSaver implements IDataSaver {
     private degreeCourseFactory = new DegreeCourseFactory();

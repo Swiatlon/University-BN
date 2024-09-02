@@ -1,6 +1,6 @@
 import { getSearch } from 'contexts/RequestContext';
 import { ObjectLiteral, SelectQueryBuilder } from 'typeorm';
-import { TSearchQuery } from 'types/Requests/Requests.Types';
+import { TSearchQuery } from 'types/requests/Requests.Types';
 
 const isFieldSearch = (search: TSearchQuery): search is { lookupText: string; fields: string[] } => {
     return search && 'lookupText' in search && Array.isArray(search.fields);

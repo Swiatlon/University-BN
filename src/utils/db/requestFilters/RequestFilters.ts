@@ -3,7 +3,7 @@ import { applyPagination } from './PaginationFilter.Utils';
 import { applyFieldSearch, applyAllFieldsSearch } from './SearchFilter.Utils';
 import { applySelectFields } from './SelectFilter.Utils';
 import { getPagination } from 'contexts/RequestContext';
-import { TFilterFunction } from 'types/Requests/Requests.Types';
+import { TFilterFunction } from 'types/requests/Requests.Types';
 
 const applyFilters = <T extends ObjectLiteral>(filters: TFilterFunction<T>[]): TFilterFunction<T> => {
     return (queryBuilder: SelectQueryBuilder<T>) => {

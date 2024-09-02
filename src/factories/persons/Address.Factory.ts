@@ -1,7 +1,7 @@
 import { Faker, faker } from '@faker-js/faker';
-import { Address } from 'entities/Schemas/Address.Schema';
-import { IAddressFactory } from 'types/Factories/Factory.Interfaces';
-import { IAddress } from 'types/Persons/Persons/Persons.Interfaces';
+import { Address } from 'entities/schemas/Address.Schema';
+import { IAddressFactory } from 'types/factories/Factory.Interfaces';
+import { IAddress } from 'types/persons/persons/Persons.Interfaces';
 
 export class AddressFactory implements IAddressFactory {
     private faker: Faker = faker;

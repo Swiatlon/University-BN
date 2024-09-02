@@ -1,7 +1,7 @@
 import { Faker, faker } from '@faker-js/faker';
-import { Event } from 'entities/Events/Event.Entity';
-import { IEvent } from 'types/Events/Events.Interfaces';
-import { IEventFactory } from 'types/Factories/Factory.Interfaces';
+import { Event } from 'entities/events/Event.Entity';
+import { IEvent } from 'types/events/Events.Interfaces';
+import { IEventFactory } from 'types/factories/Factory.Interfaces';
 
 export class EventFactory implements IEventFactory {
     private faker: Faker = faker;

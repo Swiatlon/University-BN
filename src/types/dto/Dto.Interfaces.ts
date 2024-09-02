@@ -1,3 +1,3 @@
-import { IEvent } from 'types/Events/Events.Interfaces';
+import { IEvent } from 'types/events/Events.Interfaces';
 
 export interface ICreateEventDto extends Omit<IEvent, 'id'> {}

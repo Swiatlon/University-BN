@@ -1,14 +1,14 @@
 import { DataSource } from 'typeorm';
 import { RolesEnum } from 'constants/entities/entities.Constants';
-import { Role } from 'entities/Accounts/Role.Entity';
-import { AccountRepository } from 'repositories/Accounts/Accounts.Repository';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
-import { StudentRepository } from 'repositories/Persons/Student.Repository';
+import { Role } from 'entities/accounts/Role.Entity';
+import { AccountRepository } from 'repositories/accounts/Accounts.Repository';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { EmployeeRepository } from 'repositories/persons/Employee.Repository';
+import { StudentRepository } from 'repositories/persons/Student.Repository';
 import { BATCH_SIZE } from 'constants/seeders/seeder.Constants';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
-import { ExternalParticipantRepository } from 'repositories/Persons/ExternalParticipant.Repository';
-import { CompanyRepository } from 'repositories/Persons/Company.Repository';
+import { ExternalParticipantRepository } from 'repositories/persons/ExternalParticipant.Repository';
+import { CompanyRepository } from 'repositories/persons/Company.Repository';
 
 // TODO: In free time make it more solid or dry
 

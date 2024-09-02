@@ -1,8 +1,8 @@
 import ExcelJS from 'exceljs';
-import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
-import { DegreePath } from 'entities/Courses/DegreePath.Entity';
-import { Module } from 'entities/Courses/Module.Entity';
-import { Subject } from 'entities/Courses/Subject.Entity';
+import { DegreeCourse } from 'entities/courses/DegreeCourse.Entity';
+import { DegreePath } from 'entities/courses/DegreePath.Entity';
+import { Module } from 'entities/courses/Module.Entity';
+import { Subject } from 'entities/courses/Subject.Entity';
 
 export interface ICoursesBaseSchema {
     id: string;

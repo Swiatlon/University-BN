@@ -1,9 +1,9 @@
 import type { Request, Response } from 'express';
 import { HTTP_STATUS } from 'constants/general/general.Constants';
-import { Student } from 'entities/Students/Student.Entity';
+import { Student } from 'entities/students/Student.Entity';
 import { StudentService } from 'services/Student.Service';
 import asyncHandler from 'express-async-handler';
-import { IUserInfo } from 'types/Services/Services.Interfaces';
+import { IUserInfo } from 'types/services/Services.Interfaces';
 
 const studentService = new StudentService();
 

@@ -1,7 +1,7 @@
 import { Column } from 'typeorm';
 import { BasicPerson } from './BasicPerson.Schema';
 import { Validation } from 'constants/validators/validators.Constants';
-import { IExtendedPersonSchema } from 'types/Persons/Persons/Persons.Interfaces';
+import { IExtendedPersonSchema } from 'types/persons/persons/Persons.Interfaces';
 
 export class ExtendedPerson extends BasicPerson implements IExtendedPersonSchema {
     @Column({

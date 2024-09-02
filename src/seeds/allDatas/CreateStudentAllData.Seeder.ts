@@ -1,16 +1,16 @@
 import { DataSource } from 'typeorm';
-import { StudentAddress } from 'entities/Students/StudentAddress.Entity';
-import { StudentConsent } from 'entities/Students/StudentConsent.Entity';
-import { Student } from 'entities/Students/Student.Entity';
-import { AddressFactory } from 'factories/Persons/Address.Factory';
-import { ConsentFactory } from 'factories/Persons/Consent.Factory';
-import { StudentFactory } from 'factories/Students/Student.Factory';
+import { StudentAddress } from 'entities/students/StudentAddress.Entity';
+import { StudentConsent } from 'entities/students/StudentConsent.Entity';
+import { Student } from 'entities/students/Student.Entity';
+import { AddressFactory } from 'factories/persons/Address.Factory';
+import { ConsentFactory } from 'factories/persons/Consent.Factory';
+import { StudentFactory } from 'factories/students/Student.Factory';
 import { AMOUNT_OF_NEW_STUDENTS, BATCH_SIZE } from 'constants/seeders/seeder.Constants';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
-import { ExtendedPersonFactory } from 'factories/Persons/ExtendedPerson.Factory';
-import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+import { ExtendedPersonFactory } from 'factories/persons/ExtendedPerson.Factory';
+import { UserAccountFactory } from 'factories/accounts/UserAccountFactory';
 import { RolesEnum } from 'constants/entities/entities.Constants';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
 
 export class CreateStudentAllData extends CustomSeederWithTimer {
     public async seed(dataSource: DataSource): Promise<void> {

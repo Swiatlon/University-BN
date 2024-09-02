@@ -1,8 +1,8 @@
 import { DataSource } from 'typeorm';
-import { StudentRepository } from 'repositories/Persons/Student.Repository';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { Student } from 'entities/Students/Student.Entity';
-import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+import { StudentRepository } from 'repositories/persons/Student.Repository';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { Student } from 'entities/students/Student.Entity';
+import { UserAccountFactory } from 'factories/accounts/UserAccountFactory';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 import { BATCH_SIZE } from 'constants/seeders/seeder.Constants';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';

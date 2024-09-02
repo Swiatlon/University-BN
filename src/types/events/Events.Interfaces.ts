@@ -1,6 +1,6 @@
 import { EventOrganizerTypeEnum } from 'constants/entities/entities.Constants';
-import { Event } from 'entities/Events/Event.Entity';
-import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
+import { Event } from 'entities/events/Event.Entity';
+import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
 
 export interface IEventOrganizer {
     id: string;

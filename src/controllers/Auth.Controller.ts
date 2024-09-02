@@ -1,8 +1,8 @@
 import asyncHandler from 'express-async-handler';
 import type { CookieOptions, Request, Response } from 'express';
 import { HTTP_STATUS, ONE_DAY, ONE_MINUTE } from 'constants/general/general.Constants';
-import { ICookie } from 'types/Global/Global.Interfaces';
-import { ILoginCredentials, IRefreshCredentials } from 'types/Controllers/Controllers.Interfaces';
+import { ICookie } from 'types/global/Global.Interfaces';
+import { ILoginCredentials, IRefreshCredentials } from 'types/controllers/Controllers.Interfaces';
 import { authService } from 'services/Auth.Service';
 
 const login = asyncHandler(async (req: Request, res: Response) => {

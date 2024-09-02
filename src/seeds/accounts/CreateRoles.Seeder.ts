@@ -1,5 +1,5 @@
 import { DataSource } from 'typeorm';
-import { Role } from 'entities/Accounts/Role.Entity';
+import { Role } from 'entities/accounts/Role.Entity';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 import { rolesEnumArray } from 'constants/entities/entities.Constants';
 

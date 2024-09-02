@@ -1,7 +1,7 @@
-import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
-import { StudentRepository } from 'repositories/Persons/Student.Repository';
+import { DegreeCourse } from 'entities/courses/DegreeCourse.Entity';
+import { StudentRepository } from 'repositories/persons/Student.Repository';
 import { AppDataSource } from 'configs/database';
-import { IDataFetcher, IDataFetcherResult } from 'types/StudentDegree/StudentDegree.Interfaces';
+import { IDataFetcher, IDataFetcherResult } from 'types/studentDegree/StudentDegree.Interfaces';
 
 export class DataFetcher implements IDataFetcher {
     async fetchAllData(): Promise<IDataFetcherResult> {

@@ -1,12 +1,12 @@
 import { Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { ExtendedPerson } from 'entities/Schemas/ExtendedPerson.Schema';
+import { ExtendedPerson } from 'entities/schemas/ExtendedPerson.Schema';
 import { EmployeeAddress } from './EmployeeAddress.Entity';
 import { EmployeeConsent } from './EmployeeConsent.Entity';
-import { IEmployee } from 'types/Persons/Employee/Employees.Interfaces';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { Consent } from 'entities/Schemas/Consent.Schema';
-import { Address } from 'entities/Schemas/Address.Schema';
-import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
+import { IEmployee } from 'types/persons/employee/Employees.Interfaces';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { Consent } from 'entities/schemas/Consent.Schema';
+import { Address } from 'entities/schemas/Address.Schema';
+import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
 
 @Entity('Employees')
 export class Employee extends ExtendedPerson implements IEmployee {

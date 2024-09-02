@@ -1,15 +1,15 @@
 //Due to problem with global imporst of seeders we need to pass them directly
-import { CreateMissingAccountsForStudents } from './Accounts/MissingAccounts/CreateMissingAccountsForStudents.Seeder';
-import { CreateEmployeeAllData } from './AllDatas/CreateEmployeeAllData.Seeder';
-import { CreateMissingAccountsForEmployees } from './Accounts/MissingAccounts/CreateMissingAccountsForEmployee.Seeder';
-import { CreateRoles } from './Accounts/CreateRoles.Seeder';
-import { CreateRolesForAccounts } from './Accounts/MissingAccounts/CreateMissingAccountsRole.Seeder';
-import { CreateAdminAccount } from './Accounts/CreateAdminAccount.Seeder';
-import { CreateUserAccount } from './Accounts/CreateUserAccount.Seeder';
-import { InitializeDegreeProgramsSeeder } from './Courses/InitalizeDegreeProgram/InitalizeDegreePrograms.Seeder';
-import { StudentsDegreeSeeder } from './StudentsDegree/StudentsDegree.Seeder';
-import { CreateStudentAllData } from './AllDatas/CreateStudentAllData.Seeder';
-import { CreateCompanyAllData } from './AllDatas/CreateCompanyAllData.Seeder';
+import { CreateMissingAccountsForStudents } from './accounts/missingAccounts/CreateMissingAccountsForStudents.Seeder';
+import { CreateEmployeeAllData } from './allDatas/CreateEmployeeAllData.Seeder';
+import { CreateMissingAccountsForEmployees } from './accounts/missingAccounts/CreateMissingAccountsForEmployee.Seeder';
+import { CreateRoles } from './accounts/CreateRoles.Seeder';
+import { CreateRolesForAccounts } from './accounts/missingAccounts/CreateMissingAccountsRole.Seeder';
+import { CreateAdminAccount } from './accounts/CreateAdminAccount.Seeder';
+import { CreateUserAccount } from './accounts/CreateUserAccount.Seeder';
+import { InitializeDegreeProgramsSeeder } from './courses/initalizeDegreeProgram/InitalizeDegreePrograms.Seeder';
+import { StudentsDegreeSeeder } from './studentsDegree/StudentsDegree.Seeder';
+import { CreateStudentAllData } from './allDatas/CreateStudentAllData.Seeder';
+import { CreateCompanyAllData } from './allDatas/CreateCompanyAllData.Seeder';
 
 //TODO: Maybe make all seders like createStudentAllData in free time
 //TODO: LATER IT WILL BE LIKE DEPEND ON VARIABLE AND DATA SCHEMA LOOKING

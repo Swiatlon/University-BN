@@ -1,7 +1,7 @@
-import { Student } from 'entities/Students/Student.Entity';
-import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
-import { DegreePath } from 'entities/Courses/DegreePath.Entity';
-import { Module } from 'entities/Courses/Module.Entity';
+import { Student } from 'entities/students/Student.Entity';
+import { DegreeCourse } from 'entities/courses/DegreeCourse.Entity';
+import { DegreePath } from 'entities/courses/DegreePath.Entity';
+import { Module } from 'entities/courses/Module.Entity';
 
 export interface IStudentDegreeCourse {
     id: string;

@@ -1,6 +1,6 @@
-import { IUserInfoService, IUserInfo } from 'types/Services/Services.Interfaces';
-import { ExtendedUserDataWithRoles } from 'types/Services/Services.Types';
-import { getRepositoryByRole } from 'utils/Repositories/Repository.Utils';
+import { IUserInfoService, IUserInfo } from 'types/services/Services.Interfaces';
+import { ExtendedUserDataWithRoles } from 'types/services/Services.Types';
+import { getRepositoryByRole } from 'utils/repositories/Repository.Utils';
 
 export class UserInfoService implements IUserInfoService {
     async getUserInfo(userInfoData: IUserInfo): Promise<ExtendedUserDataWithRoles | null> {

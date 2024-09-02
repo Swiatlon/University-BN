@@ -1,9 +1,9 @@
-import { Role } from 'entities/Accounts/Role.Entity';
-import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
-import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
-import { StudentModule } from 'entities/StudentDegrees/StudentModule.Entity';
-import { Student } from 'entities/Students/Student.Entity';
-import { IPersonRelations } from '../Persons/Persons.Interfaces';
+import { Role } from 'entities/accounts/Role.Entity';
+import { StudentDegreeCourse } from 'entities/studentDegrees/StudentDegreeCourse.Entity';
+import { StudentDegreePath } from 'entities/studentDegrees/StudentDegreePath.Entity';
+import { StudentModule } from 'entities/studentDegrees/StudentModule.Entity';
+import { Student } from 'entities/students/Student.Entity';
+import { IPersonRelations } from '../persons/Persons.Interfaces';
 
 export interface IStudent extends IPersonRelations {
     id: string;

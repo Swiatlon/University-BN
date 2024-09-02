@@ -1,7 +1,7 @@
-import { StudentRepository } from 'repositories/Persons/Student.Repository';
-import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
-import { ExternalParticipantRepository } from 'repositories/Persons/ExternalParticipant.Repository';
-import { CompanyRepository } from 'repositories/Persons/Company.Repository';
+import { StudentRepository } from 'repositories/persons/Student.Repository';
+import { EmployeeRepository } from 'repositories/persons/Employee.Repository';
+import { ExternalParticipantRepository } from 'repositories/persons/ExternalParticipant.Repository';
+import { CompanyRepository } from 'repositories/persons/Company.Repository';
 import { AppDataSource } from 'configs/database';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 

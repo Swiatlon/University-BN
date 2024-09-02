@@ -1,6 +1,6 @@
 import { createNamespace, getNamespace } from 'cls-hooked';
-import { IPagination, IRequestParams } from 'types/Requests/Requests.Interfaces';
-import { TSearchQuery } from 'types/Requests/Requests.Types';
+import { IPagination, IRequestParams } from 'types/requests/Requests.Interfaces';
+import { TSearchQuery } from 'types/requests/Requests.Types';
 
 const REQUEST_NAMESPACE = 'request';
 

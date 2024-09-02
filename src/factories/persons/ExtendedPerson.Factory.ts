@@ -1,10 +1,10 @@
 import { Faker, faker } from '@faker-js/faker';
 import { GenderEnum } from 'constants/entities/entities.Constants';
 import { Validation } from 'constants/validators/validators.Constants';
-import { ExtendedPerson } from 'entities/Schemas/ExtendedPerson.Schema';
-import { IExtendedPersonFactory } from 'types/Factories/Factory.Interfaces';
-import { IExtendedPersonSchema } from 'types/Persons/Persons/Persons.Interfaces';
-import { generatePhoneNumber } from 'utils/Factories/Factory.Utils';
+import { ExtendedPerson } from 'entities/schemas/ExtendedPerson.Schema';
+import { IExtendedPersonFactory } from 'types/factories/Factory.Interfaces';
+import { IExtendedPersonSchema } from 'types/persons/persons/Persons.Interfaces';
+import { generatePhoneNumber } from 'utils/factories/Factory.Utils';
 import moment from 'moment';
 
 export class ExtendedPersonFactory implements IExtendedPersonFactory {

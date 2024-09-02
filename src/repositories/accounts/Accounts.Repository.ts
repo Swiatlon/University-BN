@@ -1,6 +1,6 @@
 import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 
 export const AccountRepository = (customDataSource: DataSource = AppDataSource) => {

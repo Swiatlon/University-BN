@@ -1,7 +1,7 @@
 import { FILE_PATH_BASE, FILES, MODULE_INDEX_IN_EXCEL, SUBJECT_INDEX_IN_EXCEL } from 'constants/seeders/seeder.Constants';
 import ExcelJS from 'exceljs';
 import path from 'path';
-import { IDataParser, IParsedRowData } from 'types/Courses/Courses.Interfaces';
+import { IDataParser, IParsedRowData } from 'types/courses/Courses.Interfaces';
 
 export class DataParser implements IDataParser {
     private filePathBase: string = path.resolve(FILE_PATH_BASE);

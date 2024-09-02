@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
-import { Event } from 'entities/Events/Event.Entity';
+import { Event } from 'entities/events/Event.Entity';
 import { AppDataSource } from 'configs/database';
-import { CreateEventDto } from 'dto/Events/CreateEvent.Dto';
+import { CreateEventDto } from 'dto/events/CreateEvent.Dto';
 
 export const EventsRepository = (dataSource: DataSource = AppDataSource) => {
     return dataSource.getRepository(Event).extend({

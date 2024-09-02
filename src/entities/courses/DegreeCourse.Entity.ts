@@ -1,10 +1,10 @@
 import { Entity, OneToMany, ManyToMany, JoinTable, JoinColumn } from 'typeorm';
 import { Subject } from './Subject.Entity';
-import { CoursesBaseSchema } from 'entities/Schemas/Courses.Schema';
+import { CoursesBaseSchema } from 'entities/schemas/Courses.Schema';
 import { DegreePath } from './DegreePath.Entity';
-import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
-import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
-import { IDegreeCourse } from 'types/Courses/Courses.Interfaces';
+import { StudentDegreeCourse } from 'entities/studentDegrees/StudentDegreeCourse.Entity';
+import { StudentDegreePath } from 'entities/studentDegrees/StudentDegreePath.Entity';
+import { IDegreeCourse } from 'types/courses/Courses.Interfaces';
 
 @Entity('Degree_Courses')
 export class DegreeCourse extends CoursesBaseSchema implements IDegreeCourse {

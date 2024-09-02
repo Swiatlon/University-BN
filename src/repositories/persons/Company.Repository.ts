@@ -1,6 +1,6 @@
 import { AppDataSource } from 'configs/database';
 import { EventOrganizerTypeEnum } from 'constants/entities/entities.Constants';
-import { Company } from 'entities/Companies/Company.Entity';
+import { Company } from 'entities/companies/Company.Entity';
 import { DataSource, IsNull } from 'typeorm';
 
 export const CompanyRepository = (customDataSource: DataSource = AppDataSource) => {

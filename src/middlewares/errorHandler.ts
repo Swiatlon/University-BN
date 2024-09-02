@@ -1,6 +1,6 @@
 import type { ErrorRequestHandler, NextFunction, Request, Response } from 'express';
 import { HTTP_STATUS } from 'constants/general/general.Constants';
-import { ICustomError } from 'types/Global/Global.Interfaces';
+import { ICustomError } from 'types/global/Global.Interfaces';
 
 const errorHandler: ErrorRequestHandler = (err: ICustomError, req: Request, res: Response, _next: NextFunction) => {
     const status = res.statusCode ? res.statusCode : HTTP_STATUS.INTERNAL_SERVER_ERROR.code;

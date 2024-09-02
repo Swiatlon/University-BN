@@ -1,5 +1,5 @@
-import { AccountRepository } from 'repositories/Accounts/Accounts.Repository';
-import { ILoginUniquesService } from 'types/Services/Services.Interfaces';
+import { AccountRepository } from 'repositories/accounts/Accounts.Repository';
+import { ILoginUniquesService } from 'types/services/Services.Interfaces';
 
 export class LoginUniquesService implements ILoginUniquesService {
     private generatedLogins: Set<string> = new Set();

@@ -1,7 +1,7 @@
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
-import { ExternalParticipant } from 'entities/ExternalParticipants/ExternalParticipant.Entity';
-import { IExternalParticipant } from 'types/Persons/ExternalParticipants/ExternalParticipants.Interfaces';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
+import { ExternalParticipant } from 'entities/externalParticipants/ExternalParticipant.Entity';
+import { IExternalParticipant } from 'types/persons/externalParticipants/ExternalParticipants.Interfaces';
 
 export interface ICompany {
     id: string;
