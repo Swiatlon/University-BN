@@ -1,10 +1,10 @@
 /// <reference types="./@types/express" />
 import 'reflect-metadata';
 import 'tsconfig-paths/register';
-import { AppDataSource } from 'configs/database';
+import { AppDataSource } from './configs/database';
 import cors from 'cors';
-import corsOptions from 'configs/cors';
-import errorHandler from 'middlewares/errorHandler';
+import corsOptions from './configs/cors';
+import errorHandler from './middlewares/errorHandler';
 import express from 'express';
 import { runSeeders } from 'typeorm-extension';
 import studentRoutes from 'routes/student.Routes';
