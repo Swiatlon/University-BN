@@ -6,8 +6,9 @@
     "main": "index.js",
     "scripts": {
         "dev": "nodemon",
-        "build": "rimraf dist/ && tsc",
-        "start:prod": "ts-node ./dist/index.js",
+        "install:prod": "npm install --omit=optional",
+        "build": "rimraf dist/ && tsc && tsc-alias",
+        "start:prod": "node ./dist/index.js",
         "test": "jest",
         "start": "ts-node src/index.ts",
         "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
@@ -18,7 +19,7 @@
         "lint": "eslint src --ext .ts --fix",
         "format": "prettier --write \"src/**/*.{js,json,ts}\"",
         "type-check": "tsc --noEmit",
-        "prepare": "husky install"
+        "prepare": "node husky-prepare.js"
     },
     "keywords": [],
     "author": "",
@@ -35,6 +36,7 @@
         "cls-hooked": "^4.2.2",
         "cookie-parser": "^1.4.6",
         "cors": "^2.8.5",
+        "cross-env": "^7.0.3",
         "exceljs": "^4.4.0",
         "express": "^4.18.3",
         "express-async-handler": "^1.2.0",
@@ -45,12 +47,16 @@
         "mysql2": "^3.9.2",
         "pg": "^8.4.0",
         "reflect-metadata": "^0.1.13",
+        "rimraf": "^5.0.5",
         "safe-json-stringify": "^1.2.0",
+        "tsc-alias": "^1.8.10",
+        "tsconfig-paths": "^4.2.0",
         "typeorm": "0.3.20",
         "typeorm-extension": "^3.5.0",
         "uuid": "^9.0.1"
     },
     "devDependencies": {
+        "ts-node": "10.9.1",
         "@faker-js/faker": "^8.4.1",
         "@jest/globals": "^29.7.0",
         "@types/bcrypt": "^5.0.2",
@@ -83,10 +89,7 @@
         "lint-staged": "^15.2.2",
         "nodemon": "^3.1.0",
         "prettier": "^3.2.5",
-        "rimraf": "^5.0.5",
         "ts-jest": "^29.2.3",
-        "ts-node": "10.9.1",
-        "tsconfig-paths": "^4.2.0",
         "typescript": "^4.5.2"
     }
 }
