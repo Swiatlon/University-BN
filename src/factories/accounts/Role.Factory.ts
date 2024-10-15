@@ -1,7 +1,7 @@
 import { Faker, faker } from '@faker-js/faker';
 import { RolesEnum } from 'constants/entities/entities.Constants';
-import { Role } from 'entities/Accounts/Role.Entity';
-import { IRoleFactory } from 'types/Factories/Factory.Interfaces';
+import { Role } from 'entities/accounts/Role.Entity';
+import { IRoleFactory } from 'types/factories/Factory.Interfaces';
 
 export class RoleFactory implements IRoleFactory {
     private faker: Faker = faker;

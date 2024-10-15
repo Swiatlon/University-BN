@@ -1,8 +1,8 @@
-import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
-import { Student } from 'entities/Students/Student.Entity';
-import { DegreePath } from 'entities/Courses/DegreePath.Entity';
-import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
-import { IStudentDegreePathFactory } from 'types/Factories/Factory.Interfaces';
+import { StudentDegreePath } from 'entities/studentDegrees/StudentDegreePath.Entity';
+import { Student } from 'entities/students/Student.Entity';
+import { DegreePath } from 'entities/courses/DegreePath.Entity';
+import { DegreeCourse } from 'entities/courses/DegreeCourse.Entity';
+import { IStudentDegreePathFactory } from 'types/factories/Factory.Interfaces';
 
 export class StudentDegreePathFactory implements IStudentDegreePathFactory {
     create(student: Student, degreePath: DegreePath, degreeCourse: DegreeCourse): StudentDegreePath {

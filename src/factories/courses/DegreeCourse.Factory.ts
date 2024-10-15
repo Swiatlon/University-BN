@@ -1,6 +1,6 @@
 import { Faker, faker } from '@faker-js/faker';
-import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
-import { IDegreeCourseFactory } from 'types/Factories/Factory.Interfaces';
+import { DegreeCourse } from 'entities/courses/DegreeCourse.Entity';
+import { IDegreeCourseFactory } from 'types/factories/Factory.Interfaces';
 
 export class DegreeCourseFactory implements IDegreeCourseFactory {
     private faker: Faker = faker;

@@ -1,12 +1,12 @@
 import { DataSource } from 'typeorm';
 import { AMOUNT_OF_CREATED_PARTICIPANTS, BATCH_SIZE } from 'constants/seeders/seeder.Constants';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
-import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+import { UserAccountFactory } from 'factories/accounts/UserAccountFactory';
 import { RolesEnum } from 'constants/entities/entities.Constants';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { BasicPersonFactory } from 'factories/Persons/BasicPerson.Factory';
-import { ExternalParticipantFactory } from 'factories/ExternalParticipants/ExternalParticipant.Factory';
-import { ExternalParticipant } from 'entities/ExternalParticipants/ExternalParticipant.Entity';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { BasicPersonFactory } from 'factories/persons/BasicPerson.Factory';
+import { ExternalParticipantFactory } from 'factories/externalParticipants/ExternalParticipant.Factory';
+import { ExternalParticipant } from 'entities/externalParticipants/ExternalParticipant.Entity';
 
 export class CreateExternalParticipantAllData extends CustomSeederWithTimer {
     public async seed(dataSource: DataSource): Promise<void> {

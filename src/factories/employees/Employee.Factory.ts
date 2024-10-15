@@ -1,13 +1,13 @@
-import { IEmployeeFactory } from 'types/Factories/Factory.Interfaces';
-import { IUserAccount } from 'types/Accounts/Accounts.Interfaces';
-import { Address } from 'entities/Schemas/Address.Schema';
-import { Consent } from 'entities/Schemas/Consent.Schema';
-import { Employee } from 'entities/Employees/Employee.Entity';
-import { ExtendedPerson } from 'entities/Schemas/ExtendedPerson.Schema';
-import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
-import { AddressFactory } from 'factories/Persons/Address.Factory';
-import { ConsentFactory } from 'factories/Persons/Consent.Factory';
-import { ExtendedPersonFactory } from 'factories/Persons/ExtendedPerson.Factory';
+import { IEmployeeFactory } from 'types/factories/Factory.Interfaces';
+import { IUserAccount } from 'types/accounts/Accounts.Interfaces';
+import { Address } from 'entities/schemas/Address.Schema';
+import { Consent } from 'entities/schemas/Consent.Schema';
+import { Employee } from 'entities/employees/Employee.Entity';
+import { ExtendedPerson } from 'entities/schemas/ExtendedPerson.Schema';
+import { UserAccountFactory } from 'factories/accounts/UserAccountFactory';
+import { AddressFactory } from 'factories/persons/Address.Factory';
+import { ConsentFactory } from 'factories/persons/Consent.Factory';
+import { ExtendedPersonFactory } from 'factories/persons/ExtendedPerson.Factory';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 
 export class EmployeeFactory implements IEmployeeFactory {

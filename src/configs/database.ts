@@ -7,7 +7,7 @@ dotenv.config();
 const { DB_HOST, DB_PORT, DB_USER, DB_PASS, DB_NAME } = process.env;
 
 const options: DataSourceOptions & SeederOptions = {
-    type: 'mysql',
+    type: 'postgres',
     host: DB_HOST,
     port: Number(DB_PORT),
     username: DB_USER,

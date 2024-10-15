@@ -1,10 +1,10 @@
 /// <reference types="./@types/express" />
 import 'reflect-metadata';
 import 'tsconfig-paths/register';
-import { AppDataSource } from 'configs/database';
+import { AppDataSource } from './configs/database';
 import cors from 'cors';
-import corsOptions from 'configs/cors';
-import errorHandler from 'middlewares/errorHandler';
+import corsOptions from './configs/cors';
+import errorHandler from './middlewares/errorHandler';
 import express from 'express';
 import { runSeeders } from 'typeorm-extension';
 import studentRoutes from 'routes/student.Routes';
@@ -13,14 +13,14 @@ import cookieParser from 'cookie-parser';
 import userInfoRoutes from 'routes/userInfo.Routes';
 import communityRoutes from 'routes/Community.Routes';
 import { ONE_SECOND_IN_MILISECONDS } from 'constants/general/general.Constants';
-import { searchMiddleware } from 'middlewares/Requests/Search.Middleware';
-import { paginationMiddleware } from 'middlewares/Requests/Pagination.Middleware';
-import { selectFieldsMiddleware } from 'middlewares/Requests/SelectFields.Middleware';
-import { cleanupRequestContextMiddleware } from 'middlewares/Requests/CleanupRequestContext.Middleware.ts';
+import { searchMiddleware } from 'middlewares/requests/Search.Middleware';
+import { paginationMiddleware } from 'middlewares/requests/Pagination.Middleware';
+import { selectFieldsMiddleware } from 'middlewares/requests/SelectFields.Middleware';
+import { cleanupRequestContextMiddleware } from 'middlewares/requests/CleanupRequestContext.Middleware.ts';
 
 const app = express();
 const DEFAULT_PORT = 3000;
-const PORT = process.env.SERVER_PORT ?? DEFAULT_PORT;
+const PORT = process.env.PORT ?? DEFAULT_PORT;
 
 app.use(cors(corsOptions));
 app.use(express.json());

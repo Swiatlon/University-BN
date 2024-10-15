@@ -1,6 +1,6 @@
-import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
-import { DegreePath } from 'entities/Courses/DegreePath.Entity';
-import { IDegreePathFactory } from 'types/Factories/Factory.Interfaces';
+import { DegreeCourse } from 'entities/courses/DegreeCourse.Entity';
+import { DegreePath } from 'entities/courses/DegreePath.Entity';
+import { IDegreePathFactory } from 'types/factories/Factory.Interfaces';
 
 export class DegreePathFactory implements IDegreePathFactory {
     create(name: string, degreeCourse: DegreeCourse): DegreePath {

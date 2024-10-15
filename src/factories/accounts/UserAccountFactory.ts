@@ -1,14 +1,14 @@
-import { hashPassword } from 'utils/Db/globalHelpers';
-import { AdminAccount } from './AccountModels/AdminAccount';
+import { hashPassword } from 'utils/db/globalHelpers';
+import { AdminAccount } from './accountModels/AdminAccount';
 import { RolesEnum } from 'constants/entities/entities.Constants';
-import { EmployeeAccount } from './AccountModels/EmployeeAccount';
-import { StudentAccount } from './AccountModels/StudentAccount';
-import { CompanyAccount } from './AccountModels/CompanyAccount';
-import { CustomUserAccount } from './AccountModels/UserAccount';
-import { ExternalParticipantAccount } from './AccountModels/ExternalParticipantAccount'; // Import the ExternalParticipantAccount
-import { IUserAccount } from 'types/Accounts/Accounts.Interfaces';
-import { IUserAccountFactory } from 'types/Factories/Factory.Interfaces';
-import { IBasicPersonSchema, IExtendedPersonSchema } from 'types/Persons/Persons/Persons.Interfaces';
+import { EmployeeAccount } from './accountModels/EmployeeAccount';
+import { StudentAccount } from './accountModels/StudentAccount';
+import { CompanyAccount } from './accountModels/CompanyAccount';
+import { CustomUserAccount } from './accountModels/UserAccount';
+import { ExternalParticipantAccount } from './accountModels/ExternalParticipantAccount';
+import { IUserAccount } from 'types/accounts/Accounts.Interfaces';
+import { IUserAccountFactory } from 'types/factories/Factory.Interfaces';
+import { IBasicPersonSchema, IExtendedPersonSchema } from 'types/persons/persons/Persons.Interfaces';
 
 export class UserAccountFactory implements IUserAccountFactory {
     async create(role: RolesEnum, data?: IExtendedPersonSchema | string | IBasicPersonSchema): Promise<IUserAccount> {

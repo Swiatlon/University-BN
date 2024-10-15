@@ -1,7 +1,7 @@
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { IUserAccount } from 'types/Accounts/Accounts.Interfaces';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { IUserAccount } from 'types/accounts/Accounts.Interfaces';
 import { LoginUniquesService } from 'services/LoginUniques.Service';
-import { IExtendedPersonSchema } from 'types/Persons/Persons/Persons.Interfaces';
+import { IExtendedPersonSchema } from 'types/persons/persons/Persons.Interfaces';
 
 export class EmployeeAccount extends UserAccount implements IUserAccount {
     private loginUniquesService: LoginUniquesService;

@@ -1,12 +1,12 @@
 import { RolesEnum } from 'constants/entities/entities.Constants';
 import { BATCH_SIZE } from 'constants/seeders/seeder.Constants';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { Employee } from 'entities/Employees/Employee.Entity';
-import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
-import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { Employee } from 'entities/employees/Employee.Entity';
+import { UserAccountFactory } from 'factories/accounts/UserAccountFactory';
+import { EmployeeRepository } from 'repositories/persons/Employee.Repository';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 import { DataSource } from 'typeorm';
-import { IUserAccountFactory } from 'types/Factories/Factory.Interfaces';
+import { IUserAccountFactory } from 'types/factories/Factory.Interfaces';
 
 export class CreateMissingAccountsForEmployees extends CustomSeederWithTimer {
     private accountsFactory: IUserAccountFactory = new UserAccountFactory();

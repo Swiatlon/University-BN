@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, ManyToOne, JoinColumn } from 'typeorm';
 import { EventOrganizer } from './EventOrganizer.Entity';
-import { IEvent } from 'types/Events/Events.Interfaces';
+import { IEvent } from 'types/events/Events.Interfaces';
 
 @Entity('Events')
 export class Event implements IEvent {

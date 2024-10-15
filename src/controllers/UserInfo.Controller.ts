@@ -2,8 +2,8 @@ import { HTTP_STATUS } from 'constants/general/general.Constants';
 import type { Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import { UserInfoService } from 'services/UserInfo.Service';
-import { ICustomVisbilityFieldRequest } from 'types/Global/Global.Interfaces';
-import { IUserInfo } from 'types/Services/Services.Interfaces';
+import { ICustomVisbilityFieldRequest } from 'types/global/Global.Interfaces';
+import { IUserInfo } from 'types/services/Services.Interfaces';
 
 const userInfoServices = new UserInfoService();
 

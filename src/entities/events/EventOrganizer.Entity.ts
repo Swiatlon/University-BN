@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable } from 'typeorm';
 import { EventOrganizerTypeEnum } from 'constants/entities/entities.Constants';
-import { Event } from 'entities/Events/Event.Entity';
-import { IEventOrganizer } from 'types/Events/Events.Interfaces';
+import { Event } from 'entities/events/Event.Entity';
+import { IEventOrganizer } from 'types/events/Events.Interfaces';
 
 @Entity('Event_Organizers')
 export class EventOrganizer implements IEventOrganizer {

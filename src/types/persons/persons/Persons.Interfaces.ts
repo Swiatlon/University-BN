@@ -1,7 +1,7 @@
 import { GenderEnum } from 'constants/entities/entities.Constants';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { Address } from 'entities/Schemas/Address.Schema';
-import { Consent } from 'entities/Schemas/Consent.Schema';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { Address } from 'entities/schemas/Address.Schema';
+import { Consent } from 'entities/schemas/Consent.Schema';
 
 export interface IBasicPersonSchema {
     name: string;

@@ -1,7 +1,7 @@
 import { AMOUNT_OF_CREATED_EVENTS, BATCH_SIZE } from 'constants/seeders/seeder.Constants';
-import { EventFactory } from 'factories/Event/Event.Factory';
-import { Event } from 'entities/Events/Event.Entity';
-import { EventOrganizerRepository } from 'repositories/Events/EventOrganizer.Repository';
+import { EventFactory } from 'factories/event/Event.Factory';
+import { Event } from 'entities/events/Event.Entity';
+import { EventOrganizerRepository } from 'repositories/events/EventOrganizer.Repository';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 import { DataSource } from 'typeorm';
 

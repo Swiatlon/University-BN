@@ -1,7 +1,7 @@
 import { getRequestContext } from 'contexts/RequestContext';
 import { Request, Response, NextFunction } from 'express';
-import { IRequestParams } from 'types/Requests/Requests.Interfaces';
-import { TSearchQuery } from 'types/Requests/Requests.Types';
+import { IRequestParams } from 'types/requests/Requests.Interfaces';
+import { TSearchQuery } from 'types/requests/Requests.Types';
 
 export const searchMiddleware = (req: Request, res: Response, next: NextFunction): void => {
     const context = getRequestContext();

@@ -1,18 +1,18 @@
 import { DataSource } from 'typeorm';
-import { AddressFactory } from 'factories/Persons/Address.Factory';
-import { ConsentFactory } from 'factories/Persons/Consent.Factory';
+import { AddressFactory } from 'factories/persons/Address.Factory';
+import { ConsentFactory } from 'factories/persons/Consent.Factory';
 import { AMOUNT_OF_NEW_EMPLOYEES, BATCH_SIZE } from 'constants/seeders/seeder.Constants';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
-import { ExtendedPersonFactory } from 'factories/Persons/ExtendedPerson.Factory';
-import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+import { ExtendedPersonFactory } from 'factories/persons/ExtendedPerson.Factory';
+import { UserAccountFactory } from 'factories/accounts/UserAccountFactory';
 import { EventOrganizerTypeEnum, RolesEnum } from 'constants/entities/entities.Constants';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { EmployeeFactory } from 'factories/Employees/Employee.Factory';
-import { EmployeeConsent } from 'entities/Employees/EmployeeConsent.Entity';
-import { Employee } from 'entities/Employees/Employee.Entity';
-import { EmployeeAddress } from 'entities/Employees/EmployeeAddress.Entity';
-import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
-import { EventOrganizerFactory } from 'factories/Event/EventOrganizer.Factory';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { EmployeeFactory } from 'factories/employees/Employee.Factory';
+import { EmployeeConsent } from 'entities/employees/EmployeeConsent.Entity';
+import { Employee } from 'entities/employees/Employee.Entity';
+import { EmployeeAddress } from 'entities/employees/EmployeeAddress.Entity';
+import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
+import { EventOrganizerFactory } from 'factories/event/EventOrganizer.Factory';
 
 export class CreateEmployeeAllData extends CustomSeederWithTimer {
     public async seed(dataSource: DataSource): Promise<void> {

@@ -7,7 +7,7 @@
     "scripts": {
         "dev": "nodemon",
         "build": "rimraf dist/ && tsc",
-        "start:prod": "node dist/index.js",
+        "start:prod": "ts-node ./dist/index.js",
         "test": "jest",
         "start": "ts-node src/index.ts",
         "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",

@@ -1,5 +1,5 @@
-import { Role } from 'entities/Accounts/Role.Entity';
-import { IAddress, IConsent, IExtendedPersonSchema } from 'types/Persons/Persons/Persons.Interfaces';
+import { Role } from 'entities/accounts/Role.Entity';
+import { IAddress, IConsent, IExtendedPersonSchema } from 'types/persons/persons/Persons.Interfaces';
 
 export interface ICreateAccountDto {
     identifier: string;

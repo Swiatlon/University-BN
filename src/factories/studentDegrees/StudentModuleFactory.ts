@@ -1,7 +1,7 @@
-import { StudentModule } from 'entities/StudentDegrees/StudentModule.Entity';
-import { Student } from 'entities/Students/Student.Entity';
-import { Module } from 'entities/Courses/Module.Entity';
-import { IStudentModuleFactory } from 'types/Factories/Factory.Interfaces';
+import { StudentModule } from 'entities/studentDegrees/StudentModule.Entity';
+import { Student } from 'entities/students/Student.Entity';
+import { Module } from 'entities/courses/Module.Entity';
+import { IStudentModuleFactory } from 'types/factories/Factory.Interfaces';
 
 export class StudentModuleFactory implements IStudentModuleFactory {
     create(student: Student, module: Module): StudentModule {

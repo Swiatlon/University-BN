@@ -1,5 +1,5 @@
 import { IsString } from 'class-validator';
-import { ICreateAccountDto } from 'types/Accounts/Accounts.Interfaces';
+import { ICreateAccountDto } from 'types/accounts/Accounts.Interfaces';
 
 export class CreateUserAccountDto implements ICreateAccountDto {
     @IsString()

@@ -1,8 +1,8 @@
 import { Entity, ManyToMany } from 'typeorm';
 import { Module } from './Module.Entity';
-import { CoursesBaseSchema } from 'entities/Schemas/Courses.Schema';
+import { CoursesBaseSchema } from 'entities/schemas/Courses.Schema';
 import { DegreeCourse } from './DegreeCourse.Entity';
-import { ISubject } from 'types/Courses/Courses.Interfaces';
+import { ISubject } from 'types/courses/Courses.Interfaces';
 
 @Entity('Subjects')
 export class Subject extends CoursesBaseSchema implements ISubject {

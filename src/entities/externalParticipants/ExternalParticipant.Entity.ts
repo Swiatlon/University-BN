@@ -1,9 +1,9 @@
 import { Entity, PrimaryGeneratedColumn, ManyToOne, ManyToMany, JoinColumn, JoinTable } from 'typeorm';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { Company } from 'entities/Companies/Company.Entity';
-import { BasicPerson } from 'entities/Schemas/BasicPerson.Schema';
-import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
-import { IExternalParticipant } from 'types/Persons/ExternalParticipants/ExternalParticipants.Interfaces';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { Company } from 'entities/companies/Company.Entity';
+import { BasicPerson } from 'entities/schemas/BasicPerson.Schema';
+import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
+import { IExternalParticipant } from 'types/persons/externalParticipants/ExternalParticipants.Interfaces';
 
 @Entity('External_Participants')
 export class ExternalParticipant extends BasicPerson implements IExternalParticipant {

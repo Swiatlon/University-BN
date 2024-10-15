@@ -1,6 +1,6 @@
 import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
-import { DegreeCourse } from 'entities/Courses/DegreeCourse.Entity';
+import { DegreeCourse } from 'entities/courses/DegreeCourse.Entity';
 
 export const DegreeCoursesRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;

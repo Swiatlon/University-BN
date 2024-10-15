@@ -1,9 +1,9 @@
 import { Faker, faker } from '@faker-js/faker';
-import { BasicPerson } from 'entities/Schemas/BasicPerson.Schema';
-import { IBasicPersonFactory } from 'types/Factories/Factory.Interfaces';
-import { IBasicPersonSchema } from 'types/Persons/Persons/Persons.Interfaces';
+import { BasicPerson } from 'entities/schemas/BasicPerson.Schema';
+import { IBasicPersonFactory } from 'types/factories/Factory.Interfaces';
+import { IBasicPersonSchema } from 'types/persons/persons/Persons.Interfaces';
 import { GenderEnum } from 'constants/entities/entities.Constants';
-import { generatePhoneNumber } from 'utils/Factories/Factory.Utils';
+import { generatePhoneNumber } from 'utils/factories/Factory.Utils';
 
 export class BasicPersonFactory implements IBasicPersonFactory {
     private faker: Faker = faker;

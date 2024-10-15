@@ -1,11 +1,11 @@
 import { AppDataSource } from '../../configs/database';
 import { DataSource } from 'typeorm';
 import { IsNull } from 'typeorm';
-import { Employee } from 'entities/Employees/Employee.Entity';
+import { Employee } from 'entities/employees/Employee.Entity';
 import { EventOrganizerTypeEnum, RolesEnum } from 'constants/entities/entities.Constants';
-import { applyFiltersToQuery } from 'utils/Db/RequestFilters/RequestFilters';
-import { IUserAllData } from 'types/Accounts/Accounts.Interfaces';
-import { IAddress, IConsent } from 'types/Persons/Persons/Persons.Interfaces';
+import { applyFiltersToQuery } from 'utils/db/requestFilters/RequestFilters';
+import { IUserAllData } from 'types/accounts/Accounts.Interfaces';
+import { IAddress, IConsent } from 'types/persons/persons/Persons.Interfaces';
 
 export const EmployeeRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;

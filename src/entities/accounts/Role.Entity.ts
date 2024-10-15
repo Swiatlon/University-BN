@@ -1,6 +1,6 @@
 import { Column, Entity, ManyToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { UserAccount } from './UserAccount.Entity';
-import { IRoles } from 'types/Accounts/Accounts.Interfaces';
+import { IRoles } from 'types/accounts/Accounts.Interfaces';
 
 @Entity('Roles')
 export class Role implements IRoles {

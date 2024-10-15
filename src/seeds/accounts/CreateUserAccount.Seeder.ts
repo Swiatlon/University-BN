@@ -1,7 +1,7 @@
 import { DataSource } from 'typeorm';
 import { RolesEnum } from 'constants/entities/entities.Constants';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { UserAccountFactory } from 'factories/accounts/UserAccountFactory';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 
 export class CreateUserAccount extends CustomSeederWithTimer {

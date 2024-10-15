@@ -1,8 +1,8 @@
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
-import { ExternalParticipant } from 'entities/ExternalParticipants/ExternalParticipant.Entity';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
+import { ExternalParticipant } from 'entities/externalParticipants/ExternalParticipant.Entity';
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinColumn, ManyToOne } from 'typeorm';
-import { ICompany } from 'types/Companies/Companies.Interfaces';
+import { ICompany } from 'types/companies/Companies.Interfaces';
 
 @Entity('Companies')
 export class Company implements ICompany {

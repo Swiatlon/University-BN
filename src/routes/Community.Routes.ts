@@ -1,5 +1,5 @@
 import { CommunityController } from 'controllers/Community.Controller';
-import { CreateEventDto } from 'dto/Events/CreateEvent.Dto';
+import { CreateEventDto } from 'dto/events/CreateEvent.Dto';
 import express from 'express';
 import { validateDto } from 'middlewares/validateDto';
 import { verifyJWT } from 'middlewares/verifyJWT';

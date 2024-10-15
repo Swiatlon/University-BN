@@ -1,10 +1,10 @@
-import { Student } from 'entities/Students/Student.Entity';
-import { IUserAllData } from 'types/Accounts/Accounts.Interfaces';
+import { Student } from 'entities/students/Student.Entity';
+import { IUserAllData } from 'types/accounts/Accounts.Interfaces';
 import { ExtendedUserDataWithRoles } from './Services.Types';
-import { Event } from 'entities/Events/Event.Entity';
+import { Event } from 'entities/events/Event.Entity';
 import { RolesEnum } from 'constants/entities/entities.Constants';
-import { ILoginCredentials } from 'types/Controllers/Controllers.Interfaces';
-import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
+import { ILoginCredentials } from 'types/controllers/Controllers.Interfaces';
+import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
 
 export interface IUserInfo {
     accountId: string;

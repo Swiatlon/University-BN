@@ -1,7 +1,7 @@
 import { Column } from 'typeorm';
 import { GenderEnum } from 'constants/entities/entities.Constants';
 import { Validation } from 'constants/validators/validators.Constants';
-import { IBasicPersonSchema } from 'types/Persons/Persons/Persons.Interfaces';
+import { IBasicPersonSchema } from 'types/persons/persons/Persons.Interfaces';
 
 export class BasicPerson implements IBasicPersonSchema {
     @Column({

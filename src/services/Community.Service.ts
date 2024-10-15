@@ -1,8 +1,8 @@
-import { CreateEventDto } from 'dto/Events/CreateEvent.Dto';
-import { EventsRepository } from 'repositories/Events/Event.Repository';
-import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
-import { ICommunityService } from 'types/Services/Services.Interfaces';
-import { EventOrganizerRepository } from 'repositories/Events/EventOrganizer.Repository';
+import { CreateEventDto } from 'dto/events/CreateEvent.Dto';
+import { EventsRepository } from 'repositories/events/Event.Repository';
+import { EmployeeRepository } from 'repositories/persons/Employee.Repository';
+import { ICommunityService } from 'types/services/Services.Interfaces';
+import { EventOrganizerRepository } from 'repositories/events/EventOrganizer.Repository';
 
 export class CommunityService implements ICommunityService {
     async getAllTeachers() {

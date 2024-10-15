@@ -1,16 +1,16 @@
 import { DataSource } from 'typeorm';
 import { AMOUNT_OF_CREATED_COMPANIES, BATCH_SIZE, EXTERNAL_PARTICIPANTS_PER_COMPANY } from 'constants/seeders/seeder.Constants';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
-import { UserAccountFactory } from 'factories/Accounts/UserAccountFactory';
+import { UserAccountFactory } from 'factories/accounts/UserAccountFactory';
 import { EventOrganizerTypeEnum, RolesEnum } from 'constants/entities/entities.Constants';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { CompanyFactory } from 'factories/Companies/Company.Factory';
-import { Company } from 'entities/Companies/Company.Entity';
-import { ExternalParticipantFactory } from 'factories/ExternalParticipants/ExternalParticipant.Factory';
-import { BasicPersonFactory } from 'factories/Persons/BasicPerson.Factory';
-import { ExternalParticipant } from 'entities/ExternalParticipants/ExternalParticipant.Entity';
-import { EventOrganizerFactory } from 'factories/Event/EventOrganizer.Factory';
-import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { CompanyFactory } from 'factories/companies/Company.Factory';
+import { Company } from 'entities/companies/Company.Entity';
+import { ExternalParticipantFactory } from 'factories/externalParticipants/ExternalParticipant.Factory';
+import { BasicPersonFactory } from 'factories/persons/BasicPerson.Factory';
+import { ExternalParticipant } from 'entities/externalParticipants/ExternalParticipant.Entity';
+import { EventOrganizerFactory } from 'factories/event/EventOrganizer.Factory';
+import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
 
 export class CreateCompanyAllData extends CustomSeederWithTimer {
     public async seed(dataSource: DataSource): Promise<void> {

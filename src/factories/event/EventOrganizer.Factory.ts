@@ -1,8 +1,8 @@
-import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
+import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
 import { EventOrganizerTypeEnum } from 'constants/entities/entities.Constants';
-import { CompanyEventOrganizer } from './EventOrganizersModels/CompanyEventOrganizer';
-import { ExternalEventOrganizer } from './EventOrganizersModels/ExternalEventOrganizer';
-import { EmployeeEventOrganizer } from './EventOrganizersModels/EmployeeEventOrganizer';
+import { CompanyEventOrganizer } from './eventOrganizersModels/CompanyEventOrganizer';
+import { ExternalEventOrganizer } from './eventOrganizersModels/ExternalEventOrganizer';
+import { EmployeeEventOrganizer } from './eventOrganizersModels/EmployeeEventOrganizer';
 
 export class EventOrganizerFactory {
     create(type: EventOrganizerTypeEnum, organizerId: string): EventOrganizer {

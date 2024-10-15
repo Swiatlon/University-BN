@@ -1,5 +1,5 @@
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { IUserAccount } from 'types/Accounts/Accounts.Interfaces';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { IUserAccount } from 'types/accounts/Accounts.Interfaces';
 
 export class CustomUserAccount extends UserAccount implements IUserAccount {
     constructor() {

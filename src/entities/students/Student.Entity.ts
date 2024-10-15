@@ -1,14 +1,14 @@
 import { Entity, JoinColumn, OneToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { ExtendedPerson } from '../Schemas/ExtendedPerson.Schema';
+import { ExtendedPerson } from '../schemas/ExtendedPerson.Schema';
 import { StudentAddress } from './StudentAddress.Entity';
 import { StudentConsent } from './StudentConsent.Entity';
-import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
-import { StudentDegreePath } from 'entities/StudentDegrees/StudentDegreePath.Entity';
-import { StudentModule } from 'entities/StudentDegrees/StudentModule.Entity';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
-import { IStudent } from 'types/Persons/Students/Students.Interfaces';
-import { Consent } from 'entities/Schemas/Consent.Schema';
-import { Address } from 'entities/Schemas/Address.Schema';
+import { StudentDegreeCourse } from 'entities/studentDegrees/StudentDegreeCourse.Entity';
+import { StudentDegreePath } from 'entities/studentDegrees/StudentDegreePath.Entity';
+import { StudentModule } from 'entities/studentDegrees/StudentModule.Entity';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
+import { IStudent } from 'types/persons/students/Students.Interfaces';
+import { Consent } from 'entities/schemas/Consent.Schema';
+import { Address } from 'entities/schemas/Address.Schema';
 
 @Entity('Students')
 export class Student extends ExtendedPerson implements IStudent {

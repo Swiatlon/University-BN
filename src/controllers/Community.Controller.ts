@@ -2,7 +2,7 @@ import type { Request, Response } from 'express';
 import { HTTP_STATUS } from 'constants/general/general.Constants';
 import asyncHandler from 'express-async-handler';
 import { CommunityService } from 'services/Community.Service';
-import { CreateEventDto } from 'dto/Events/CreateEvent.Dto';
+import { CreateEventDto } from 'dto/events/CreateEvent.Dto';
 
 const communityService = new CommunityService();
 

@@ -1,9 +1,9 @@
 import { AppDataSource } from '../../configs/database';
 import { DataSource, In, Not } from 'typeorm';
 import { IsNull } from 'typeorm';
-import { Student } from 'entities/Students/Student.Entity';
-import { StudentDegreeCourse } from 'entities/StudentDegrees/StudentDegreeCourse.Entity';
-import { IStudentWithDegreeCourse } from 'types/StudentDegree/StudentDegree.Interfaces';
+import { Student } from 'entities/students/Student.Entity';
+import { StudentDegreeCourse } from 'entities/studentDegrees/StudentDegreeCourse.Entity';
+import { IStudentWithDegreeCourse } from 'types/studentDegree/StudentDegree.Interfaces';
 
 export const StudentRepository = (customDataSource: DataSource = AppDataSource) => {
     const dataSource = customDataSource;

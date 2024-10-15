@@ -1,6 +1,6 @@
 import { PrimaryGeneratedColumn, Column } from 'typeorm';
 import { Validation } from 'constants/validators/validators.Constants';
-import { ICoursesBaseSchema } from 'types/Courses/Courses.Interfaces';
+import { ICoursesBaseSchema } from 'types/courses/Courses.Interfaces';
 
 export abstract class CoursesBaseSchema implements ICoursesBaseSchema {
     @PrimaryGeneratedColumn()

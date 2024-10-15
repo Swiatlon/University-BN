@@ -1,12 +1,12 @@
 import { DataSource } from 'typeorm';
 import { DataFetcher } from './DataFetcher';
-import { getRandomElement, getRandomElements } from 'utils/Db/globalHelpers';
-import { StudentDegreeCourseFactory } from 'factories/StudentDegrees/StudentDegreeCourse.Factory';
-import { StudentDegreePathFactory } from 'factories/StudentDegrees/StudentDegreePath.Factory';
-import { StudentModuleFactory } from 'factories/StudentDegrees/StudentModuleFactory';
+import { getRandomElement, getRandomElements } from 'utils/db/globalHelpers';
+import { StudentDegreeCourseFactory } from 'factories/studentDegrees/StudentDegreeCourse.Factory';
+import { StudentDegreePathFactory } from 'factories/studentDegrees/StudentDegreePath.Factory';
+import { StudentModuleFactory } from 'factories/studentDegrees/StudentModuleFactory';
 import { AMOUNT_OF_CREATED_MODULES, BATCH_SIZE } from 'constants/seeders/seeder.Constants';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
-import { IDataFetcher } from 'types/StudentDegree/StudentDegree.Interfaces';
+import { IDataFetcher } from 'types/studentDegree/StudentDegree.Interfaces';
 
 export class StudentsDegreeSeeder extends CustomSeederWithTimer {
     private dataFetcher: IDataFetcher = new DataFetcher();

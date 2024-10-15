@@ -1,11 +1,11 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { AccountRepository } from 'repositories/Accounts/Accounts.Repository';
-import { ILoginCredentials } from 'types/Controllers/Controllers.Interfaces';
-import { IUserPayload } from 'types/Global/Global.Interfaces';
+import { AccountRepository } from 'repositories/accounts/Accounts.Repository';
+import { ILoginCredentials } from 'types/controllers/Controllers.Interfaces';
+import { IUserPayload } from 'types/global/Global.Interfaces';
 import { LONGER_ACCESS_TOKEN_TIME, LONGER_REFRESH_TOKEN_TIME, SHORT_ACCESS_TOKEN_TIME, SHORT_REFRESH_TOKEN_TIME } from 'constants/general/general.Constants';
-import { IAuthService } from 'types/Services/Services.Interfaces';
-import { UserAccount } from 'entities/Accounts/UserAccount.Entity';
+import { IAuthService } from 'types/services/Services.Interfaces';
+import { UserAccount } from 'entities/accounts/UserAccount.Entity';
 
 export class AuthService implements IAuthService {
     async login({ identifier, password, rememberMe, sessionID }: ILoginCredentials) {

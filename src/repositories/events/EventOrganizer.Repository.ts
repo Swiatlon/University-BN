@@ -1,10 +1,10 @@
 import { DataSource } from 'typeorm';
-import { EventOrganizer } from 'entities/Events/EventOrganizer.Entity';
+import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
 import { AppDataSource } from 'configs/database';
 import { EventOrganizerTypeEnum } from 'constants/entities/entities.Constants';
-import { EmployeeRepository } from 'repositories/Persons/Employee.Repository';
-import { CompanyRepository } from 'repositories/Persons/Company.Repository';
-import { ExternalParticipantRepository } from 'repositories/Persons/ExternalParticipant.Repository';
+import { EmployeeRepository } from 'repositories/persons/Employee.Repository';
+import { CompanyRepository } from 'repositories/persons/Company.Repository';
+import { ExternalParticipantRepository } from 'repositories/persons/ExternalParticipant.Repository';
 
 export const EventOrganizerRepository = (dataSource: DataSource = AppDataSource) => {
     return dataSource.getRepository(EventOrganizer).extend({
