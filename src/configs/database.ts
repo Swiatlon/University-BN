@@ -22,7 +22,7 @@ const options: DataSourceOptions & SeederOptions = {
     migrations: [`${__dirname}/../migrations/**/*${isDevelopment ? '.ts' : '.js'}`],
     seeds: SeedersClasses,
     ssl: {
-        rejectUnauthorized: true,
+        rejectUnauthorized: isDevelopment ? false : true,
     },
     factories: [`${__dirname}/../factories/**/*${isDevelopment ? '.ts' : '.js'}`],
 };

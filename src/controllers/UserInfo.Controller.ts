@@ -9,6 +9,7 @@ const userInfoServices = new UserInfoService();
 
 const getUserInfo = asyncHandler(async (req: ICustomVisbilityFieldRequest, res: Response) => {
     const userInfo = req.cookies.userInfo as IUserInfo;
+    console.log('cookies', req.cookies);
 
     const userData = await userInfoServices.getUserInfo(userInfo);
 

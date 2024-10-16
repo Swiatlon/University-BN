@@ -12,7 +12,7 @@ const login = asyncHandler(async (req: Request, res: Response) => {
     const cookieBaseOptions = {
         httpOnly: true,
         secure: true,
-        sameSite: 'strict',
+        sameSite: 'none',
         maxAge: rememberMe ? ONE_DAY * 30 : ONE_MINUTE * 16,
     } as CookieOptions;
 
@@ -50,7 +50,7 @@ const logout = (req: Request, res: Response) => {
         return res.sendStatus(HTTP_STATUS.NO_CONTENT.code);
     }
 
-    const cookieOptions = { httpOnly: true, sameSite: 'strict', secure: true } as CookieOptions;
+    const cookieOptions = { httpOnly: true, sameSite: 'none', secure: true } as CookieOptions;
 
     res.clearCookie('jwt', cookieOptions);
     res.clearCookie('userInfo', cookieOptions);
@@ -82,7 +82,7 @@ const randomUserLogin = asyncHandler(async (req: Request, res: Response) => {
     const cookieBaseOptions = {
         httpOnly: true,
         secure: true,
-        sameSite: 'strict',
+        sameSite: 'none',
         maxAge: ONE_MINUTE * 16,
     } as CookieOptions;
 
