@@ -21,3 +21,19 @@ export enum EventOrganizerTypeEnum {
     COMPANY = RolesEnum.COMPANY,
 }
 export const eventOrganizerTypeEnumArray = Object.values(EventOrganizerTypeEnum);
+
+export enum GradeValueEnum {
+    Poor = 2,
+    Fair = 3,
+    Good = 4,
+    Excellent = 5,
+}
+export const gradeValueEnumArray = Object.values(GradeValueEnum);
+
+export enum PassDateAttemptEnum {
+    FirstAttempt = 0,
+    SecondAttempt = 1,
+    ThirdAttempt = 2,
+    FourthAttempt = 3,
+}
+export const passDateAttemptEnumArray = Object.values(PassDateAttemptEnum);

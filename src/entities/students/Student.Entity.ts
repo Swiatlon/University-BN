@@ -9,6 +9,7 @@ import { UserAccount } from 'entities/accounts/UserAccount.Entity';
 import { IStudent } from 'types/persons/students/Students.Interfaces';
 import { Consent } from 'entities/schemas/Consent.Schema';
 import { Address } from 'entities/schemas/Address.Schema';
+import { Grade } from 'entities/studentsGrades/StudentGrades.Entity';
 
 @Entity('Students')
 export class Student extends ExtendedPerson implements IStudent {
@@ -42,4 +43,7 @@ export class Student extends ExtendedPerson implements IStudent {
     @OneToMany(() => StudentModule, (studentModule) => studentModule.student)
     @JoinColumn({ name: 'module_id' })
     modules: StudentModule[];
+
+    @OneToMany(() => Grade, (grade) => grade.student, { cascade: true })
+    studentsGrades: Grade[];
 }
