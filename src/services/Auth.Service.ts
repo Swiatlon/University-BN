@@ -24,6 +24,7 @@ export class AuthService implements IAuthService {
         const accessToken = jwt.sign(
             {
                 roles: foundUser.roles.map((role) => role.name),
+                accountId: foundUser.id,
             },
             String(process.env.ACCESS_TOKEN_SECRET),
             {
@@ -70,6 +71,7 @@ export class AuthService implements IAuthService {
 
         const accessToken = jwt.sign(
             {
+                accountId: foundUser.id,
                 roles: foundUser.roles.map((role) => role.name),
             },
             String(process.env.ACCESS_TOKEN_SECRET),

@@ -69,10 +69,10 @@ const randomUserLogin = asyncHandler(async (req: Request, res: Response) => {
 
     const { sessionID } = req.body as ILoginCredentials;
     const randomIndex = Math.floor(Math.random() * students.length);
-    const randomStudent = students[randomIndex];
+    const randomStudentAccount = students[randomIndex];
 
     const { accessToken, refreshToken, userData, sessionData } = await authService.login({
-        identifier: randomStudent.email,
+        identifier: randomStudentAccount.email,
         //Dont worry normal it wont be funcion like this
         password: 'wiercik',
         rememberMe: false,
