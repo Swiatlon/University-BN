@@ -28,7 +28,7 @@ export enum GradeValueEnum {
     Good = 4,
     Excellent = 5,
 }
-export const gradeValueEnumArray = Object.values(GradeValueEnum);
+export const gradeValueEnumArray = Object.values(GradeValueEnum).filter(Number) as GradeValueEnum[];
 
 export enum PassDateAttemptEnum {
     FirstAttempt = 0,
@@ -36,4 +36,4 @@ export enum PassDateAttemptEnum {
     ThirdAttempt = 2,
     FourthAttempt = 3,
 }
-export const passDateAttemptEnumArray = Object.values(PassDateAttemptEnum);
+export const passDateAttemptEnumArray = Object.values(PassDateAttemptEnum).filter(Number) as PassDateAttemptEnum[];

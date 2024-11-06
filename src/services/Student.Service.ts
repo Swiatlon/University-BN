@@ -20,4 +20,8 @@ export class StudentService implements IStudentService {
         const studentData = await StudentRepository().getStudentAllData(studentId);
         return studentData;
     }
+
+    async getAccountIdByStudentId(studentId: string): Promise<string | null> {
+        return StudentRepository().getAccountIdByStudentId(studentId);
+    }
 }

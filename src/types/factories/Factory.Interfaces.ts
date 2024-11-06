@@ -17,6 +17,7 @@ import { StudentDegreeCourse } from 'entities/studentDegrees/StudentDegreeCourse
 import { StudentDegreePath } from 'entities/studentDegrees/StudentDegreePath.Entity';
 import { StudentModule } from 'entities/studentDegrees/StudentModule.Entity';
 import { Student } from 'entities/students/Student.Entity';
+import { Grade } from 'entities/studentsGrades/StudentGrades.Entity';
 import { IUserAccount } from 'types/accounts/Accounts.Interfaces';
 import { ICompany } from 'types/companies/Companies.Interfaces';
 import { IEvent } from 'types/events/Events.Interfaces';
@@ -103,4 +104,9 @@ export interface IExternalParticipantFactory {
 export interface IEventFactory {
     create(externalParticipant: IEvent): Event;
     createWithFakeData: () => Event;
+}
+
+export interface IGradeFactory {
+    create(student: Student, subject: Subject): Grade;
+    createWithFakeData(): Grade;
 }

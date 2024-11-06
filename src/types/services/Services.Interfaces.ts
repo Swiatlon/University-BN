@@ -5,6 +5,7 @@ import { Event } from 'entities/events/Event.Entity';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 import { ILoginCredentials } from 'types/controllers/Controllers.Interfaces';
 import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
+import { Grade } from 'entities/studentsGrades/StudentGrades.Entity';
 
 export interface IUserInfo {
     accountId: string;
@@ -17,6 +18,10 @@ export interface IPersonalDataService {
 
 export interface IStudentService {
     createStudent(studentData: Partial<Student>): Promise<Student>;
+}
+
+export interface IGradesService {
+    getGradesByStudentId(studentId: string): Promise<Grade[]>;
 }
 
 export interface IUserInfoService {

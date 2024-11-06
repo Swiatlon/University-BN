@@ -20,12 +20,12 @@ export class Grade {
         enum: GradeValueEnum,
         nullable: true,
     })
-    grade!: GradeValueEnum;
+    grade?: GradeValueEnum;
 
     @Column({
         type: 'enum',
         enum: PassDateAttemptEnum,
         nullable: true,
     })
-    passDateAttempt!: PassDateAttemptEnum;
+    passDateAttempt?: PassDateAttemptEnum;
 }

@@ -11,7 +11,8 @@ import studentRoutes from 'routes/student.Routes';
 import authRoutes from 'routes/auth.Routes';
 import cookieParser from 'cookie-parser';
 import userInfoRoutes from 'routes/userInfo.Routes';
-import communityRoutes from 'routes/Community.Routes';
+import communityRoutes from 'routes/community.Routes';
+import gradesRoutes from 'routes/grades.Routes';
 import { ONE_SECOND_IN_MILISECONDS } from 'constants/general/general.Constants';
 import { searchMiddleware } from 'middlewares/requests/Search.Middleware';
 import { paginationMiddleware } from 'middlewares/requests/Pagination.Middleware';
@@ -33,6 +34,7 @@ app.use(selectFieldsMiddleware);
 
 app.use('/api', studentRoutes);
 app.use('/api', userInfoRoutes);
+app.use('/api', gradesRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/community', communityRoutes);
 

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 //Due to problem with global imporst of seeders we need to pass them directly
 import { CreateMissingAccountsForStudents } from './accounts/missingAccounts/CreateMissingAccountsForStudents.Seeder';
 import { CreateEmployeeAllData } from './allDatas/CreateEmployeeAllData.Seeder';
@@ -10,6 +11,7 @@ import { InitializeDegreeProgramsSeeder } from './courses/initalizeDegreeProgram
 import { StudentsDegreeSeeder } from './studentsDegree/StudentsDegree.Seeder';
 import { CreateStudentAllData } from './allDatas/CreateStudentAllData.Seeder';
 import { CreateCompanyAllData } from './allDatas/CreateCompanyAllData.Seeder';
+import { CreateStudentsGrades } from './grades/CreateStudentsGrades.Seeder';
 
 //TODO: Maybe make all seders like createStudentAllData in free time
 //TODO: LATER IT WILL BE LIKE DEPEND ON VARIABLE AND DATA SCHEMA LOOKING
@@ -17,13 +19,14 @@ const doWeNeedRequired = false;
 
 const _devSeeders = () => {
     return [
-        CreateStudentAllData,
-        CreateMissingAccountsForStudents,
-        CreateEmployeeAllData,
-        CreateMissingAccountsForEmployees,
-        CreateRolesForAccounts,
-        StudentsDegreeSeeder,
-        CreateCompanyAllData,
+        // CreateStudentAllData,
+        // CreateMissingAccountsForStudents,
+        // CreateEmployeeAllData,
+        // CreateMissingAccountsForEmployees,
+        // CreateRolesForAccounts,
+        // StudentsDegreeSeeder,
+        // CreateCompanyAllData,
+        CreateStudentsGrades,
         // CreateEvents,
     ];
 };
@@ -40,5 +43,5 @@ const _testingSeeders = () => {
     return [];
 };
 
-// export const SeedersClasses = [_requiredSeeders(), _devSeeders()].flat();
-export const SeedersClasses = [_testingSeeders()].flat();
+export const SeedersClasses = [_requiredSeeders(), _devSeeders()].flat();
+// export const SeedersClasses = [_testingSeeders()].flat();
