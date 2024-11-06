@@ -27,7 +27,6 @@ const _devSeeders = () => {
         // StudentsDegreeSeeder,
         // CreateCompanyAllData,
         CreateStudentsGrades,
-        // CreateEvents,
     ];
 };
 
@@ -43,5 +42,5 @@ const _testingSeeders = () => {
     return [];
 };
 
-export const SeedersClasses = [_requiredSeeders(), _devSeeders()].flat();
-// export const SeedersClasses = [_testingSeeders()].flat();
+//export const SeedersClasses = [_requiredSeeders(), _devSeeders()].flat();
+export const SeedersClasses = [_testingSeeders()].flat();

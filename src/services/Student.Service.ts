@@ -21,7 +21,7 @@ export class StudentService implements IStudentService {
         return studentData;
     }
 
-    async getAccountIdByStudentId(studentId: string): Promise<string | null> {
-        return StudentRepository().getAccountIdByStudentId(studentId);
+    async getStudentIdByAccountId(accountId: string | number): Promise<any> {
+        return StudentRepository().getStudentIdByAccountId(String(accountId));
     }
 }

@@ -58,10 +58,10 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
             return student;
         },
 
-        async getAccountIdByStudentId(studentId: string) {
-            const student = await this.createQueryBuilder('student').select('student.account').where('student.id = :studentId', { studentId }).getOne();
+        async getStudentIdByAccountId(accountId: string) {
+            const student = await this.createQueryBuilder('student').where('student.account = :id', { id: accountId }).select('student.id').getOne();
 
-            return student ? student.account.id : null;
+            return student?.id ?? null;
         },
     });
 };
