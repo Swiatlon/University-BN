@@ -1,6 +1,7 @@
 /// <reference types="./@types/express" />
 import 'reflect-metadata';
 import 'tsconfig-paths/register';
+import https from 'https';
 import { AppDataSource } from './configs/database';
 import cors from 'cors';
 import corsOptions from './configs/cors';
@@ -12,6 +13,7 @@ import authRoutes from 'routes/auth.Routes';
 import cookieParser from 'cookie-parser';
 import userInfoRoutes from 'routes/userInfo.Routes';
 import communityRoutes from 'routes/Community.Routes';
+import wakeUpRoutes from 'routes/wakeUp.Routes';
 import { ONE_SECOND_IN_MILISECONDS } from 'constants/general/general.Constants';
 import { searchMiddleware } from 'middlewares/requests/Search.Middleware';
 import { paginationMiddleware } from 'middlewares/requests/Pagination.Middleware';
@@ -35,6 +37,7 @@ app.use('/api', studentRoutes);
 app.use('/api', userInfoRoutes);
 app.use('/auth', authRoutes);
 app.use('/api/community', communityRoutes);
+app.use('/api', wakeUpRoutes);
 
 app.use(errorHandler);
 
@@ -51,6 +54,20 @@ AppDataSource.initialize()
 
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
+
+            //TODO: REFACTOR
+            if (process.env.NODE_ENV !== 'DEVELOPMENT') {
+                const PING_INTERVAL = 15 * 60 * 1000;
+                setInterval(() => {
+                    https
+                        .get(`https://university-bn.onrender.com/api/wakeup`, (res) => {
+                            console.log(`Pinged server to keep it awake - Status Code: ${res.statusCode}`);
+                        })
+                        .on('error', (err) => {
+                            console.error('Ping request failed:', err);
+                        });
+                }, PING_INTERVAL);
+            }
         });
     })
     .catch((error) => {
