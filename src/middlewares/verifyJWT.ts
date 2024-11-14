@@ -1,9 +1,8 @@
 import jwt from 'jsonwebtoken';
-import { Response, NextFunction } from 'express';
+import { Response, NextFunction, Request } from 'express';
 import { HTTP_STATUS } from 'constants/general/general.Constants';
-import { ICustomRequest } from 'types/global/Global.Interfaces';
 
-export const verifyJWT = (req: ICustomRequest, res: Response, next: NextFunction) => {
+export const verifyJWT = (req: Request, res: Response, next: NextFunction) => {
     const authHeader = req.headers.authorization ?? req.headers.Authorization;
 
     if (typeof authHeader !== 'string' || !authHeader.startsWith('Bearer ')) {

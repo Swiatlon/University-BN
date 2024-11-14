@@ -1,19 +1,19 @@
 import { Student } from 'entities/students/Student.Entity';
 import { IUserAllData } from 'types/accounts/Accounts.Interfaces';
-import { ExtendedUserDataWithRoles } from './Services.Types';
+import { ExtendedLoggedAccountData } from './Services.Types';
 import { Event } from 'entities/events/Event.Entity';
 import { RolesEnum } from 'constants/entities/entities.Constants';
-import { ILoginCredentials } from 'types/controllers/Controllers.Interfaces';
+import { ILoginCredentials, IRefreshCredentials } from 'types/controllers/Controllers.Interfaces';
 import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
 import { Grade } from 'entities/studentsGrades/StudentGrades.Entity';
 
-export interface IUserInfo {
-    accountId: string;
+export interface ILoggedAccountData {
+    accountId: number;
     roles: RolesEnum[];
 }
 
 export interface IPersonalDataService {
-    getUserAllData(userInfoData: IUserInfo): Promise<IUserAllData | null>;
+    getUserAllData(userInfoData: ILoggedAccountData): Promise<IUserAllData | null>;
 }
 
 export interface IStudentService {
@@ -21,11 +21,11 @@ export interface IStudentService {
 }
 
 export interface IGradesService {
-    getGradesByStudentId(studentId: string): Promise<Grade[]>;
+    getGradesByStudentId(studentId: number): Promise<Grade[]>;
 }
 
-export interface IUserInfoService {
-    getUserInfo(userInfoData: IUserInfo): Promise<ExtendedUserDataWithRoles | null>;
+export interface ILoggedAccountService {
+    getLoggedAccountData(userInfoData: ILoggedAccountData): Promise<ExtendedLoggedAccountData | null>;
 }
 
 export interface ILoginUniquesService {
@@ -34,7 +34,7 @@ export interface ILoginUniquesService {
 
 export interface ICommunityService {
     getEvents(): Promise<Event[]>;
-    getEventById(eventId: string): Promise<Event | null>;
+    getEventById(eventId: number): Promise<Event | null>;
     getAllEventOrganizers(): Promise<EventOrganizer[]>;
 }
 
@@ -43,7 +43,7 @@ export interface IAuthService {
         accessToken: string;
         refreshToken: string;
         userData: {
-            accountId: string;
+            accountId: number;
             roles: string[];
         };
         sessionData: {
@@ -52,12 +52,7 @@ export interface IAuthService {
         };
     }>;
 
-    refresh(
-        refreshToken: string,
-        sessionID: string,
-        loginSavedSessionID: string,
-        rememberMe: boolean
-    ): Promise<{
+    refreshSession(credentials: IRefreshCredentials): Promise<{
         accessToken: string;
     }>;
 }

@@ -6,7 +6,7 @@ import { IUserAccount } from 'types/accounts/Accounts.Interfaces';
 @Entity('Users_Accounts')
 export class UserAccount implements IUserAccount {
     @PrimaryGeneratedColumn()
-    id!: string;
+    id!: number;
 
     @Column({
         unique: true,

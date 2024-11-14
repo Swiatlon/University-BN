@@ -14,7 +14,7 @@ import { Grade } from 'entities/studentsGrades/StudentGrades.Entity';
 @Entity('Students')
 export class Student extends ExtendedPerson implements IStudent {
     @PrimaryGeneratedColumn()
-    id!: string;
+    id!: number;
 
     @OneToOne(() => StudentConsent, { cascade: true, nullable: true, onDelete: 'CASCADE' })
     @JoinColumn({

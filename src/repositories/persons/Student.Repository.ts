@@ -15,11 +15,11 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
             });
         },
 
-        async findStudentByAccountId(id: string) {
+        async findStudentByAccountId(id: number) {
             return this.createQueryBuilder('student').where('student.account = :id', { id }).getOne();
         },
 
-        async getUserBasicDataByAccountId(accountId: string) {
+        async getUserBasicDataByAccountId(accountId: number) {
             return this.createQueryBuilder('student').where('student.account = :accountId', { accountId }).getOne();
         },
 
@@ -41,8 +41,9 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
             });
         },
 
-        async getStudentAllData(id: string) {
+        async getStudentAllDataByStudentId(studentId: number) {
             const student = await this.createQueryBuilder('student')
+                .where('student.id = :studentId', { studentId })
                 .leftJoinAndSelect('student.address', 'address')
                 .leftJoinAndSelect('student.consent', 'consent')
                 .leftJoinAndSelect('student.degreeCourses', 'degreeCourses')
@@ -52,13 +53,12 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
                 .leftJoinAndSelect('student.modules', 'studentModule')
                 .leftJoinAndSelect('studentModule.module', 'module')
                 .leftJoinAndSelect('module.subjects', 'subjects')
-                .where('student.id = :id', { id })
                 .getOne();
 
             return student;
         },
 
-        async getStudentIdByAccountId(accountId: string) {
+        async getStudentIdByAccountId(accountId: number) {
             const student = await this.createQueryBuilder('student').where('student.account = :id', { id: accountId }).select('student.id').getOne();
 
             return student?.id ?? null;

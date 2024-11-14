@@ -13,18 +13,18 @@ export const ExternalParticipantRepository = (customDataSource: DataSource = App
             });
         },
 
-        async getUserBasicDataByAccountId(accountId: string) {
+        async getUserBasicDataByAccountId(accountId: number) {
             return this.createQueryBuilder('externalParticipant')
                 .innerJoinAndSelect('externalParticipant.organizer', 'eventOrganizer')
                 .where('externalParticipant.account = :accountId', { accountId })
                 .getOne();
         },
 
-        async findExternalParticipantByAccountId(id: string) {
+        async findExternalParticipantByAccountId(id: number) {
             return this.createQueryBuilder('externalParticipant').where('externalParticipant.account = :id', { id }).getOne();
         },
 
-        async findExternalParticipantByOrganizerId(organizerId: string, organizerType: EventOrganizerTypeEnum) {
+        async findExternalParticipantByOrganizerId(organizerId: number, organizerType: EventOrganizerTypeEnum) {
             const externalParticipant = await this.createQueryBuilder('externalParticipant')
                 .select(['externalParticipant.name', 'externalParticipant.surname', 'externalParticipant.organizer', 'externalParticipant.account'])
                 .innerJoinAndSelect('externalParticipant.account', 'userAccount')

@@ -7,7 +7,7 @@ import { IPersonRelations } from '../persons/Persons.Interfaces';
 import { Grade } from 'entities/studentsGrades/StudentGrades.Entity';
 
 export interface IStudent extends IPersonRelations {
-    id: string;
+    id: number;
     degreeCourses: StudentDegreeCourse[];
     degreePaths: StudentDegreePath[];
     modules: StudentModule[];

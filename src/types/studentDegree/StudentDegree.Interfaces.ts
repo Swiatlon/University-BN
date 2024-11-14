@@ -4,26 +4,26 @@ import { DegreePath } from 'entities/courses/DegreePath.Entity';
 import { Module } from 'entities/courses/Module.Entity';
 
 export interface IStudentDegreeCourse {
-    id: string;
+    id: number;
     student: Student;
     degreeCourse: DegreeCourse;
 }
 
 export interface IStudentDegreePath {
-    id: string;
+    id: number;
     student: Student;
     degreePath: DegreePath;
     degreeCourse: DegreeCourse;
 }
 
 export interface IStudentModule {
-    id: string;
+    id: number;
     student: Student;
     module: Module;
 }
 
 export interface IStudentWithDegreeCourse {
-    studentDegreeCourse_student_id: string;
+    studentDegreeCourse_student_id: number;
 }
 
 export interface IDataFetcherResult {
@@ -36,8 +36,8 @@ export interface IDataFetcher {
 }
 
 export interface IDegreeTree {
-    [degreeCourseId: string]: {
-        [degreePathId: string]: Module[];
+    [degreeCourseId: number]: {
+        [degreePathId: number]: Module[];
     };
 }
 

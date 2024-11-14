@@ -31,8 +31,12 @@ export class CreateStudentsGrades extends CustomSeederWithTimer {
                     for (let j = 0; j < batchSize; j++) {
                         const student = faker.helpers.arrayElement(allStudents.filter((s) => !assignedGradesIds.has(s.id)));
 
-                        const degreeCourses = await dataSource.getRepository(StudentDegreeCourse).find({ where: { student: student }, relations: ['degreeCourse', 'degreeCourse.subjects'] });
-                        const studentModules = await dataSource.getRepository(StudentModule).find({ where: { student: student }, relations: ['module', 'module.subjects'] });
+                        const degreeCourses = await dataSource
+                            .getRepository(StudentDegreeCourse)
+                            .find({ where: { student: student }, relations: ['degreeCourse', 'degreeCourse.subjects'] });
+                        const studentModules = await dataSource
+                            .getRepository(StudentModule)
+                            .find({ where: { student: student }, relations: ['module', 'module.subjects'] });
 
                         const enrolledSubjects = new Set<Subject>();
 

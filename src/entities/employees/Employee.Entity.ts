@@ -11,7 +11,7 @@ import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
 @Entity('Employees')
 export class Employee extends ExtendedPerson implements IEmployee {
     @PrimaryGeneratedColumn()
-    id!: string;
+    id!: number;
 
     @OneToOne(() => EmployeeConsent, { cascade: true, nullable: true, onDelete: 'CASCADE' })
     @JoinColumn({

@@ -35,7 +35,10 @@ export const EventOrganizerRepository = (dataSource: DataSource = AppDataSource)
                             return company;
                         }
                         case EventOrganizerTypeEnum.EXTERNAL_PARTICIPANT: {
-                            const externalParticipant = await ExternalParticipantRepository().findExternalParticipantByOrganizerId(organizer.id, organizer.organizerType);
+                            const externalParticipant = await ExternalParticipantRepository().findExternalParticipantByOrganizerId(
+                                organizer.id,
+                                organizer.organizerType
+                            );
                             return externalParticipant;
                         }
                         default:

@@ -5,10 +5,11 @@ import { IRoles } from 'types/accounts/Accounts.Interfaces';
 @Entity('Roles')
 export class Role implements IRoles {
     @PrimaryGeneratedColumn()
-    id!: string;
+    id!: number;
 
     @Column({
         nullable: false,
+        unique: true,
     })
     name!: string;
 

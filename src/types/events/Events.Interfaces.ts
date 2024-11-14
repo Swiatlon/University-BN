@@ -3,7 +3,7 @@ import { Event } from 'entities/events/Event.Entity';
 import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
 
 export interface IEventOrganizer {
-    id: string;
+    id: number;
     organizerType: EventOrganizerTypeEnum;
     events: Event[];
 }

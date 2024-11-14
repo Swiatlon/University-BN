@@ -6,5 +6,8 @@ export interface ILoginCredentials {
 }
 
 export interface IRefreshCredentials {
+    refreshToken: string;
     sessionID: string;
+    loginSavedSessionID: string;
+    rememberMe: boolean;
 }

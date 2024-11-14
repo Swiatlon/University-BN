@@ -22,13 +22,13 @@ export interface IExtendedPersonSchema extends Omit<IBasicPersonSchema, 'nationa
 }
 
 export interface IConsent {
-    id: string;
+    id: number;
     permissionForPhoto: boolean;
     permissionForDataProcessing: boolean;
 }
 
 export interface IAddress {
-    id: string;
+    id: number;
     country: string;
     city: string;
     postalCode: string;

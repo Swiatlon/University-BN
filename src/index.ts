@@ -4,42 +4,46 @@ import 'tsconfig-paths/register';
 import { AppDataSource } from './configs/database';
 import cors from 'cors';
 import corsOptions from './configs/cors';
-import errorHandler from './middlewares/errorHandler';
+import errorHandler from './middlewares/ErrorHandler';
 import express from 'express';
 import { runSeeders } from 'typeorm-extension';
-import studentRoutes from 'routes/student.Routes';
-import authRoutes from 'routes/auth.Routes';
+import studentsRoutes from 'routes/Students.Routes';
+import authRoutes from 'routes/Auth.Routes';
 import cookieParser from 'cookie-parser';
-import userInfoRoutes from 'routes/userInfo.Routes';
-import communityRoutes from 'routes/community.Routes';
-import gradesRoutes from 'routes/grades.Routes';
+import loggedAccountRoutes from 'routes/LoggedAccount.Routes';
+import communityRoutes from 'routes/Community.Routes';
+import gradesRoutes from 'routes/Grades.Routes';
 import { ONE_SECOND_IN_MILISECONDS } from 'constants/general/general.Constants';
 import { searchMiddleware } from 'middlewares/requests/Search.Middleware';
 import { paginationMiddleware } from 'middlewares/requests/Pagination.Middleware';
 import { selectFieldsMiddleware } from 'middlewares/requests/SelectFields.Middleware';
-import { cleanupRequestContextMiddleware } from 'middlewares/requests/CleanupRequestContext.Middleware.ts';
+import { cleanupRequestContextMiddleware } from 'middlewares/requests/CleanupRequestContext.Middleware';
 
 const app = express();
-const DEFAULT_PORT = 3000;
-const PORT = process.env.PORT ?? DEFAULT_PORT;
+const PORT = process.env.PORT ?? 3000;
 
+// EXTERNAL MIDDLEWARES
 app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
+// PRE-ROUTES MIDLEWARES
 app.use(cleanupRequestContextMiddleware);
 app.use(paginationMiddleware);
 app.use(searchMiddleware);
 app.use(selectFieldsMiddleware);
 
-app.use('/api', studentRoutes);
-app.use('/api', userInfoRoutes);
-app.use('/api', gradesRoutes);
-app.use('/auth', authRoutes);
+// ROUTES
+app.use('/api/auth', authRoutes);
+app.use('/api/loggedAccount', loggedAccountRoutes);
+app.use('/api/students', studentsRoutes);
+app.use('/api/grades', gradesRoutes);
 app.use('/api/community', communityRoutes);
 
+// POST-ROUTES MIDLEWARES
 app.use(errorHandler);
 
+// SERVER
 AppDataSource.initialize()
     .then(async () => {
         console.log('Succesfully connected to DB!');

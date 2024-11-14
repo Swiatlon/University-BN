@@ -13,7 +13,7 @@ export class CommunityService implements ICommunityService {
         return await EventsRepository().getAllEvents();
     }
 
-    async getEventById(eventId: string) {
+    async getEventById(eventId: number) {
         return await EventsRepository().getEventById(eventId);
     }
 
@@ -21,11 +21,11 @@ export class CommunityService implements ICommunityService {
         return await EventsRepository().saveEvent(createEventDto);
     }
 
-    async updateEvent(eventId: string, updateEventDto: CreateEventDto) {
+    async updateEvent(eventId: number, updateEventDto: CreateEventDto) {
         return await EventsRepository().updateEvent(eventId, updateEventDto);
     }
 
-    async deleteEvent(eventId: string): Promise<boolean> {
+    async deleteEvent(eventId: number): Promise<boolean> {
         return await EventsRepository().deleteEvent(eventId);
     }
 
@@ -33,3 +33,5 @@ export class CommunityService implements ICommunityService {
         return await EventOrganizerRepository().getAllEventOrganizers();
     }
 }
+
+export const communityService = new CommunityService();

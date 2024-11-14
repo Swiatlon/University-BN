@@ -31,9 +31,9 @@ export enum GradeValueEnum {
 export const gradeValueEnumArray = Object.values(GradeValueEnum).filter(Number) as GradeValueEnum[];
 
 export enum PassDateAttemptEnum {
-    FirstAttempt = 0,
-    SecondAttempt = 1,
-    ThirdAttempt = 2,
-    FourthAttempt = 3,
+    FirstAttempt = 1,
+    SecondAttempt = 2,
+    ThirdAttempt = 3,
+    FourthAttempt = 4,
 }
 export const passDateAttemptEnumArray = Object.values(PassDateAttemptEnum).filter(Number) as PassDateAttemptEnum[];

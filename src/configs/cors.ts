@@ -6,6 +6,7 @@ const allowedOrigins = [process.env.FRONT_END_ADDRESS];
 const corsOptions: CorsOptions = {
     credentials: true,
     optionsSuccessStatus: HTTP_STATUS.OK.code,
+
     origin: (origin, callback) => {
         if (allowedOrigins.includes(origin) || !origin) {
             callback(null, true);
