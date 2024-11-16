@@ -15,14 +15,14 @@ import { CreateStudentsGrades } from './grades/CreateStudentsGrades.Seeder';
 
 const _devSeeders = () => {
     return [
-        CreateStudentAllData,
-        CreateMissingAccountsForStudents,
-        CreateEmployeeAllData,
-        CreateMissingAccountsForEmployees,
-        CreateRolesForAccounts,
-        StudentsDegreeSeeder,
-        CreateCompanyAllData,
-        // CreateStudentsGrades,
+        // CreateStudentAllData,
+        // CreateMissingAccountsForStudents,
+        // CreateEmployeeAllData,
+        // CreateMissingAccountsForEmployees,
+        // CreateRolesForAccounts,
+        // StudentsDegreeSeeder,
+        // CreateCompanyAllData,
+        CreateStudentsGrades,
     ];
 };
 
@@ -34,5 +34,5 @@ const _testingSeeders = () => {
     return [];
 };
 
-// export const SeedersClasses = [_requiredSeeders(), _devSeeders()].flat();
-export const SeedersClasses = [_testingSeeders()].flat();
+export const SeedersClasses = [_requiredSeeders(), _devSeeders()].flat();
+// export const SeedersClasses = [_testingSeeders()].flat();

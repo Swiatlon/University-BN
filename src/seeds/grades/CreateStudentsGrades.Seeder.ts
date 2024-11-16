@@ -29,7 +29,7 @@ export class CreateStudentsGrades extends CustomSeederWithTimer {
             try {
                 await dataSource.transaction(async (transactionalEntityManager) => {
                     for (let j = 0; j < batchSize; j++) {
-                        const student = faker.helpers.arrayElement(allStudents.filter((s) => !assignedGradesIds.has(s.id)));
+                        const student = faker.helpers.arrayElement(allStudents.filter((s) => !assignedGradesIds.has(String(s.id))));
 
                         const degreeCourses = await dataSource
                             .getRepository(StudentDegreeCourse)

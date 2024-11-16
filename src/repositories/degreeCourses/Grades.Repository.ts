@@ -8,8 +8,8 @@ export const GradesRepository = (customDataSource: DataSource = AppDataSource) =
     return dataSource.getRepository(Grade).extend({
         async getGradesByStudentId(studentId: number) {
             return this.createQueryBuilder('grades')
-                .leftJoinAndSelect('grades.subject', 'subject')
                 .where('grades.studentId = :studentId', { studentId })
+                .leftJoinAndSelect('grades.subject', 'subject')
                 .getMany();
         },
     });
