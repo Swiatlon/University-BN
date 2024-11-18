@@ -55,13 +55,10 @@ AppDataSource.initialize()
 
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
-            console.log('Before if');
 
             //TODO: REFACTOR
             if (process.env.NODE_ENV !== 'DEVELOPMENT') {
-                console.log('after if');
                 setInterval(() => {
-                    console.log('inside set interval');
                     https
                         .get(`https://university-bn.onrender.com/api/wakeup`, (res) => {
                             console.log(`Pinged server to keep it awake - Status Code: ${res.statusCode}`);
