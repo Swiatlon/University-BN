@@ -8,7 +8,7 @@ import { IExternalParticipant } from 'types/persons/externalParticipants/Externa
 @Entity('External_Participants')
 export class ExternalParticipant extends BasicPerson implements IExternalParticipant {
     @PrimaryGeneratedColumn()
-    id!: string;
+    id!: number;
 
     @ManyToOne(() => UserAccount, { nullable: false })
     @JoinColumn({ name: 'account_id' })

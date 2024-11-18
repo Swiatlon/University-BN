@@ -1,20 +1,17 @@
-import { DataSource } from 'typeorm';
-import { Role } from 'entities/accounts/Role.Entity';
 import { CustomSeederWithTimer } from 'seeds/CustomSeederWithTimer';
 import { rolesEnumArray } from 'constants/entities/entities.Constants';
+import { RolesRepository } from 'repositories/roles/Roles.Repository';
 
 export class CreateRoles extends CustomSeederWithTimer {
-    public async seed(dataSource: DataSource): Promise<void> {
-        const roleRepository = dataSource.getRepository(Role);
+    protected async beforeSeed(): Promise<boolean> {
+        const existingRoleCount = await RolesRepository().getRolesAmount();
 
-        for (let i = 0; i < rolesEnumArray.length; i++) {
-            const role = rolesEnumArray[i];
-            const roleExists = await roleRepository.findOneBy({ name: role });
+        return existingRoleCount === 0;
+    }
 
-            if (!roleExists) {
-                const newRole = roleRepository.create({ name: role });
-                await roleRepository.save(newRole);
-            }
+    protected async seed(): Promise<void> {
+        for (const roleName of rolesEnumArray) {
+            await RolesRepository().createAndSaveRole(roleName);
         }
     }
 }

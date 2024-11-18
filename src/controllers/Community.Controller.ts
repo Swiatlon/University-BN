@@ -1,12 +1,10 @@
 import type { Request, Response } from 'express';
 import { HTTP_STATUS } from 'constants/general/general.Constants';
 import asyncHandler from 'express-async-handler';
-import { CommunityService } from 'services/Community.Service';
+import { communityService } from 'services/Community.Service';
 import { CreateEventDto } from 'dto/events/CreateEvent.Dto';
 
-const communityService = new CommunityService();
-
-const findAllTeachers = asyncHandler(async (req: Request, res: Response) => {
+const getAllTeachers = asyncHandler(async (req: Request, res: Response) => {
     const teachers = await communityService.getAllTeachers();
 
     res.status(HTTP_STATUS.OK.code).json(teachers);
@@ -18,7 +16,7 @@ const getEvents = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const getEventById = asyncHandler(async (req: Request, res: Response) => {
-    const event = await communityService.getEventById(req.params.id);
+    const event = await communityService.getEventById(Number(req.params.id));
     res.status(HTTP_STATUS.OK.code).json(event);
 });
 
@@ -33,7 +31,7 @@ const getAllEventOrganizers = asyncHandler(async (req: Request, res: Response) =
 });
 
 const updateEvent = asyncHandler(async (req: Request, res: Response) => {
-    const updatedEvent = await communityService.updateEvent(req.params.id, req.body as CreateEventDto);
+    const updatedEvent = await communityService.updateEvent(Number(req.params.id), req.body as CreateEventDto);
 
     if (!updateEvent) {
         res.status(HTTP_STATUS.NOT_FOUND.code).json({ message: 'Event not found' });
@@ -44,7 +42,7 @@ const updateEvent = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const deleteEvent = asyncHandler(async (req: Request, res: Response) => {
-    const wasDeleted = await communityService.deleteEvent(req.params.id);
+    const wasDeleted = await communityService.deleteEvent(Number(req.params.id));
 
     if (!wasDeleted) {
         res.status(HTTP_STATUS.NOT_FOUND.code).json({ message: 'Event not found' });
@@ -57,7 +55,7 @@ const deleteEvent = asyncHandler(async (req: Request, res: Response) => {
 export const CommunityController = {
     getEvents,
     getEventById,
-    findAllTeachers,
+    getAllTeachers,
     createEvent,
     updateEvent,
     deleteEvent,

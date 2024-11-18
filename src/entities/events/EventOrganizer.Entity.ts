@@ -6,7 +6,7 @@ import { IEventOrganizer } from 'types/events/Events.Interfaces';
 @Entity('Event_Organizers')
 export class EventOrganizer implements IEventOrganizer {
     @PrimaryGeneratedColumn()
-    id!: string;
+    id!: number;
 
     @Column({
         type: 'enum',

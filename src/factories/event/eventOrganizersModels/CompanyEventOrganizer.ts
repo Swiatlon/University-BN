@@ -3,7 +3,7 @@ import { EventOrganizerTypeEnum } from 'constants/entities/entities.Constants';
 import { IEventOrganizer } from 'types/events/Events.Interfaces';
 
 export class CompanyEventOrganizer extends EventOrganizer implements IEventOrganizer {
-    constructor(organizerId: string) {
+    constructor(organizerId: number) {
         super();
         this.organizerType = EventOrganizerTypeEnum.COMPANY;
         this.id = organizerId;

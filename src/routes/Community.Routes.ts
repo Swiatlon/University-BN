@@ -1,12 +1,12 @@
 import { CommunityController } from 'controllers/Community.Controller';
 import { CreateEventDto } from 'dto/events/CreateEvent.Dto';
 import express from 'express';
-import { validateDto } from 'middlewares/validateDto';
-import { verifyJWT } from 'middlewares/verifyJWT';
+import { validateDto } from 'middlewares/ValidateDto';
+import { verifyJWT } from 'middlewares/VerifyJWT';
 
 const router = express.Router();
 
-router.get('/getAllTeachers', verifyJWT, CommunityController.findAllTeachers);
+router.get('/getAllTeachers', verifyJWT, CommunityController.getAllTeachers);
 
 router.get('/eventOrganizers', verifyJWT, CommunityController.getAllEventOrganizers);
 

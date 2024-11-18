@@ -4,7 +4,7 @@ import { ExternalParticipant } from 'entities/externalParticipants/ExternalParti
 import { IExternalParticipant } from 'types/persons/externalParticipants/ExternalParticipants.Interfaces';
 
 export interface ICompany {
-    id: string;
+    id: number;
     name: string;
     address: string;
     account: UserAccount;
@@ -13,7 +13,7 @@ export interface ICompany {
 }
 
 export interface ICompanyExternalVisitor {
-    id: string;
+    id: number;
     company: ICompany;
     externalParticipant: IExternalParticipant;
 }

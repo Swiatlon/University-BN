@@ -6,6 +6,10 @@ export const DegreeCoursesRepository = (customDataSource: DataSource = AppDataSo
     const dataSource = customDataSource;
 
     return dataSource.getRepository(DegreeCourse).extend({
+        async getDegreeCoursesAmount() {
+            return this.count();
+        },
+
         async getAllDegreeCourses() {
             const degreeCourses = await this.find({
                 select: {

@@ -42,7 +42,10 @@ export class CreateCompanyAllData extends CustomSeederWithTimer {
                             const externalParticipant = externalParicipantFactory.create(person, externalAccount, [company]);
 
                             if (Math.random() < 0.5) {
-                                const externalEventOrganizer = eventOrganizerFactory.create(EventOrganizerTypeEnum.EXTERNAL_PARTICIPANT, externalParticipant.id);
+                                const externalEventOrganizer = eventOrganizerFactory.create(
+                                    EventOrganizerTypeEnum.EXTERNAL_PARTICIPANT,
+                                    externalParticipant.id
+                                );
                                 await transactionalEntityManager.save(EventOrganizer, externalEventOrganizer);
 
                                 externalParticipant.organizer = externalEventOrganizer;

@@ -16,13 +16,16 @@ export const EmployeeRepository = (customDataSource: DataSource = AppDataSource)
                 account: IsNull(),
             });
         },
-        async findEmployeeByAccountId(id: string) {
+        async findEmployeeByAccountId(id: number) {
             return this.createQueryBuilder('employee').where('employee.account = :id', { id }).getOne();
         },
-        async getUserBasicDataByAccountId(accountId: string) {
-            return this.createQueryBuilder('employee').innerJoinAndSelect('employee.organizer', 'eventOrganizer').where('employee.account = :accountId', { accountId }).getOne();
+        async getUserBasicDataByAccountId(accountId: number) {
+            return this.createQueryBuilder('employee')
+                .innerJoinAndSelect('employee.organizer', 'eventOrganizer')
+                .where('employee.account = :accountId', { accountId })
+                .getOne();
         },
-        async getEmployeeAllData(id: string) {
+        async getEmployeeAllData(id: number) {
             return this.createQueryBuilder('employee')
                 .innerJoinAndSelect('employee.address', 'employeeAddress', 'employeeAddress.id = employee.address')
                 .innerJoinAndSelect('employee.consentId', 'employeeConsent', 'employeeConsent.id = employee.consentId')
@@ -53,7 +56,7 @@ export const EmployeeRepository = (customDataSource: DataSource = AppDataSource)
             return applyFiltersToQuery(teachersQuery);
         },
 
-        async findEmployeeByOrganizerId(organizerId: string, organizerType: EventOrganizerTypeEnum) {
+        async findEmployeeByOrganizerId(organizerId: number, organizerType: EventOrganizerTypeEnum) {
             const employee = await this.createQueryBuilder('employee')
                 .select(['employee.name', 'employee.surname', 'employee.organizer', 'employee.account'])
                 .innerJoinAndSelect('employee.account', 'userAccount')

@@ -5,7 +5,7 @@ import { Module } from 'entities/courses/Module.Entity';
 import { Subject } from 'entities/courses/Subject.Entity';
 
 export interface ICoursesBaseSchema {
-    id: string;
+    id: number;
     name: string;
 }
 

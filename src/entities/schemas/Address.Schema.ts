@@ -3,7 +3,7 @@ import { IAddress } from 'types/persons/persons/Persons.Interfaces';
 
 export class Address implements IAddress {
     @PrimaryGeneratedColumn()
-    id!: string;
+    id!: number;
 
     @Column({
         nullable: false,

@@ -16,8 +16,9 @@ export class StudentService implements IStudentService {
         return this.studentRepository.save(student);
     }
 
-    async getStudentAllData(studentId: string): Promise<Student | null> {
-        const studentData = await StudentRepository().getStudentAllData(studentId);
-        return studentData;
+    async getStudentAllData(studentId: number): Promise<Student | null> {
+        return await StudentRepository().getStudentAllDataByStudentId(studentId);
     }
 }
+
+export const studentService = new StudentService();

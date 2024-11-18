@@ -7,7 +7,7 @@ import { ICompany } from 'types/companies/Companies.Interfaces';
 @Entity('Companies')
 export class Company implements ICompany {
     @PrimaryGeneratedColumn()
-    id!: string;
+    id!: number;
 
     @Column({
         nullable: false,

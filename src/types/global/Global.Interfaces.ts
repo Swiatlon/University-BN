@@ -1,25 +1,26 @@
+import { RolesEnum } from 'constants/entities/entities.Constants';
 import { Request } from 'express';
 
 export interface ICookie {
-    jwt?: string;
-    session: {
+    refreshToken?: string;
+    sessionData: {
         sessionID: string;
         rememberMe: boolean;
+    };
+    loggedUserData: {
+        accountId: number;
+        roles: RolesEnum[];
     };
 }
 
 export interface IUserPayload {
     email: string;
     login: string;
-    id: string;
+    id: number;
 }
 
 export interface ICustomError extends Error {
     statusCode?: number;
-}
-
-export interface ICustomRequest extends Request {
-    user?: string;
 }
 
 export interface ICustomVisbilityFieldRequest extends Request {
