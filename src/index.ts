@@ -22,6 +22,7 @@ import { cleanupRequestContextMiddleware } from 'middlewares/requests/CleanupReq
 
 const app = express();
 const DEFAULT_PORT = 3000;
+const PING_INTERVAL = 14 * 60 * 1000;
 const PORT = process.env.PORT ?? DEFAULT_PORT;
 
 app.use(cors(corsOptions));
@@ -54,11 +55,13 @@ AppDataSource.initialize()
 
         app.listen(PORT, () => {
             console.log(`Server running on port ${PORT}`);
+            console.log('Before if');
 
             //TODO: REFACTOR
             if (process.env.NODE_ENV !== 'DEVELOPMENT') {
-                const PING_INTERVAL = 15 * 60 * 1000;
+                console.log('after if');
                 setInterval(() => {
+                    console.log('inside set interval');
                     https
                         .get(`https://university-bn.onrender.com/api/wakeup`, (res) => {
                             console.log(`Pinged server to keep it awake - Status Code: ${res.statusCode}`);
