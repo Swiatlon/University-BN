@@ -1,8 +1,8 @@
 import { CommunityController } from 'controllers/Community.Controller';
 import { CreateEventDto } from 'dto/events/CreateEvent.Dto';
 import express from 'express';
-import { validateDto } from 'middlewares/ValidateDto';
-import { verifyJWT } from 'middlewares/VerifyJWT';
+import { validateDto } from 'middlewares/validateDto/ValidateDto';
+import { verifyJWT } from 'middlewares/verifyJwt/verifyJWT';
 
 const router = express.Router();
 

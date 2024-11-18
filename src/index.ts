@@ -5,7 +5,7 @@ import https from 'https';
 import { AppDataSource } from './configs/database';
 import cors from 'cors';
 import corsOptions from './configs/cors';
-import errorHandler from './middlewares/ErrorHandler';
+import errorHandler from './middlewares/errorHandler/ErrorHandler';
 import express from 'express';
 import { runSeeders } from 'typeorm-extension';
 import studentsRoutes from 'routes/Students.Routes';
@@ -65,6 +65,7 @@ AppDataSource.initialize()
             //TODO: REFACTOR
             if (process.env.NODE_ENV !== 'DEVELOPMENT') {
                 setInterval(() => {
+                    console.log('Pinged!');
                     https
                         .get(`https://university-bn.onrender.com/api/wakeup`, (res) => {
                             console.log(`Pinged server to keep it awake - Status Code: ${res.statusCode}`);

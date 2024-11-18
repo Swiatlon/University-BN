@@ -1,6 +1,6 @@
 import express from 'express';
 import { LoggedAccountController } from 'controllers/LoggedAccount.Controller';
-import { verifyJWT } from 'middlewares/VerifyJWT';
+import { verifyJWT } from 'middlewares/verifyJwt/verifyJWT';
 
 const router = express.Router();
 

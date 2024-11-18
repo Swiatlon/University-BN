@@ -1,7 +1,7 @@
 import express from 'express';
-import { loginLimiter } from 'middlewares/LoginLimiter';
+import { loginLimiter } from 'middlewares/loginLimiter/LoginLimiter';
 import { AuthController } from 'controllers/Auth.Controller';
-import { validateDto } from 'middlewares/ValidateDto';
+import { validateDto } from 'middlewares/validateDto/ValidateDto';
 import { AccountCredentialsDto } from 'dto/userAccount/CreateUserAccount.Dto';
 
 const router = express.Router();

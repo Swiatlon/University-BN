@@ -1,6 +1,6 @@
 import express from 'express';
 import { gradesController } from 'controllers/Grades.Controller';
-import { verifyJWT } from 'middlewares/VerifyJWT';
+import { verifyJWT } from 'middlewares/verifyJwt/verifyJWT';
 import hasAccessToEndpointData from 'middlewares/hasAccessToEndpointData/HasAccessToEndpointData.Middleware';
 import { RolesEnum } from 'constants/entities/entities.Constants';
 
