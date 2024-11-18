@@ -13,11 +13,11 @@ export const CompanyRepository = (customDataSource: DataSource = AppDataSource) 
             });
         },
 
-        async findCompanyByAccountId(id: string) {
+        async findCompanyByAccountId(id: number) {
             return this.createQueryBuilder('company').where('company.account = :id', { id }).getOne();
         },
 
-        async findCompanyByOrganizerId(organizerId: string, organizerType: EventOrganizerTypeEnum) {
+        async findCompanyByOrganizerId(organizerId: number, organizerType: EventOrganizerTypeEnum) {
             const company = await this.createQueryBuilder('company')
                 .select(['company.name', 'company.account', 'company.organizer'])
                 .innerJoinAndSelect('company.account', 'userAccount')

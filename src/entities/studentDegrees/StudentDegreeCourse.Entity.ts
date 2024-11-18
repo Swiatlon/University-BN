@@ -6,7 +6,7 @@ import { IStudentDegreeCourse } from 'types/studentDegree/StudentDegree.Interfac
 @Entity('Student_Degree_Courses')
 export class StudentDegreeCourse implements IStudentDegreeCourse {
     @PrimaryGeneratedColumn()
-    id: string;
+    id: number;
 
     @ManyToOne(() => Student, (student) => student.degreeCourses)
     @JoinColumn({ name: 'student_id' })

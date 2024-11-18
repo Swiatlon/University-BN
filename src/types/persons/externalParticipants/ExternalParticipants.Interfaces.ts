@@ -4,7 +4,7 @@ import { BasicPerson } from 'entities/schemas/BasicPerson.Schema';
 import { EventOrganizer } from 'entities/events/EventOrganizer.Entity';
 
 export interface IExternalParticipant extends BasicPerson {
-    id: string;
+    id: number;
     account: UserAccount;
     organizer?: EventOrganizer;
     companies?: Company[];

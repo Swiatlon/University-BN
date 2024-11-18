@@ -1,18 +1,18 @@
 import { Role } from 'entities/accounts/Role.Entity';
 import { IAddress, IConsent, IExtendedPersonSchema } from 'types/persons/persons/Persons.Interfaces';
 
-export interface ICreateAccountDto {
+export interface IAccountCredentials {
     identifier: string;
     password: string;
 }
 
 export interface IRoles {
-    id: string;
+    id: number;
     name: string;
 }
 
 export interface IUserAccount {
-    id: string;
+    id: number;
     login: string;
     email: string;
     password: string;
@@ -22,12 +22,12 @@ export interface IUserAccount {
 }
 
 export interface IUserAllData extends IExtendedPersonSchema {
-    id: string;
+    id: number;
     address: IAddress;
     consents: IConsent;
 }
 
 export interface IUserAccountRole {
-    userAccountId: string;
+    userAccountId: number;
     userAccountRoles: string;
 }

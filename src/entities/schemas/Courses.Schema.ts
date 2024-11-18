@@ -4,7 +4,7 @@ import { ICoursesBaseSchema } from 'types/courses/Courses.Interfaces';
 
 export abstract class CoursesBaseSchema implements ICoursesBaseSchema {
     @PrimaryGeneratedColumn()
-    id!: string;
+    id!: number;
 
     @Column({
         nullable: false,

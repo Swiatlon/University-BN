@@ -5,7 +5,7 @@ import { ExternalEventOrganizer } from './eventOrganizersModels/ExternalEventOrg
 import { EmployeeEventOrganizer } from './eventOrganizersModels/EmployeeEventOrganizer';
 
 export class EventOrganizerFactory {
-    create(type: EventOrganizerTypeEnum, organizerId: string): EventOrganizer {
+    create(type: EventOrganizerTypeEnum, organizerId: number): EventOrganizer {
         let eventOrganizer: EventOrganizer;
 
         switch (type) {

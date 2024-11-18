@@ -1,5 +1,8 @@
 declare namespace Express {
     interface Request {
+        params: {
+            id?: number;
+        };
         query: {
             pagination?: {
                 page?: number;

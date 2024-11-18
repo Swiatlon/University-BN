@@ -9,12 +9,15 @@ export const EventsRepository = (dataSource: DataSource = AppDataSource) => {
             return this.createQueryBuilder('event').getMany();
         },
 
-        async getEventById(eventId: string): Promise<Event | null> {
+        async getEventById(eventId: number): Promise<Event | null> {
             return this.createQueryBuilder('event').leftJoinAndSelect('event.organizators', 'organizer').where('event.id = :id', { id: eventId }).getOne();
         },
 
-        async findByOrganizer(organizerId: string): Promise<Event[]> {
-            return this.createQueryBuilder('event').innerJoin('event.organizators', 'organizer').where('organizer.id = :organizerId', { organizerId }).getMany();
+        async findByOrganizer(organizerId: number): Promise<Event[]> {
+            return this.createQueryBuilder('event')
+                .innerJoin('event.organizators', 'organizer')
+                .where('organizer.id = :organizerId', { organizerId })
+                .getMany();
         },
 
         async saveEvent(createEventDto: CreateEventDto): Promise<Event> {
@@ -23,7 +26,7 @@ export const EventsRepository = (dataSource: DataSource = AppDataSource) => {
             return await this.save(event);
         },
 
-        async updateEvent(eventId: string, updateEventDto: Partial<CreateEventDto>): Promise<Event | null> {
+        async updateEvent(eventId: number, updateEventDto: Partial<CreateEventDto>): Promise<Event | null> {
             const { organizators, ...updateData } = updateEventDto;
 
             await this.update({ id: Number(eventId) }, updateData);
@@ -40,7 +43,7 @@ export const EventsRepository = (dataSource: DataSource = AppDataSource) => {
             return await this.createQueryBuilder('event').where('event.id = :id', { id: eventId }).getOne();
         },
 
-        async deleteEvent(eventId: string): Promise<boolean> {
+        async deleteEvent(eventId: number): Promise<boolean> {
             const event = await this.findOne({ where: { id: Number(eventId) }, relations: ['organizators'] });
 
             if (!event) {
