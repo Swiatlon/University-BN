@@ -35,11 +35,11 @@ export const applyAllFieldsSearch = <T extends ObjectLiteral>(queryBuilder: Sele
     if (isAllFieldsSearch(search)) {
         const alias = queryBuilder.alias;
         const mainAlias = queryBuilder.expressionMap.mainAlias;
+        const allFields = mainAlias?.metadata.columns.filter((col) => col.type === String).map((col) => col.propertyName) ?? [];
+        const conditions = allFields.map((field) => `Lower(${alias}.${field}) LIKE :search`);
+        const query = queryBuilder.andWhere(`(${conditions.join(' OR ')})`, { search: `%${search.lookupText.toLowerCase()}%` });
 
-        const allFields = mainAlias?.metadata.columns.map((col) => col.propertyName) ?? [];
-        const conditions = allFields.map((field) => `LOWER(${alias}.${field}) LIKE :search`);
-
-        return queryBuilder.andWhere(`(${conditions.join(' OR ')})`, { search: `%${search.lookupText.toLowerCase()}%` });
+        return query;
     }
 
     return queryBuilder;
