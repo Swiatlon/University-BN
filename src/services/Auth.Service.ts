@@ -64,7 +64,6 @@ export class AuthService implements IAuthService {
             jwt.verify(refreshToken, String(process.env.REFRESH_TOKEN_SECRET), (err, decodedToken) => {
                 if (err) {
                     reject(err);
-                    return;
                 }
 
                 resolve(decodedToken as IUserPayload);

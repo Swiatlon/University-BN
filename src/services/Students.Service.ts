@@ -1,7 +1,12 @@
 import { AppDataSource } from 'configs/database';
+import { HTTP_STATUS } from 'constants/general/general.Constants';
+import { IStudentTodoDto } from 'dto/studentTodo/CreateStudentTodo';
 import { Student } from 'entities/students/Student.Entity';
+import { StudentTodo } from 'entities/students/StudentTodos.Entity';
+import { ApiError } from 'middlewares/apiErrors/ApiError';
 import { StudentRepository } from 'repositories/persons/Student.Repository';
-import { Repository } from 'typeorm';
+import { StudentTodoRepository } from 'repositories/studentTodo/StudentTodo.Repository';
+import { DeleteResult, Repository } from 'typeorm';
 import { IStudentService } from 'types/services/Services.Interfaces';
 
 export class StudentService implements IStudentService {
@@ -18,6 +23,42 @@ export class StudentService implements IStudentService {
 
     async getStudentAllData(studentId: number): Promise<Student | null> {
         return await StudentRepository().getStudentAllDataByStudentId(studentId);
+    }
+
+    async getStudentTodos(studentId: number): Promise<StudentTodo[]> {
+        return await StudentTodoRepository().getStudentTodos(studentId);
+    }
+
+    async createStudentTodo(todoData: Omit<IStudentTodoDto, 'id'>): Promise<StudentTodo> {
+        const student = await this.studentRepository.findOne({ where: { id: todoData.student } });
+
+        if (!student) {
+            throw new ApiError(HTTP_STATUS.NOT_FOUND.code, 'Student not found');
+        }
+
+        const todo = StudentTodoRepository().create({ ...todoData, student });
+
+        return await StudentTodoRepository().save(todo);
+    }
+
+    async removeStudentTodo(todoId: number): Promise<DeleteResult> {
+        const result = await StudentTodoRepository().deleteStudentTodoById(todoId);
+
+        if (result.affected === 0) {
+            throw new ApiError(HTTP_STATUS.NOT_FOUND.code, 'Todo not found');
+        }
+
+        return result;
+    }
+
+    async editStudentTodo(todoId: number, updatedData: IStudentTodoDto): Promise<StudentTodo | null> {
+        const updatedTodo = await StudentTodoRepository().updateStudentTodoById(todoId, updatedData);
+
+        if (!updatedTodo) {
+            throw new ApiError(HTTP_STATUS.NOT_FOUND.code, 'Todo not found');
+        }
+
+        return updatedTodo;
     }
 }
 

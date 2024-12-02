@@ -4,7 +4,7 @@ import { gradesService } from 'services/Grades.Service';
 import asyncHandler from 'express-async-handler';
 
 const getGradesByStudentId = asyncHandler(async (req: Request, res: Response) => {
-    const studentId = Number(req.params.studentId);
+    const studentId = Number(req.params.id);
     const grades = await gradesService.getGradesByStudentId(studentId);
 
     res.status(HTTP_STATUS.OK.code).json(grades);

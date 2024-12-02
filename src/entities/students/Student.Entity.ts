@@ -10,6 +10,7 @@ import { IStudent } from 'types/persons/students/Students.Interfaces';
 import { Consent } from 'entities/schemas/Consent.Schema';
 import { Address } from 'entities/schemas/Address.Schema';
 import { Grade } from 'entities/studentsGrades/StudentGrades.Entity';
+import { StudentTodo } from './StudentTodos.Entity';
 
 @Entity('Students')
 export class Student extends ExtendedPerson implements IStudent {
@@ -46,4 +47,7 @@ export class Student extends ExtendedPerson implements IStudent {
 
     @OneToMany(() => Grade, (grade) => grade.student, { cascade: true })
     studentsGrades: Grade[];
+
+    @OneToMany(() => StudentTodo, (todo) => todo.student, { cascade: true })
+    todos!: StudentTodo[];
 }
