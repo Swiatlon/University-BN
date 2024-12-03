@@ -5,6 +5,7 @@ import { StudentModule } from 'entities/studentDegrees/StudentModule.Entity';
 import { Student } from 'entities/students/Student.Entity';
 import { IPersonRelations } from '../persons/Persons.Interfaces';
 import { Grade } from 'entities/studentsGrades/StudentGrades.Entity';
+import { StudentTodo } from 'entities/students/StudentTodos.Entity';
 
 export interface IStudent extends IPersonRelations {
     id: number;
@@ -12,6 +13,7 @@ export interface IStudent extends IPersonRelations {
     degreePaths: StudentDegreePath[];
     modules: StudentModule[];
     studentsGrades: Grade[];
+    todos: StudentTodo[];
 }
 
 export interface IStudentWithRoles extends Student {
