@@ -47,7 +47,6 @@ export interface IAuthService {
             roles: string[];
         };
         sessionData: {
-            sessionID: string;
             rememberMe: boolean;
         };
     }>;

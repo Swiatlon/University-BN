@@ -2,14 +2,14 @@ import asyncHandler from 'express-async-handler';
 import type { CookieOptions, Request, Response } from 'express';
 import { HTTP_STATUS, ONE_DAY, ONE_MINUTE } from 'constants/general/general.Constants';
 import { ICookie } from 'types/global/Global.Interfaces';
-import { ILoginCredentials, IRefreshCredentials } from 'types/controllers/Controllers.Interfaces';
+import { ILoginCredentials } from 'types/controllers/Controllers.Interfaces';
 import { authService } from 'services/Auth.Service';
 import { AccountRepository } from 'repositories/accounts/Accounts.Repository';
 import { ApiError } from 'middlewares/apiErrors/ApiError';
 
 const login = asyncHandler(async (req: Request, res: Response) => {
-    const { identifier, password, rememberMe, sessionID } = req.body as ILoginCredentials;
-    const { accessToken, refreshToken, userData, sessionData } = await authService.login({ identifier, password, rememberMe, sessionID });
+    const { identifier, password, rememberMe } = req.body as ILoginCredentials;
+    const { accessToken, refreshToken, userData, sessionData } = await authService.login({ identifier, password, rememberMe });
 
     const cookiesOptions = {
         httpOnly: true,
@@ -26,17 +26,13 @@ const login = asyncHandler(async (req: Request, res: Response) => {
 });
 
 const refreshSession = asyncHandler(async (req: Request, res: Response) => {
-    const {
-        refreshToken,
-        sessionData: { rememberMe, sessionID: loginSavedSessionID },
-    } = req.cookies as ICookie;
-    const { sessionID } = req.body as IRefreshCredentials;
+    const { refreshToken, sessionData } = req.cookies as ICookie;
 
     if (!refreshToken) {
         throw new ApiError(HTTP_STATUS.FORBIDDEN.code, 'Unauthorized!');
     }
 
-    const { accessToken } = await authService.refreshSession({ refreshToken, sessionID, loginSavedSessionID, rememberMe });
+    const { accessToken } = await authService.refreshSession({ refreshToken, rememberMe: sessionData.rememberMe });
 
     res.json({ accessToken });
 });
@@ -65,7 +61,6 @@ const randomUserLogin = asyncHandler(async (req: Request, res: Response) => {
         throw new ApiError(HTTP_STATUS.NOT_FOUND.code, 'Something went wrong...');
     }
 
-    const { sessionID } = req.body as ILoginCredentials;
     const randomIndex = Math.floor(Math.random() * studentsAmount);
     const randomStudentAccount = allStudentsAccount[randomIndex];
 
@@ -73,7 +68,6 @@ const randomUserLogin = asyncHandler(async (req: Request, res: Response) => {
         identifier: randomStudentAccount.email,
         password: 'wiercik',
         rememberMe: false,
-        sessionID: sessionID,
     });
 
     const cookieBaseOptions = {

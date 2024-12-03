@@ -14,7 +14,7 @@ import { IAuthService } from 'types/services/Services.Interfaces';
 import { ApiError } from 'middlewares/apiErrors/ApiError';
 
 export class AuthService implements IAuthService {
-    async login({ identifier, password, rememberMe, sessionID }: ILoginCredentials) {
+    async login({ identifier, password, rememberMe }: ILoginCredentials) {
         const foundUser = await AccountRepository().getAccountWithRolesByIdentifier(identifier);
 
         if (!foundUser) {
@@ -53,13 +53,12 @@ export class AuthService implements IAuthService {
             refreshToken,
             userData: dataPassedToAccessToken,
             sessionData: {
-                sessionID,
                 rememberMe,
             },
         };
     }
 
-    async refreshSession({ refreshToken, sessionID, loginSavedSessionID, rememberMe }: IRefreshCredentials) {
+    async refreshSession({ refreshToken, rememberMe = false }: IRefreshCredentials) {
         const decoded = await new Promise<IUserPayload>((resolve, reject) => {
             jwt.verify(refreshToken, String(process.env.REFRESH_TOKEN_SECRET), (err, decodedToken) => {
                 if (err) {
@@ -74,10 +73,6 @@ export class AuthService implements IAuthService {
 
         if (!foundUser) {
             throw new ApiError(HTTP_STATUS.UNAUTHORIZED.code, 'User not found!');
-        }
-
-        if (!rememberMe && sessionID !== loginSavedSessionID) {
-            throw new ApiError(HTTP_STATUS.UNAUTHORIZED.code, 'Multi session detected');
         }
 
         const dataPassedToAccessToken = {
