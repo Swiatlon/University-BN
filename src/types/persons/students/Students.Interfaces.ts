@@ -12,7 +12,7 @@ export interface IStudent extends IPersonRelations {
     degreeCourses: StudentDegreeCourse[];
     degreePaths: StudentDegreePath[];
     modules: StudentModule[];
-    studentsGrades: Grade[];
+    studentGrades: Grade[];
     todos: StudentTodo[];
 }
 

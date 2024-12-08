@@ -9,7 +9,8 @@ import { StudentTodoDto } from 'dto/studentTodo/CreateStudentTodo';
 
 const router = express.Router();
 
-router.get('/allData/:id', verifyJWT, hasAccessToEndpointData([RolesEnum.ADMIN, RolesEnum.STUDENT], Student), studentController.getStudentAllData);
+router.get('/:id/allData', verifyJWT, hasAccessToEndpointData([RolesEnum.ADMIN, RolesEnum.STUDENT], Student), studentController.getStudentAllData);
+router.get('/:id/courses', verifyJWT, hasAccessToEndpointData([RolesEnum.ADMIN, RolesEnum.STUDENT], Student), studentController.getStudentCoursesData);
 router.get('/:id/todos', verifyJWT, studentController.getStudentTodos);
 router
     .route('/:id/todos/:todoId')

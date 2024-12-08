@@ -3,6 +3,30 @@ import { DegreeCourse } from 'entities/courses/DegreeCourse.Entity';
 import { DegreePath } from 'entities/courses/DegreePath.Entity';
 import { Module } from 'entities/courses/Module.Entity';
 import { Subject } from 'entities/courses/Subject.Entity';
+import { GradeValueEnum } from 'constants/entities/entities.Constants';
+
+export interface IStudentCoursesResponse {
+    id: number;
+    name: string;
+    subjects: {
+        id: number;
+        name: string;
+        grade: GradeValueEnum | null;
+    }[];
+    degreePath: {
+        id: number;
+        name: string;
+        modules: {
+            id: number;
+            name: string;
+            subjects: {
+                id: number;
+                name: string;
+                grade: GradeValueEnum | null;
+            }[];
+        }[];
+    };
+}
 
 export interface ICoursesBaseSchema {
     id: number;

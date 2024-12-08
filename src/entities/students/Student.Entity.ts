@@ -46,7 +46,7 @@ export class Student extends ExtendedPerson implements IStudent {
     modules: StudentModule[];
 
     @OneToMany(() => Grade, (grade) => grade.student, { cascade: true })
-    studentsGrades: Grade[];
+    studentGrades: Grade[];
 
     @OneToMany(() => StudentTodo, (todo) => todo.student, { cascade: true })
     todos!: StudentTodo[];

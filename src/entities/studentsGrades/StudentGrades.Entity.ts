@@ -9,7 +9,7 @@ export class Grade {
     @PrimaryGeneratedColumn()
     id!: number;
 
-    @ManyToOne(() => Student, (student) => student.studentsGrades, { nullable: false })
+    @ManyToOne(() => Student, (student) => student.studentGrades, { nullable: false })
     student!: Student;
 
     @ManyToOne(() => Subject, (subject) => subject.grades, { nullable: false })

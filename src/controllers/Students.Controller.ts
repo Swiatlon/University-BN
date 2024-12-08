@@ -10,6 +10,13 @@ const getStudentAllData = asyncHandler(async (req, res) => {
     res.status(HTTP_STATUS.OK.code).json(studentData);
 });
 
+const getStudentCoursesData = asyncHandler(async (req, res) => {
+    const studentId = Number(req.params.id);
+    const studentData = await studentService.getStudentCourses(studentId);
+
+    res.status(HTTP_STATUS.OK.code).json(studentData);
+});
+
 const getStudentTodos = asyncHandler(async (req, res) => {
     const studentId = Number(req.params.id);
     const todos = await studentService.getStudentTodos(studentId);
@@ -47,4 +54,5 @@ export const studentController = {
     editStudentTodo,
     removeStudentTodo,
     createStudentTodo,
+    getStudentCoursesData,
 };

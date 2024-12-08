@@ -58,6 +58,31 @@ export const StudentRepository = (customDataSource: DataSource = AppDataSource) 
             return student;
         },
 
+        async getStudentCoursesDataWithGradesByStudentId(studentId: number) {
+            const student = await this.findOne({
+                where: { id: studentId },
+                relations: [
+                    'degreeCourses',
+                    'degreeCourses.degreeCourse',
+                    'degreeCourses.degreeCourse.subjects',
+                    'degreePaths',
+                    'degreePaths.degreePath',
+                    'modules',
+                    'modules.module',
+                    'modules.module.subjects',
+                    'studentGrades',
+                    'studentGrades.subject',
+                ],
+                select: ['degreeCourses', 'degreePaths', 'modules'],
+            });
+
+            if (!student) {
+                return null;
+            }
+
+            return student;
+        },
+
         async getStudentIdByAccountId(accountId: number) {
             const student = await this.createQueryBuilder('student').where('student.account = :id', { id: accountId }).select('student.id').getOne();
 
