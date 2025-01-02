@@ -1,0 +1,82 @@
+# Docker Compose file to orchestrate both Frontend and Backend services.
+# 
+# INSTRUCTIONS FOR USERS:
+# 1. Ensure you have cloned both repositories into a single parent directory:
+#    - `University-FN` (Frontend repository)  https://github.com/Swiatlon/University-FN
+#    - `University-BN` (Backend repository)   https://github.com/Swiatlon/University-BN
+#
+#    Directory structure should look like this:
+#    Parent Directory/
+#    ├── University-FN/   # Cloned frontend repository
+#    └── University-BN/   # Cloned backend repository
+#
+# 2. Place this `docker-compose.yml` file in the parent directory.
+# 
+# 3. Remove any existing `docker-compose.yml` files from the `University-FN` and `University-BN` repositories.
+#
+# 4. Use the following commands to manage the application:
+#    - Start all services in development mode: `docker-compose --profile dev up --build`
+#    - Start all services in production mode: `docker-compose --profile prod up --build`
+
+
+services:
+  frontend-dev:
+    container_name: frontend-dev
+    build:
+      context: ./University-FN
+      dockerfile: dev.Dockerfile
+    profiles: 
+      - dev
+    ports:
+      - "5173:80"
+
+  frontend-prod:
+    build:
+      context: ./University-FN
+      dockerfile: prod.Dockerfile
+    profiles: 
+      - prod      
+    ports:
+      - "5173:80"
+
+  backend-dev:
+    container_name: backend-dev
+    build:
+      context: ./University-BN
+      dockerfile: dev.Dockerfile
+    profiles: 
+      - dev
+    ports:
+      - "8800:8800"
+    depends_on:
+      - database
+    command: /bin/sh -c "npm run migration:apply && npm run dev"
+
+  backend-prod:
+    container_name: backend-prod
+    build:
+      context: ./University-BN
+      dockerfile: dev.Dockerfile
+    profiles: 
+      - prod
+    ports:
+      - "8800:8800"
+    depends_on:
+      - database
+    command: /bin/sh -c "npm run migration:apply && npm run start:prod"    
+
+  database:
+    image: postgres:15
+    container_name: postgres_container
+    env_file:
+      - ./University-BN/.env
+    profiles: 
+      - dev
+      - prod
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
