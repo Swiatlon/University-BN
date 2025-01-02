@@ -23,7 +23,7 @@ import { cleanupRequestContextMiddleware } from 'middlewares/requests/CleanupReq
 
 const app = express();
 const PING_INTERVAL = 14 * 60 * 1000;
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT ?? 8800;
 
 // EXTERNAL MIDDLEWARES
 app.use(cors(corsOptions));

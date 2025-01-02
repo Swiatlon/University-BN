@@ -14,12 +14,11 @@
         "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
         "migration:apply": "npm run typeorm -- -d src/configs/database.ts migration:run",
         "migration:revert": "npm run typeorm -- -d src/configs/database.ts migration:revert",
-        "migration:generate": "ts-node ./src/utils/Db/generateMigrations.ts",
-        "seed": "ts-node -r tsconfig-paths/register src/utils/Db/generateSeed.ts",
+        "migration:generate": "ts-node ./src/utils/db/generateMigrations.ts",
+        "seed": "ts-node -r tsconfig-paths/register src/utils/db/generateSeed.ts",
         "lint": "eslint src --ext .ts --fix",
         "format": "prettier --write \"src/**/*.{js,json,ts}\"",
-        "type-check": "tsc --noEmit",
-        "prepare": "node husky-prepare.js"
+        "type-check": "tsc --noEmit"
     },
     "keywords": [],
     "author": "",
@@ -29,7 +28,6 @@
         "npm": ">=8.0.0"
     },
     "dependencies": {
-        "bcrypt": "^5.0.2",
         "bcryptjs": "^2.4.3",
         "class-transformer": "^0.5.1",
         "class-validator": "^0.14.1",

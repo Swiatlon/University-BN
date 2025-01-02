@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { AccountRepository } from 'repositories/accounts/Accounts.Repository';
 import { ILoginCredentials, IRefreshCredentials } from 'types/controllers/Controllers.Interfaces';

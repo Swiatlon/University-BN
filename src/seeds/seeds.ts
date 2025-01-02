@@ -15,13 +15,13 @@ import { CreateStudentsGrades } from './grades/CreateStudentsGrades.Seeder';
 
 const _devSeeders = () => {
     return [
-        // CreateStudentAllData,
-        // CreateMissingAccountsForStudents,
-        // CreateEmployeeAllData,
-        // CreateMissingAccountsForEmployees,
-        // CreateRolesForAccounts,
-        // StudentsDegreeSeeder,
-        // CreateCompanyAllData,
+        CreateStudentAllData,
+        CreateMissingAccountsForStudents,
+        CreateEmployeeAllData,
+        CreateMissingAccountsForEmployees,
+        CreateRolesForAccounts,
+        StudentsDegreeSeeder,
+        CreateCompanyAllData,
         CreateStudentsGrades,
     ];
 };
